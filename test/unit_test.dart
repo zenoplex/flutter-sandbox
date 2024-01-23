@@ -5,8 +5,10 @@ void main() {
   test('Is even', () {
     bool result = isEven(12);
     expect(result, true);
+  });
 
-    result = isEven(13);
+  test('Is odd', () {
+    bool result = isEven(13);
     expect(result, false);
   });
 }
