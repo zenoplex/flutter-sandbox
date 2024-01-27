@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math' as math;
 
 class ImmutableWidget extends StatelessWidget {
   const ImmutableWidget({super.key});
@@ -8,10 +9,13 @@ class ImmutableWidget extends StatelessWidget {
     return Container(
         color: Colors.green,
         padding: const EdgeInsets.all(40),
-        child: Container(
-            color: Colors.purple,
-            padding: const EdgeInsets.all(50),
-            child: _buildShinyCircle()));
+        child: Transform.rotate(
+          angle: 180 / math.pi,
+          child: Container(
+              color: Colors.purple,
+              padding: const EdgeInsets.all(50),
+              child: _buildShinyCircle()),
+        ));
   }
 
   Widget _buildShinyCircle() {
