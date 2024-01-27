@@ -7,12 +7,10 @@ class ImmutableWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         color: Colors.green,
-        child: Padding(
-            padding: const EdgeInsets.all(40),
-            child: Container(
-                color: Colors.purple,
-                child: Padding(
-                    padding: const EdgeInsets.all(50.0),
-                    child: Container(color: Colors.blue)))));
+        padding: const EdgeInsets.all(40),
+        child: Container(
+            color: Colors.purple,
+            padding: const EdgeInsets.all(50),
+            child: const ColoredBox(color: Colors.blue)));
   }
 }
