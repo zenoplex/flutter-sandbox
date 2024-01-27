@@ -12,7 +12,7 @@ class ImmutableWidget extends StatelessWidget {
             backgroundBlendMode: BlendMode.colorBurn,
             gradient: LinearGradient(
                 begin: Alignment.topCenter,
-                end: Alignment.topCenter,
+                end: Alignment.bottomCenter,
                 colors: [
                   Color(0xAA0d6123),
                   Color(0x00000000),
