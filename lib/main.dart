@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sandbox/immutable_widget.dart';
+import 'package:flutter_sandbox/basic_screen.dart';
 
 void main() {
   runApp(const StaticApp());
@@ -13,6 +13,6 @@ class StaticApp extends StatelessWidget {
     return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(primarySwatch: Colors.blue),
-        home: const ImmutableWidget());
+        home: const BasicScreen());
   }
 }
