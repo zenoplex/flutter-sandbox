@@ -11,6 +11,17 @@ class ImmutableWidget extends StatelessWidget {
         child: Container(
             color: Colors.purple,
             padding: const EdgeInsets.all(50),
-            child: const ColoredBox(color: Colors.blue)));
+            child: _buildShinyCircle()));
+  }
+
+  Widget _buildShinyCircle() {
+    return Container(
+      decoration: const BoxDecoration(
+          shape: BoxShape.circle,
+          gradient: RadialGradient(
+              colors: [Colors.lightBlueAccent, Colors.blueAccent],
+              center: Alignment(-0.3, -0.5)),
+          boxShadow: [BoxShadow(blurRadius: 20)]),
+    );
   }
 }
