@@ -14,9 +14,13 @@ class BasicScreen extends StatelessWidget {
           Padding(padding: EdgeInsets.all(10.0), child: Icon(Icons.edit)),
         ],
       ),
-      body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [Image.asset('assets/beach.jpg'), const TextLayout()]),
+      body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Semantics(
+            image: true,
+            label: 'A beautiful beach',
+            child: Image.asset('assets/beach.jpg')),
+        const TextLayout()
+      ]),
       drawer: Drawer(
           child: Container(
               color: Colors.lightBlue,
