@@ -19,7 +19,9 @@ class ProfileImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return ClipOval(
+        child: Image.asset('assets/cat.jpg',
+            width: 200, height: 200, fit: BoxFit.fitWidth));
   }
 }
 
