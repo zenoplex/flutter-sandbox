@@ -25,8 +25,11 @@ class ProfileImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipOval(
-        child: Image.asset('assets/cat.jpg',
-            width: 200, height: 200, fit: BoxFit.fitWidth));
+        child: Semantics(
+            image: true,
+            label: 'Teto',
+            child: Image.asset('assets/cat.jpg',
+                width: 200, height: 200, fit: BoxFit.fitWidth)));
   }
 }
 
