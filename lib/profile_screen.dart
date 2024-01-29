@@ -36,14 +36,14 @@ class ProfileDetails extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Gen Ichino',
+              'Teto',
               style: Theme.of(context)
                   .textTheme
-                  .titleLarge
+                  .headlineLarge
                   ?.copyWith(fontWeight: FontWeight.bold),
             ),
-            _buildDetailsRow('Age', '40'),
-            _buildDetailsRow('Status', 'Good Boy')
+            _buildDetailsRow('Age', '10'),
+            _buildDetailsRow('Status', 'Good Girl')
           ],
         ));
   }
