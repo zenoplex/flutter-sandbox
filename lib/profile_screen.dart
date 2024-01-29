@@ -35,9 +35,29 @@ class ProfileDetails extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Gen Ichino', style: Theme.of(context).textTheme.titleLarge)
+            Text(
+              'Gen Ichino',
+              style: Theme.of(context)
+                  .textTheme
+                  .titleLarge
+                  ?.copyWith(fontWeight: FontWeight.bold),
+            ),
+            _buildDetailsRow('Age', '40'),
+            _buildDetailsRow('Status', 'Good Boy')
           ],
         ));
+  }
+
+  Widget _buildDetailsRow(String heading, String value) {
+    return Row(
+      children: [
+        Text(
+          '$heading: ',
+          style: const TextStyle(fontWeight: FontWeight.bold),
+        ),
+        Text(value)
+      ],
+    );
   }
 }
 
