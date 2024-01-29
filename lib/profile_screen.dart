@@ -5,11 +5,16 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-        body: Column(children: [
-      ProfileImage(),
-      ProfileDetails(),
-      ProfileActions(),
+    return Scaffold(
+        body: Stack(children: [
+      Image.asset('assets/beach.jpg'),
+      Transform.translate(
+          offset: const Offset(0, 140),
+          child: const Column(children: [
+            ProfileImage(),
+            ProfileDetails(),
+            ProfileActions(),
+          ]))
     ]));
   }
 }
