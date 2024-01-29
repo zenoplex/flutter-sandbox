@@ -66,6 +66,21 @@ class ProfileActions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        _buildIcon(Icons.restaurant, 'Feed'),
+        _buildIcon(Icons.favorite, 'Pet'),
+        _buildIcon(Icons.directions_walk, 'Walk')
+      ],
+    );
+  }
+
+  Widget _buildIcon(IconData icon, String text) {
+    return Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          children: [Icon(icon, size: 40), Text(text)],
+        ));
   }
 }
