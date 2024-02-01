@@ -54,7 +54,21 @@ class DemoFlexible extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return const SizedBox(
+        height: 100,
+        child: Row(
+          children: [
+            Flexible(
+                flex: 1,
+                child: LabeledContainer(color: Colors.orange, text: '25%')),
+            Flexible(
+                flex: 1,
+                child: LabeledContainer(color: Colors.deepOrange, text: '25%')),
+            Flexible(
+                flex: 2,
+                child: LabeledContainer(color: Colors.blue, text: '50%')),
+          ],
+        ));
   }
 }
 
