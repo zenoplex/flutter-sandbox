@@ -14,7 +14,9 @@ class FlexScreen extends StatelessWidget {
         ..._header(context, 'Expanded'),
         const DemoExpanded(),
         ..._header(context, 'Flexible'),
-        const DemoFlexible()
+        const DemoFlexible(),
+        const Expanded(child: Spacer()),
+        const Center(child: DemoFooter()),
       ]),
     );
   }
@@ -77,6 +79,13 @@ class DemoFooter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Container(
+        decoration: BoxDecoration(
+            color: Colors.yellow, borderRadius: BorderRadius.circular(40)),
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+        child: Text(
+          'Sticky Footer',
+          style: Theme.of(context).textTheme.titleSmall,
+        ));
   }
 }
