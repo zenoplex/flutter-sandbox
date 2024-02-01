@@ -8,13 +8,14 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
         body: Stack(children: [
       Image.asset('assets/beach.jpg'),
-      Transform.translate(
-          offset: const Offset(0, 140),
-          child: const Column(children: [
-            ProfileImage(),
-            ProfileDetails(),
-            ProfileActions(),
-          ]))
+      SafeArea(
+          child: Transform.translate(
+              offset: const Offset(0, 40),
+              child: const Column(children: [
+                ProfileImage(),
+                ProfileDetails(),
+                ProfileActions(),
+              ])))
     ]));
   }
 }
