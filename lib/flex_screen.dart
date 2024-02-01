@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_sandbox/labeled_container.dart';
 
 class FlexScreen extends StatelessWidget {
   const FlexScreen({super.key});
@@ -31,7 +32,20 @@ class DemoExpanded extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return const SizedBox(
+        height: 100,
+        child: Row(
+          children: [
+            LabeledContainer(width: 100, color: Colors.green, text: '100'),
+            Expanded(
+                child: LabeledContainer(
+              color: Colors.purple,
+              text: 'Expanded',
+              textColor: Colors.white,
+            )),
+            LabeledContainer(width: 40, color: Colors.green, text: '40'),
+          ],
+        ));
   }
 }
 
