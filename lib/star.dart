@@ -35,7 +35,7 @@ class _StarPainter extends CustomPainter {
 
   Path _getStarPath(Size size, verticies) {
     final double outerRadius = size.width * .5;
-    final double innerRadius = outerRadius * .5;
+    final double innerRadius = outerRadius * .4;
     final centerX = size.width * .5;
     final centerY = size.height * .5;
 
@@ -70,7 +70,7 @@ class StarRating extends StatelessWidget {
   const StarRating(
       {super.key,
       required this.value,
-      this.size = 40,
+      this.size = 25,
       this.color = Colors.deepOrange});
 
   @override
