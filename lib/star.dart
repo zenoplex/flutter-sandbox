@@ -23,36 +23,32 @@ class _StarPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    const int vertex = 5;
+    const int verticies = 5;
     final double outerRadius = size.width * .5;
     final double innerRadius = outerRadius * .5;
-    const angle = (math.pi * 2) / vertex;
-    const halfAngle = angle * .5;
     final centerX = size.width * .5;
     final centerY = size.height * .5;
 
-    // TODO: fix the star shape
+    var rotation = math.pi * .5 * 3;
+    const double step = math.pi / verticies;
+
     final path = Path();
-    for (var i = 0; i < vertex; i += 1) {
-      final double a = i * angle;
-      final double outerX = centerX + math.cos(a) * outerRadius;
-      final double outerY = centerY + math.sin(a) * outerRadius;
+    path.moveTo(centerX, centerY - outerRadius);
+    for (var i = 0; i < verticies; i += 1) {
+      final double outerX = centerX + math.cos(rotation) * outerRadius;
+      final double outerY = centerY + math.sin(rotation) * outerRadius;
+      path.lineTo(outerX, outerY);
+      rotation += step;
 
-      final double innerX = centerX + math.cos(a + halfAngle) * innerRadius;
-      final double innerY = centerY + math.sin(a + halfAngle) * innerRadius;
-
-      if (i == 0) {
-        path.moveTo(outerX, outerY);
-      } else {
-        path.lineTo(outerX, outerY);
-        path.lineTo(innerX, innerY);
-      }
+      final double innerX = centerX + math.cos(rotation) * innerRadius;
+      final double innerY = centerY + math.sin(rotation) * innerRadius;
+      path.lineTo(innerX, innerY);
+      rotation += step;
     }
+    path.lineTo(centerX, centerY - outerRadius);
     path.close();
 
-    final paint = Paint()
-      ..color = color
-      ..style = PaintingStyle.fill;
+    final paint = Paint()..color = color;
     canvas.drawPath(path, paint);
   }
 
