@@ -61,8 +61,13 @@ class _StarPainter extends CustomPainter {
 class StarRating extends StatelessWidget {
   final int value;
   final double size;
+  final Color color;
 
-  const StarRating({super.key, required this.value, this.size = 40});
+  const StarRating(
+      {super.key,
+      required this.value,
+      this.size = 40,
+      this.color = Colors.deepOrange});
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +77,7 @@ class StarRating extends StatelessWidget {
             (_) => Padding(
                 padding: const EdgeInsets.all(2.0),
                 child: Star(
-                  color: Colors.black,
+                  color: color,
                   size: size,
                 ))));
   }
