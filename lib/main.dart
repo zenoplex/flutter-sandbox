@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 // import 'package:flutter_sandbox/flex_screen.dart';
-import 'package:flutter_sandbox/profile_screen.dart';
+// import 'package:flutter_sandbox/profile_screen.dart';
+import 'package:flutter_sandbox/deep_tree.dart';
 
 void main() {
   runApp(const StaticApp());
@@ -20,7 +21,9 @@ class StaticApp extends StatelessWidget {
           brightness: Brightness.dark,
         ),
         themeMode: ThemeMode.system,
-        home: const ProfileScreen());
-    // home: const FlexScreen());
+        home: const DeepTree()
+        // home: const ProfileScreen()
+        // home: const FlexScreen());
+        );
   }
 }
