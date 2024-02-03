@@ -23,14 +23,24 @@ class _StarPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    const int verticies = 5;
+    final path = _getStarPath(size, 5);
+    final paint = Paint()..color = color;
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) {
+    return false;
+  }
+
+  Path _getStarPath(Size size, verticies) {
     final double outerRadius = size.width * .5;
     final double innerRadius = outerRadius * .5;
     final centerX = size.width * .5;
     final centerY = size.height * .5;
 
     var rotation = math.pi * .5 * 3;
-    const double step = math.pi / verticies;
+    final double step = math.pi / verticies;
 
     final path = Path();
     path.moveTo(centerX, centerY - outerRadius);
@@ -48,13 +58,7 @@ class _StarPainter extends CustomPainter {
     path.lineTo(centerX, centerY - outerRadius);
     path.close();
 
-    final paint = Paint()..color = color;
-    canvas.drawPath(path, paint);
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    return false;
+    return path;
   }
 }
 
