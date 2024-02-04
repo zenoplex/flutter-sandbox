@@ -59,10 +59,6 @@ class _StopWatchState extends State<StopWatch> {
                 children: [
                   ElevatedButton(
                     onPressed: isTicking ? null : _startTimer,
-                    style: const ButtonStyle(
-                        backgroundColor: MaterialStatePropertyAll(Colors.green),
-                        foregroundColor:
-                            MaterialStatePropertyAll(Colors.white)),
                     child: const Text('Start'),
                   ),
                   const SizedBox(
@@ -70,10 +66,6 @@ class _StopWatchState extends State<StopWatch> {
                   ),
                   TextButton(
                     onPressed: !isTicking ? null : _stopTimer,
-                    style: const ButtonStyle(
-                        backgroundColor: MaterialStatePropertyAll(Colors.red),
-                        foregroundColor:
-                            MaterialStatePropertyAll(Colors.white)),
                     child: const Text('Stop'),
                   ),
                 ],

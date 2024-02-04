@@ -10,8 +10,14 @@ class StopWatchApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: StopWatch(),
+    return MaterialApp(
+      theme: ThemeData(
+          useMaterial3: true,
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: Colors.red,
+            brightness: Brightness.light,
+          )),
+      home: const StopWatch(),
     );
   }
 }
