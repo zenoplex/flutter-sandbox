@@ -38,4 +38,10 @@ class _StopWatchState extends State<StopWatch> {
   }
 
   String _secondsText() => seconds <= 1 ? 'second' : 'seconds';
+
+  @override
+  void dispose() {
+    timer.cancel();
+    super.dispose();
+  }
 }
