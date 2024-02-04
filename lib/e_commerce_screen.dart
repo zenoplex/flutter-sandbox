@@ -171,7 +171,8 @@ class DealButtons extends StatelessWidget {
         const SizedBox(height: 15),
         Row(
           children: <Widget>[
-            const DealButton(),
+            const DealButton(
+                text: 'Must buy in summer', color: Colors.lightGreen),
             const SizedBox(width: 10),
             Expanded(
               child: Container(
@@ -199,7 +200,12 @@ class DealButtons extends StatelessWidget {
 }
 
 class DealButton extends StatelessWidget {
+  final String text;
+  final Color color;
+
   const DealButton({
+    required this.text,
+    required this.color,
     super.key,
   });
 
@@ -209,14 +215,14 @@ class DealButton extends StatelessWidget {
       child: Container(
         height: 80,
         decoration: BoxDecoration(
-            color: Colors.lightGreen, borderRadius: BorderRadius.circular(20)),
-        child: const Padding(
-          padding: EdgeInsets.all(10.0),
+            color: color, borderRadius: BorderRadius.circular(20)),
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
           child: Center(
             child: Text(
-              'Must buy in summer',
+              text,
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontSize: 20.0,
                 fontWeight: FontWeight.bold,
