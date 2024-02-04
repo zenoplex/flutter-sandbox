@@ -12,43 +12,7 @@ class ECommerceScreen extends StatelessWidget {
         padding: const EdgeInsets.all(20.0),
         child: Column(
           children: <Widget>[
-            Row(
-              children: const [
-                Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    'Recommended',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 17,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    'Formal Wear',
-                    style: TextStyle(
-                      color: Colors.white54,
-                      fontSize: 17,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    'Casual Wear',
-                    style: TextStyle(
-                      color: Colors.white54,
-                      fontSize: 17,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ],
-            ),
+            _buildToggleBar(),
             SizedBox(
                 height: 100, child: Image.asset('assets/woman_shopping.jpg')),
             const SizedBox(height: 15),
@@ -172,6 +136,46 @@ class ECommerceScreen extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  Row _buildToggleBar() {
+    return const Row(
+      children: [
+        Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Text(
+            'Recommended',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 17,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Text(
+            'Formal Wear',
+            style: TextStyle(
+              color: Colors.white54,
+              fontSize: 17,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Text(
+            'Casual Wear',
+            style: TextStyle(
+              color: Colors.white54,
+              fontSize: 17,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+      ],
     );
   }
 
