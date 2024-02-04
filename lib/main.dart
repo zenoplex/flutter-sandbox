@@ -17,7 +17,6 @@ class StaticApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.green,
-        // TODO: appBarTheme was required for the change to take effect there maybe other ways without this
         appBarTheme: const AppBarTheme(
           backgroundColor: Colors.green,
         ),
@@ -29,7 +28,7 @@ class StaticApp extends StatelessWidget {
         ),
         brightness: Brightness.dark,
       ),
-      themeMode: ThemeMode.system,
+      themeMode: ThemeMode.dark,
       home: const ECommerceScreen(),
       // home: const DeepTree()
       // home: const ProfileScreen()

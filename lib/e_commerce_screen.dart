@@ -25,7 +25,7 @@ class ECommerceScreen extends StatelessWidget {
   Widget _buildProductTitle(BuildContext context) {
     return Container(
       height: 200,
-      color: Colors.white,
+      color: Theme.of(context).cardColor,
       child: Row(
         children: <Widget>[
           SizedBox(
