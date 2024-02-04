@@ -11,11 +11,11 @@ class StopWatch extends StatefulWidget {
 class _StopWatchState extends State<StopWatch> {
   int seconds = 0;
   late Timer timer;
+  bool isTicking = false;
 
   @override
   void initState() {
     super.initState();
-    timer = Timer.periodic(const Duration(seconds: 1), _onTick);
   }
 
   void _onTick(Timer timer) {
@@ -23,6 +23,26 @@ class _StopWatchState extends State<StopWatch> {
 
     setState(() {
       seconds++;
+    });
+  }
+
+  void _startTimer() {
+    if (isTicking) return;
+
+    timer = Timer.periodic(const Duration(seconds: 1), _onTick);
+    setState(() {
+      seconds = 0;
+      isTicking = true;
+    });
+  }
+
+  void _stopTimer() {
+    if (!isTicking) return;
+
+    timer.cancel();
+
+    setState(() {
+      isTicking = false;
     });
   }
 
@@ -38,27 +58,27 @@ class _StopWatchState extends State<StopWatch> {
               const SizedBox(
                 height: 20,
               ),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ElevatedButton(
-                    onPressed: null,
-                    style: ButtonStyle(
+                    onPressed: _startTimer,
+                    style: const ButtonStyle(
                         backgroundColor: MaterialStatePropertyAll(Colors.green),
                         foregroundColor:
                             MaterialStatePropertyAll(Colors.white)),
-                    child: Text('Start'),
+                    child: const Text('Start'),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 20,
                   ),
                   TextButton(
-                    onPressed: null,
-                    style: ButtonStyle(
+                    onPressed: _stopTimer,
+                    style: const ButtonStyle(
                         backgroundColor: MaterialStatePropertyAll(Colors.red),
                         foregroundColor:
                             MaterialStatePropertyAll(Colors.white)),
-                    child: Text('Stop'),
+                    child: const Text('Stop'),
                   ),
                 ],
               ),
