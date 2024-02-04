@@ -17,15 +17,12 @@ class StaticApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.green,
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.green,
-        ),
+        appBarTheme: _buildAppBarTheme(),
         brightness: Brightness.light,
       ),
       darkTheme: ThemeData(
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.green,
-        ),
+        primarySwatch: Colors.green,
+        appBarTheme: _buildAppBarTheme(),
         brightness: Brightness.dark,
       ),
       themeMode: ThemeMode.dark,
@@ -33,6 +30,18 @@ class StaticApp extends StatelessWidget {
       // home: const DeepTree()
       // home: const ProfileScreen()
       // home: const FlexScreen());
+    );
+  }
+
+  AppBarTheme _buildAppBarTheme() {
+    return AppBarTheme(
+      elevation: 10,
+      titleTextStyle: const TextTheme(
+          titleLarge: TextStyle(
+        fontSize: 24,
+        fontFamily: 'LeckerliOne',
+      )).titleLarge,
+      backgroundColor: Colors.green,
     );
   }
 }
