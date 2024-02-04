@@ -11,6 +11,12 @@ class StopWatch extends StatefulWidget {
 class _StopWatchState extends State<StopWatch> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+        appBar: AppBar(title: const Text('Stopwatch')),
+        body: SafeArea(
+          child: Center(
+              child: Text('0 seconds',
+                  style: Theme.of(context).textTheme.headlineSmall)),
+        ));
   }
 }
