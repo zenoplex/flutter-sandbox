@@ -11,7 +11,7 @@ class ECommerceScreen extends StatelessWidget {
         padding: const EdgeInsets.all(20.0),
         child: Column(
           children: <Widget>[
-            _buildToggleBar(),
+            _buildToggleBar(context),
             SizedBox(
                 height: 100, child: Image.asset('assets/woman_shopping.jpg')),
             const DealButtons(),
@@ -57,21 +57,11 @@ class ECommerceScreen extends StatelessWidget {
     );
   }
 
-  Row _buildToggleBar() {
-    return const Row(
+  Row _buildToggleBar(BuildContext context) {
+    return Row(
       children: [
-        Padding(
-          padding: EdgeInsets.all(8.0),
-          child: Text(
-            'Recommended',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 17,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-        Padding(
+        _buildToggleItem(context, 'Recommended'),
+        const Padding(
           padding: EdgeInsets.all(8.0),
           child: Text(
             'Formal Wear',
@@ -82,7 +72,7 @@ class ECommerceScreen extends StatelessWidget {
             ),
           ),
         ),
-        Padding(
+        const Padding(
           padding: EdgeInsets.all(8.0),
           child: Text(
             'Casual Wear',
@@ -94,6 +84,27 @@ class ECommerceScreen extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+
+  Padding _buildToggleItem(BuildContext context, String text,
+      {bool selected = false}) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Text(
+        text,
+        style: TextStyle(
+          color: selected
+              ? null
+              : Theme.of(context)
+                  .textTheme
+                  .titleMedium
+                  ?.color
+                  ?.withOpacity(0.5),
+          fontSize: 17,
+          fontWeight: selected ? FontWeight.bold : null,
+        ),
+      ),
     );
   }
 
