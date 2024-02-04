@@ -7,23 +7,7 @@ class ECommerceScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.purple,
-      appBar: AppBar(
-        backgroundColor: Colors.purpleAccent,
-        shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(bottom: Radius.circular(30))),
-        leading: const Padding(
-          padding: EdgeInsets.all(20.0),
-          child: Icon(Icons.home),
-        ),
-        title: const Text('Let\'s go shopping!'),
-        elevation: 0,
-        actions: const [
-          Padding(
-            padding: EdgeInsets.all(20.0),
-            child: Icon(Icons.shopping_cart),
-          )
-        ],
-      ),
+      appBar: _buildAppBar(),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
@@ -188,6 +172,26 @@ class ECommerceScreen extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  AppBar _buildAppBar() {
+    return AppBar(
+      backgroundColor: Colors.purpleAccent,
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(bottom: Radius.circular(30))),
+      leading: const Padding(
+        padding: EdgeInsets.all(20.0),
+        child: Icon(Icons.home),
+      ),
+      title: const Text('Let\'s go shopping!'),
+      elevation: 0,
+      actions: const [
+        Padding(
+          padding: EdgeInsets.all(20.0),
+          child: Icon(Icons.shopping_cart),
+        )
+      ],
     );
   }
 }
