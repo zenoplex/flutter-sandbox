@@ -16,9 +16,17 @@ class StaticApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
+        primarySwatch: Colors.green,
+        // TODO: appBarTheme was required for the change to take effect there maybe other ways without this
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.green,
+        ),
         brightness: Brightness.light,
       ),
       darkTheme: ThemeData(
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.green,
+        ),
         brightness: Brightness.dark,
       ),
       themeMode: ThemeMode.system,
