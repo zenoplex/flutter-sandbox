@@ -25,7 +25,7 @@ class StaticApp extends StatelessWidget {
         appBarTheme: _buildAppBarTheme(),
         brightness: Brightness.dark,
       ),
-      themeMode: ThemeMode.dark,
+      themeMode: ThemeMode.system,
       home: const ECommerceScreen(),
       // home: const DeepTree()
       // home: const ProfileScreen()
@@ -36,6 +36,9 @@ class StaticApp extends StatelessWidget {
   AppBarTheme _buildAppBarTheme() {
     return AppBarTheme(
       elevation: 10,
+      iconTheme: const IconThemeData(
+        color: Colors.white,
+      ),
       titleTextStyle: const TextTheme(
           titleLarge: TextStyle(
         fontSize: 24,
