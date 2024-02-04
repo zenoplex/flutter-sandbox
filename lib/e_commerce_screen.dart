@@ -126,74 +126,25 @@ class DealButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       children: [
-        const SizedBox(height: 15),
+        SizedBox(height: 15),
         Row(
           children: <Widget>[
-            Expanded(
-              child: Container(
-                height: 80,
-                decoration: BoxDecoration(
-                    color: Colors.orangeAccent,
-                    borderRadius: BorderRadius.circular(20)),
-                child: const Center(
-                    child: Text(
-                  'Best Sellers',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                )),
-              ),
-            ),
-            const SizedBox(width: 10),
-            Expanded(
-              child: Container(
-                height: 80,
-                decoration: BoxDecoration(
-                    color: Colors.indigoAccent,
-                    borderRadius: BorderRadius.circular(20)),
-                child: const Center(
-                    child: Text(
-                  'Daily Deals',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                )),
-              ),
-            )
+            DealButton(text: 'Best Sellers', color: Colors.orangeAccent),
+            SizedBox(width: 10),
+            DealButton(text: 'Daily Deals', color: Colors.indigoAccent)
           ],
         ),
-        const SizedBox(height: 15),
+        SizedBox(height: 15),
         Row(
           children: <Widget>[
-            const DealButton(
-                text: 'Must buy in summer', color: Colors.lightGreen),
-            const SizedBox(width: 10),
-            Expanded(
-              child: Container(
-                height: 80,
-                decoration: BoxDecoration(
-                    color: Colors.redAccent,
-                    borderRadius: BorderRadius.circular(20)),
-                child: const Center(
-                    child: Text(
-                  'Last Chance',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                )),
-              ),
-            )
+            DealButton(text: 'Must buy in summer', color: Colors.lightGreen),
+            SizedBox(width: 10),
+            DealButton(text: 'Last Chance', color: Colors.redAccent),
           ],
         ),
-        const SizedBox(height: 15),
+        SizedBox(height: 15),
       ],
     );
   }
