@@ -16,40 +16,44 @@ class ECommerceScreen extends StatelessWidget {
             SizedBox(
                 height: 100, child: Image.asset('assets/woman_shopping.jpg')),
             const DealButtons(),
-            Container(
-              height: 200,
-              color: Colors.white,
-              child: Row(
+            _buildProductTitle(context),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildProductTitle(BuildContext context) {
+    return Container(
+      height: 200,
+      color: Colors.white,
+      child: Row(
+        children: <Widget>[
+          SizedBox(
+            height: 100,
+            child: Image.asset(
+              'assets/textiles.jpg',
+              fit: BoxFit.fill,
+            ),
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  SizedBox(
-                    height: 100,
-                    child: Image.asset(
-                      'assets/textiles.jpg',
-                      fit: BoxFit.fill,
-                    ),
+                  Text(
+                    'Lorem Ipsum',
+                    style: Theme.of(context).textTheme.titleMedium,
                   ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            'Lorem Ipsum',
-                            style: Theme.of(context).textTheme.titleMedium,
-                          ),
-                          const Text(
-                              'Dolor sit amet, consectetur adipiscing elit. Quisque faucibus.')
-                        ],
-                      ),
-                    ),
-                  )
+                  const Text(
+                      'Dolor sit amet, consectetur adipiscing elit. Quisque faucibus.')
                 ],
               ),
             ),
-          ],
-        ),
+          )
+        ],
       ),
     );
   }
