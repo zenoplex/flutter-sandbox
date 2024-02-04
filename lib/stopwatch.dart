@@ -27,8 +27,6 @@ class _StopWatchState extends State<StopWatch> {
   }
 
   void _startTimer() {
-    if (isTicking) return;
-
     timer = Timer.periodic(const Duration(seconds: 1), _onTick);
     setState(() {
       seconds = 0;
@@ -37,8 +35,6 @@ class _StopWatchState extends State<StopWatch> {
   }
 
   void _stopTimer() {
-    if (!isTicking) return;
-
     timer.cancel();
 
     setState(() {
@@ -62,7 +58,7 @@ class _StopWatchState extends State<StopWatch> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ElevatedButton(
-                    onPressed: _startTimer,
+                    onPressed: isTicking ? null : _startTimer,
                     style: const ButtonStyle(
                         backgroundColor: MaterialStatePropertyAll(Colors.green),
                         foregroundColor:
@@ -73,7 +69,7 @@ class _StopWatchState extends State<StopWatch> {
                     width: 20,
                   ),
                   TextButton(
-                    onPressed: _stopTimer,
+                    onPressed: !isTicking ? null : _stopTimer,
                     style: const ButtonStyle(
                         backgroundColor: MaterialStatePropertyAll(Colors.red),
                         foregroundColor:
