@@ -31,9 +31,39 @@ class _StopWatchState extends State<StopWatch> {
     return Scaffold(
         appBar: AppBar(title: const Text('Stopwatch')),
         body: SafeArea(
-          child: Center(
-              child: Text('$seconds ${_secondsText()}',
-                  style: Theme.of(context).textTheme.headlineSmall)),
+          child: Column(
+            children: [
+              Text('$seconds ${_secondsText()}',
+                  style: Theme.of(context).textTheme.headlineSmall),
+              const SizedBox(
+                height: 20,
+              ),
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: null,
+                    style: ButtonStyle(
+                        backgroundColor: MaterialStatePropertyAll(Colors.green),
+                        foregroundColor:
+                            MaterialStatePropertyAll(Colors.white)),
+                    child: Text('Start'),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  TextButton(
+                    onPressed: null,
+                    style: ButtonStyle(
+                        backgroundColor: MaterialStatePropertyAll(Colors.red),
+                        foregroundColor:
+                            MaterialStatePropertyAll(Colors.white)),
+                    child: Text('Stop'),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ));
   }
 
