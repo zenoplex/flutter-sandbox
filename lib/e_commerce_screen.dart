@@ -15,92 +15,7 @@ class ECommerceScreen extends StatelessWidget {
             _buildToggleBar(),
             SizedBox(
                 height: 100, child: Image.asset('assets/woman_shopping.jpg')),
-            const SizedBox(height: 15),
-            Row(
-              children: <Widget>[
-                Expanded(
-                  child: Container(
-                    height: 80,
-                    decoration: BoxDecoration(
-                        color: Colors.orangeAccent,
-                        borderRadius: BorderRadius.circular(20)),
-                    child: const Center(
-                        child: Text(
-                      'Best Sellers',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    )),
-                  ),
-                ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: Container(
-                    height: 80,
-                    decoration: BoxDecoration(
-                        color: Colors.indigoAccent,
-                        borderRadius: BorderRadius.circular(20)),
-                    child: const Center(
-                        child: Text(
-                      'Daily Deals',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    )),
-                  ),
-                )
-              ],
-            ),
-            const SizedBox(height: 15),
-            Row(
-              children: <Widget>[
-                Expanded(
-                  child: Container(
-                    height: 80,
-                    decoration: BoxDecoration(
-                        color: Colors.lightGreen,
-                        borderRadius: BorderRadius.circular(20)),
-                    child: const Padding(
-                      padding: EdgeInsets.all(10.0),
-                      child: Center(
-                        child: Text(
-                          'Must buy in summer',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: Container(
-                    height: 80,
-                    decoration: BoxDecoration(
-                        color: Colors.redAccent,
-                        borderRadius: BorderRadius.circular(20)),
-                    child: const Center(
-                        child: Text(
-                      'Last Chance',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    )),
-                  ),
-                )
-              ],
-            ),
-            const SizedBox(height: 15),
+            const DealButtons(),
             Container(
               height: 200,
               color: Colors.white,
@@ -195,6 +110,106 @@ class ECommerceScreen extends StatelessWidget {
           padding: EdgeInsets.all(20.0),
           child: Icon(Icons.shopping_cart),
         )
+      ],
+    );
+  }
+}
+
+class DealButtons extends StatelessWidget {
+  const DealButtons({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        const SizedBox(height: 15),
+        Row(
+          children: <Widget>[
+            Expanded(
+              child: Container(
+                height: 80,
+                decoration: BoxDecoration(
+                    color: Colors.orangeAccent,
+                    borderRadius: BorderRadius.circular(20)),
+                child: const Center(
+                    child: Text(
+                  'Best Sellers',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                )),
+              ),
+            ),
+            const SizedBox(width: 10),
+            Expanded(
+              child: Container(
+                height: 80,
+                decoration: BoxDecoration(
+                    color: Colors.indigoAccent,
+                    borderRadius: BorderRadius.circular(20)),
+                child: const Center(
+                    child: Text(
+                  'Daily Deals',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                )),
+              ),
+            )
+          ],
+        ),
+        const SizedBox(height: 15),
+        Row(
+          children: <Widget>[
+            Expanded(
+              child: Container(
+                height: 80,
+                decoration: BoxDecoration(
+                    color: Colors.lightGreen,
+                    borderRadius: BorderRadius.circular(20)),
+                child: const Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: Center(
+                    child: Text(
+                      'Must buy in summer',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(width: 10),
+            Expanded(
+              child: Container(
+                height: 80,
+                decoration: BoxDecoration(
+                    color: Colors.redAccent,
+                    borderRadius: BorderRadius.circular(20)),
+                child: const Center(
+                    child: Text(
+                  'Last Chance',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                )),
+              ),
+            )
+          ],
+        ),
+        const SizedBox(height: 15),
       ],
     );
   }
