@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
@@ -54,6 +55,10 @@ class _StopWatchState extends State<StopWatch> {
                 children: [
                   ElevatedButton(
                     onPressed: isTicking ? null : _startTimer,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green,
+                      foregroundColor: Colors.white,
+                    ),
                     child: const Text('Start'),
                   ),
                   const SizedBox(
