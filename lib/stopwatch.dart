@@ -11,6 +11,7 @@ class StopWatch extends StatefulWidget {
 
 class _StopWatchState extends State<StopWatch> {
   int milliseconds = 0;
+  final laps = <int>[];
   late Timer timer;
   bool isTicking = false;
 
@@ -26,6 +27,7 @@ class _StopWatchState extends State<StopWatch> {
     timer = Timer.periodic(const Duration(milliseconds: 100), _onTick);
     setState(() {
       milliseconds = 0;
+      laps.clear();
       isTicking = true;
     });
   }
@@ -35,6 +37,13 @@ class _StopWatchState extends State<StopWatch> {
 
     setState(() {
       isTicking = false;
+    });
+  }
+
+  void _lap() {
+    setState(() {
+      laps.add(milliseconds);
+      milliseconds = 0;
     });
   }
 
@@ -61,6 +70,16 @@ class _StopWatchState extends State<StopWatch> {
                     ),
                     child: const Text('Start'),
                   ),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  ElevatedButton(
+                      onPressed: _lap,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.yellow,
+                        foregroundColor: Colors.black,
+                      ),
+                      child: const Text('Lap')),
                   const SizedBox(
                     width: 20,
                   ),
