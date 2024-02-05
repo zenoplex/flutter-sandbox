@@ -13,11 +13,6 @@ class _StopWatchState extends State<StopWatch> {
   late Timer timer;
   bool isTicking = false;
 
-  @override
-  void initState() {
-    super.initState();
-  }
-
   void _onTick(Timer timer) {
     if (!mounted) return;
 
