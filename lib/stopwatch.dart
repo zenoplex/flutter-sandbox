@@ -73,38 +73,46 @@ class _StopWatchState extends State<StopWatch> {
           const SizedBox(
             height: 20,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ElevatedButton(
-                onPressed: isTicking ? null : _startTimer,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green,
-                  foregroundColor: Colors.white,
-                ),
-                child: const Text('Start'),
-              ),
-              const SizedBox(
-                width: 20,
-              ),
-              ElevatedButton(
-                  onPressed: _lap,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.yellow,
-                    foregroundColor: Colors.black,
-                  ),
-                  child: const Text('Lap')),
-              const SizedBox(
-                width: 20,
-              ),
-              TextButton(
-                onPressed: !isTicking ? null : _stopTimer,
-                child: const Text('Stop'),
-              ),
-            ],
-          ),
+          _buildControls(),
         ],
       ),
+    );
+  }
+
+  Widget _buildControls() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        ElevatedButton(
+          onPressed: isTicking ? null : _startTimer,
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.green,
+            foregroundColor: Colors.white,
+          ),
+          child: const Text('Start'),
+        ),
+        const SizedBox(
+          width: 20,
+        ),
+        ElevatedButton(
+            onPressed: isTicking ? _lap : null,
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.yellow,
+              foregroundColor: Colors.black,
+            ),
+            child: const Text('Lap')),
+        const SizedBox(
+          width: 20,
+        ),
+        ElevatedButton(
+          onPressed: isTicking ? _stopTimer : null,
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.red,
+            foregroundColor: Colors.white,
+          ),
+          child: const Text('Stop'),
+        ),
+      ],
     );
   }
 
