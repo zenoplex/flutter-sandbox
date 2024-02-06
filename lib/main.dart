@@ -14,7 +14,7 @@ class StopWatchApp extends StatelessWidget {
       theme: ThemeData(
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(
-            seedColor: Colors.red,
+            seedColor: Colors.blue,
             brightness: Brightness.light,
           )),
       home: const StopWatch(),
