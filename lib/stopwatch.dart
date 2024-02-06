@@ -125,10 +125,9 @@ class _StopWatchState extends State<StopWatch> {
   Widget _buildLapDisplay() {
     return ListView(
       children: [
-        for (int milliseconds in laps)
-          ListTile(
-            title: Text(_secondsText(milliseconds)),
-          )
+        ...laps.map((int milliseconds) => ListTile(
+              title: Text(_secondsText(milliseconds)),
+            )),
       ],
     );
   }
