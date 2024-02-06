@@ -51,8 +51,14 @@ class _StopWatchState extends State<StopWatch> {
     return Scaffold(
         appBar: AppBar(title: const Text('Stopwatch')),
         body: SafeArea(
-          child: _buildCounter(context),
-        ));
+            child: Column(
+          children: [
+            Expanded(
+              child: _buildCounter(context),
+            ),
+            Expanded(child: _buildLapDisplay())
+          ],
+        )));
   }
 
   Widget _buildCounter(BuildContext context) {
@@ -112,6 +118,17 @@ class _StopWatchState extends State<StopWatch> {
           ),
           child: const Text('Stop'),
         ),
+      ],
+    );
+  }
+
+  Widget _buildLapDisplay() {
+    return ListView(
+      children: [
+        for (int milliseconds in laps)
+          ListTile(
+            title: Text(_secondsText(milliseconds)),
+          )
       ],
     );
   }
