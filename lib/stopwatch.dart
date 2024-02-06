@@ -53,18 +53,20 @@ class _StopWatchState extends State<StopWatch> {
         body: SafeArea(
             child: Column(
           children: [
+            _buildCounter(context),
             Expanded(
-              child: _buildCounter(context),
+              child: _buildLapDisplay(),
             ),
-            Expanded(child: _buildLapDisplay())
           ],
         )));
   }
 
   Widget _buildCounter(BuildContext context) {
     return Container(
+      padding: const EdgeInsets.all(20),
       color: Theme.of(context).primaryColor,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text('Lap ${laps.length + 1}',
               style: Theme.of(context)
