@@ -51,46 +51,61 @@ class _StopWatchState extends State<StopWatch> {
     return Scaffold(
         appBar: AppBar(title: const Text('Stopwatch')),
         body: SafeArea(
-          child: Column(
+          child: _buildCounter(context),
+        ));
+  }
+
+  Widget _buildCounter(BuildContext context) {
+    return Container(
+      color: Theme.of(context).primaryColor,
+      child: Column(
+        children: [
+          Text('Lap ${laps.length + 1}',
+              style: Theme.of(context)
+                  .textTheme
+                  .headlineSmall!
+                  .copyWith(color: Colors.white)),
+          Text(_secondsText(milliseconds),
+              style: Theme.of(context)
+                  .textTheme
+                  .headlineSmall!
+                  .copyWith(color: Colors.white)),
+          const SizedBox(
+            height: 20,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(_secondsText(milliseconds),
-                  style: Theme.of(context).textTheme.headlineSmall),
-              const SizedBox(
-                height: 20,
+              ElevatedButton(
+                onPressed: isTicking ? null : _startTimer,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.green,
+                  foregroundColor: Colors.white,
+                ),
+                child: const Text('Start'),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ElevatedButton(
-                    onPressed: isTicking ? null : _startTimer,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green,
-                      foregroundColor: Colors.white,
-                    ),
-                    child: const Text('Start'),
+              const SizedBox(
+                width: 20,
+              ),
+              ElevatedButton(
+                  onPressed: _lap,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.yellow,
+                    foregroundColor: Colors.black,
                   ),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  ElevatedButton(
-                      onPressed: _lap,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.yellow,
-                        foregroundColor: Colors.black,
-                      ),
-                      child: const Text('Lap')),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  TextButton(
-                    onPressed: !isTicking ? null : _stopTimer,
-                    child: const Text('Stop'),
-                  ),
-                ],
+                  child: const Text('Lap')),
+              const SizedBox(
+                width: 20,
+              ),
+              TextButton(
+                onPressed: !isTicking ? null : _stopTimer,
+                child: const Text('Stop'),
               ),
             ],
           ),
-        ));
+        ],
+      ),
+    );
   }
 
   String _secondsText(int milliseconds) {
