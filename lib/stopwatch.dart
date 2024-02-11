@@ -47,8 +47,13 @@ class _StopWatchState extends State<StopWatch> {
       milliseconds = 0;
     });
 
-    scrollController.animateTo(scrollController.position.maxScrollExtent,
-        duration: const Duration(milliseconds: 300), curve: Curves.easeOut);
+    // maxScrollExtent does not return the correct value until the next frame
+    // Thus added itemHeight to ensure its scrolling to the bottom of the list
+    // However, this seems to only work with ClampingScrollPhysics()
+    scrollController.animateTo(
+        scrollController.position.maxScrollExtent + itemHeight,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeOut);
   }
 
   @override
@@ -133,6 +138,7 @@ class _StopWatchState extends State<StopWatch> {
     return Scrollbar(
       controller: scrollController,
       child: ListView.builder(
+        physics: const ClampingScrollPhysics(),
         controller: scrollController,
         itemExtent: itemHeight,
         itemCount: laps.length,
