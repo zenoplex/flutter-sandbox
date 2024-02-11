@@ -50,6 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           TextFormField(
             controller: _emailController,
+            keyboardType: TextInputType.emailAddress,
             decoration: const InputDecoration(labelText: 'Email'),
             validator: (value) {
               if (value!.isEmpty) {
