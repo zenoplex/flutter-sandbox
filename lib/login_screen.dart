@@ -11,6 +11,8 @@ class _LoginScreenState extends State<LoginScreen> {
   bool isLoggedIn = false;
   String name = "";
   final _nameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _emailRegexp = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +35,19 @@ class _LoginScreenState extends State<LoginScreen> {
               return value!.isEmpty ? 'Enter the runner\'s name.' : null;
             },
           ),
+          TextFormField(
+            controller: _emailController,
+            decoration: const InputDecoration(labelText: 'Email'),
+            validator: (value) {
+              if (value!.isEmpty) {
+                return 'Enter the runner\'s email.';
+              }
+              if (_emailRegexp.hasMatch(value)) {
+                return 'Enter a valid email.';
+              }
+              return null;
+            },
+          )
         ]),
       ),
     );
