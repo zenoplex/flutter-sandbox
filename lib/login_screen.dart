@@ -10,6 +10,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   bool isLoggedIn = false;
   String name = "";
+  final _nameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -21,11 +22,18 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget _buildLoginForm() {
-    return const Form(
+    return Form(
       child: Padding(
-        padding: EdgeInsets.all(20.0),
-        child:
-            Column(mainAxisAlignment: MainAxisAlignment.center, children: []),
+        padding: const EdgeInsets.all(20.0),
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          TextFormField(
+            controller: _nameController,
+            decoration: const InputDecoration(labelText: 'Runner'),
+            validator: (value) {
+              return value!.isEmpty ? 'Enter the runner\'s name.' : null;
+            },
+          ),
+        ]),
       ),
     );
   }
