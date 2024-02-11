@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sandbox/stopwatch.dart';
+import 'package:flutter_sandbox/login_screen.dart';
 
 void main() {
   runApp(const StopWatchApp());
@@ -17,7 +17,7 @@ class StopWatchApp extends StatelessWidget {
             seedColor: Colors.blue,
             brightness: Brightness.light,
           )),
-      home: const StopWatch(),
+      home: const LoginScreen(),
     );
   }
 }
