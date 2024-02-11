@@ -10,6 +10,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   bool isLoggedIn = false;
   String name = "";
+  final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _emailRegexp = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
@@ -23,8 +24,18 @@ class _LoginScreenState extends State<LoginScreen> {
         body: Center(child: isLoggedIn ? _buildSuccess() : _buildLoginForm()));
   }
 
+  void _validate() {
+    final form = _formKey.currentState;
+
+    if (form?.validate() ?? false) {
+      return;
+    }
+    // TODO: Implement login logic
+  }
+
   Widget _buildLoginForm() {
     return Form(
+      key: _formKey,
       child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -42,12 +53,17 @@ class _LoginScreenState extends State<LoginScreen> {
               if (value!.isEmpty) {
                 return 'Enter the runner\'s email.';
               }
-              if (_emailRegexp.hasMatch(value)) {
+              if (!_emailRegexp.hasMatch(value)) {
                 return 'Enter a valid email.';
               }
               return null;
             },
-          )
+          ),
+          const SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: _validate,
+            child: const Text('Continue'),
+          ),
         ]),
       ),
     );
