@@ -13,6 +13,8 @@ class _StopWatchState extends State<StopWatch> {
   final laps = <int>[];
   late Timer timer;
   bool isTicking = false;
+  final itemHeight = 50.0;
+  final scrollController = ScrollController();
 
   void _onTick(Timer timer) {
     if (!mounted) return;
@@ -44,6 +46,9 @@ class _StopWatchState extends State<StopWatch> {
       laps.add(milliseconds);
       milliseconds = 0;
     });
+
+    scrollController.animateTo(scrollController.position.maxScrollExtent,
+        duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
   }
 
   @override
@@ -126,7 +131,10 @@ class _StopWatchState extends State<StopWatch> {
 
   Widget _buildLapDisplay() {
     return Scrollbar(
+      controller: scrollController,
       child: ListView.builder(
+        controller: scrollController,
+        itemExtent: itemHeight,
         itemCount: laps.length,
         itemBuilder: (context, index) {
           final milliseconds = laps[index];
@@ -148,6 +156,7 @@ class _StopWatchState extends State<StopWatch> {
   @override
   void dispose() {
     timer.cancel();
+    scrollController.dispose();
     super.dispose();
   }
 }
