@@ -17,19 +17,23 @@ class _LoginScreenState extends State<LoginScreen> {
         appBar: AppBar(
           title: const Text('Login'),
         ),
-        body: Center(
-            child: isLoggedIn
-                ? const Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [],
-                  )
-                : const Form(
-                    child: Padding(
-                      padding: EdgeInsets.all(20.0),
-                      child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: []),
-                    ),
-                  )));
+        body: Center(child: isLoggedIn ? _buildSuccess() : _buildLoginForm()));
+  }
+
+  Widget _buildLoginForm() {
+    return const Form(
+      child: Padding(
+        padding: EdgeInsets.all(20.0),
+        child:
+            Column(mainAxisAlignment: MainAxisAlignment.center, children: []),
+      ),
+    );
+  }
+
+  Widget _buildSuccess() {
+    return const Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [],
+    );
   }
 }
