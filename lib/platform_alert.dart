@@ -21,16 +21,7 @@ class PlatformAlert {
     showCupertinoDialog(
         context: context,
         builder: (context) {
-          return AlertDialog(
-            title: Text(title),
-            content: Text(message),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.of(context).pop(),
-                child: const Text('Close'),
-              )
-            ],
-          );
+          return _buildAlertDialog(context);
         });
   }
 
@@ -38,16 +29,20 @@ class PlatformAlert {
     showDialog(
         context: context,
         builder: (context) {
-          return AlertDialog(
-            title: Text(title),
-            content: Text(message),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.of(context).pop(),
-                child: const Text('Close'),
-              )
-            ],
-          );
+          return _buildAlertDialog(context);
         });
+  }
+
+  AlertDialog _buildAlertDialog(BuildContext context) {
+    return AlertDialog(
+      title: Text(title),
+      content: Text(message),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.of(context).pop(),
+          child: const Text('Close'),
+        )
+      ],
+    );
   }
 }
