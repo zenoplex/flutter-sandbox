@@ -42,10 +42,14 @@ class _StopWatchState extends State<StopWatch> {
       isTicking = false;
     });
 
-    showBottomSheet(
+    final controller = showBottomSheet(
       context: context,
       builder: (_) => _buildRunCompleteSheet(context),
     );
+
+    Future.delayed(const Duration(seconds: 3), () async {
+      controller.close();
+    });
   }
 
   Widget _buildRunCompleteSheet(BuildContext context) {
