@@ -13,7 +13,7 @@ class StopWatch extends StatefulWidget {
 class _StopWatchState extends State<StopWatch> {
   int milliseconds = 0;
   final laps = <int>[];
-  late Timer timer;
+  Timer? timer;
   bool isTicking = false;
   final itemHeight = 50.0;
   final scrollController = ScrollController();
@@ -36,7 +36,7 @@ class _StopWatchState extends State<StopWatch> {
   }
 
   void _stopTimer() {
-    timer.cancel();
+    if (timer != null) timer!.cancel();
 
     setState(() {
       isTicking = false;
@@ -163,7 +163,7 @@ class _StopWatchState extends State<StopWatch> {
 
   @override
   void dispose() {
-    timer.cancel();
+    if (timer != null) timer!.cancel();
     scrollController.dispose();
     super.dispose();
   }
