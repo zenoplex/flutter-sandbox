@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../models/data_layer.dart';
 
 class PlanScreen extends StatefulWidget {
   const PlanScreen({super.key});
@@ -8,6 +9,10 @@ class PlanScreen extends StatefulWidget {
 }
 
 class _PlanScreenState extends State<PlanScreen> {
+  // TODO: temporary height
+  final double _itemExtent = 50.0;
+  Plan plan = const Plan();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,9 +25,23 @@ class _PlanScreenState extends State<PlanScreen> {
   Widget _buildActionButton() {
     return FloatingActionButton(
       child: const Icon(Icons.add),
-      onPressed: () {},
+      onPressed: () {
+        setState(() {
+          plan = Plan(
+            name: plan.name,
+            tasks: [...plan.tasks, const Task()],
+          );
+        });
+      },
     );
   }
 
-  Widget _buildList() => const Placeholder();
+  Widget _buildList() {
+    return ListView.builder(
+      physics: const ClampingScrollPhysics(),
+      itemCount: plan.tasks.length,
+      itemExtent: _itemExtent,
+      itemBuilder: (context, index) => const Placeholder(),
+    );
+  }
 }
