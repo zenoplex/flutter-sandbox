@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uuid/uuid.dart';
 import '../models/data_layer.dart';
 
 class PlanScreen extends StatefulWidget {
@@ -27,9 +28,11 @@ class _PlanScreenState extends State<PlanScreen> {
       child: const Icon(Icons.add),
       onPressed: () {
         setState(() {
+          final id = const Uuid().v4();
           plan = Plan(
             name: plan.name,
-            tasks: [...plan.tasks, const Task()],
+            taskIds: [...plan.taskIds, id],
+            taskMap: {...plan.taskMap, id: Task(id: id)},
           );
         });
       },
@@ -39,9 +42,29 @@ class _PlanScreenState extends State<PlanScreen> {
   Widget _buildList() {
     return ListView.builder(
       physics: const ClampingScrollPhysics(),
-      itemCount: plan.tasks.length,
+      itemCount: plan.taskIds.length,
       itemExtent: _itemExtent,
-      itemBuilder: (context, index) => const Placeholder(),
+      itemBuilder: (context, index) {
+        final id = plan.taskIds[index];
+        final task = plan.taskMap[id];
+
+        return ListTile(
+          leading: Checkbox(
+              value: task?.isComplete,
+              onChanged: (value) {
+                setState(() {
+                  plan = Plan(name: plan.name, taskIds: plan.taskIds, taskMap: {
+                    ...plan.taskMap,
+                    id: Task(
+                        id: id,
+                        description: task?.description ?? '',
+                        isComplete: value ?? false)
+                  });
+                });
+              }),
+          title: Text(task?.description ?? ''),
+        );
+      },
     );
   }
 }
