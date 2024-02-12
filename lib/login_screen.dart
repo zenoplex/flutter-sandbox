@@ -73,9 +73,12 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget _buildSuccess() {
-    return const Column(
+    return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: [],
+      children: [
+        const Icon(Icons.check, color: Colors.orangeAccent),
+        Text('Hi $name'),
+      ],
     );
   }
 }
