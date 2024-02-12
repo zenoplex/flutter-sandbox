@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-import 'package:flutter_sandbox/platform_alert.dart';
-
 class StopWatch extends StatefulWidget {
   final String name;
   final String email;
@@ -37,18 +35,38 @@ class _StopWatchState extends State<StopWatch> {
     });
   }
 
-  void _stopTimer() {
+  void _stopTimer(BuildContext context) {
     if (timer != null) timer!.cancel();
 
     setState(() {
       isTicking = false;
     });
 
+    showBottomSheet(
+      context: context,
+      builder: (_) => _buildRunCompleteSheet(context),
+    );
+  }
+
+  Widget _buildRunCompleteSheet(BuildContext context) {
     final totalRuntime = laps.fold(milliseconds, (total, lap) => total + lap);
-    final alert = PlatformAlert(
-        title: 'Run Completed!',
-        message: 'Total run time is ${_secondsText(totalRuntime)}');
-    alert.show(context);
+    final textTheme = Theme.of(context).textTheme;
+
+    return SafeArea(
+        child: Container(
+      color: Theme.of(context).bannerTheme.backgroundColor,
+      width: double.infinity,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 30.0),
+        child: Column(mainAxisSize: MainAxisSize.min, children: [
+          Text(
+            'Run finished!',
+            style: textTheme.headlineSmall,
+          ),
+          Text('Total run time is ${_secondsText(totalRuntime)}'),
+        ]),
+      ),
+    ));
   }
 
   void _lap() {
@@ -132,14 +150,15 @@ class _StopWatchState extends State<StopWatch> {
         const SizedBox(
           width: 20,
         ),
-        ElevatedButton(
-          onPressed: isTicking ? _stopTimer : null,
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.red,
-            foregroundColor: Colors.white,
-          ),
-          child: const Text('Stop'),
-        ),
+        Builder(
+            builder: (context) => ElevatedButton(
+                  onPressed: isTicking ? () => _stopTimer(context) : null,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.red,
+                    foregroundColor: Colors.white,
+                  ),
+                  child: const Text('Stop'),
+                )),
       ],
     );
   }
