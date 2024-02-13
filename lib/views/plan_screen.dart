@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 import '../models/data_layer.dart';
+import '../plan_provider.dart';
 
 class PlanScreen extends StatefulWidget {
   const PlanScreen({super.key});
@@ -12,15 +13,19 @@ class PlanScreen extends StatefulWidget {
 class _PlanScreenState extends State<PlanScreen> {
   // TODO: temporary height
   final double _itemExtent = 50.0;
-  Plan plan = const Plan();
   final ScrollController _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Master plan')),
-      body: _buildList(),
-      floatingActionButton: _buildActionButton(),
+      body: ValueListenableBuilder<Plan>(
+        valueListenable: PlanProvider.of(context),
+        builder: (context, plan, child) {
+          return _buildList(plan);
+        },
+      ),
+      floatingActionButton: _buildActionButton(context),
     );
   }
 
@@ -30,23 +35,24 @@ class _PlanScreenState extends State<PlanScreen> {
     super.dispose();
   }
 
-  Widget _buildActionButton() {
+  Widget _buildActionButton(BuildContext context) {
+    ValueNotifier<Plan> planNotifier = PlanProvider.of(context);
+
     return FloatingActionButton(
       child: const Icon(Icons.add),
       onPressed: () {
-        setState(() {
-          final id = const Uuid().v4();
-          plan = Plan(
-            name: plan.name,
-            taskIds: [...plan.taskIds, id],
-            taskMap: {...plan.taskMap, id: Task(id: id)},
-          );
-        });
+        Plan plan = planNotifier.value;
+        final id = const Uuid().v4();
+        planNotifier.value = Plan(
+          name: plan.name,
+          taskIds: [...plan.taskIds, id],
+          taskMap: {...plan.taskMap, id: Task(id: id)},
+        );
       },
     );
   }
 
-  Widget _buildList() {
+  Widget _buildList(Plan plan) {
     return Scrollbar(
       controller: _scrollController,
       child: ListView.builder(
@@ -63,31 +69,31 @@ class _PlanScreenState extends State<PlanScreen> {
 
           final task = maybeTask!;
 
-          return _buildTaskTile(task, id, index);
+          return _buildTaskTile(context, task, id, index);
         },
       ),
     );
   }
 
-  Widget _buildTaskTile(Task task, String id, int index) {
+  Widget _buildTaskTile(BuildContext context, Task task, String id, int index) {
+    ValueNotifier<Plan> planNotifier = PlanProvider.of(context);
     return ListTile(
       leading: Checkbox(
           value: task.isComplete,
           onChanged: (value) {
-            setState(() {
-              plan = Plan(
-                name: plan.name,
-                taskIds: plan.taskIds,
-                taskMap: {
-                  ...plan.taskMap,
-                  id: Task(
-                    id: id,
-                    description: task.description,
-                    isComplete: value ?? false,
-                  )
-                },
-              );
-            });
+            Plan plan = planNotifier.value;
+            planNotifier.value = Plan(
+              name: plan.name,
+              taskIds: plan.taskIds,
+              taskMap: {
+                ...plan.taskMap,
+                id: Task(
+                  id: id,
+                  description: task.description,
+                  isComplete: value ?? false,
+                )
+              },
+            );
           }),
       title: TextFormField(
         initialValue: task.description,
@@ -95,20 +101,19 @@ class _PlanScreenState extends State<PlanScreen> {
           hintText: 'Enter task ${index + 1}',
         ),
         onChanged: (value) {
-          setState(() {
-            plan = Plan(
-              name: plan.name,
-              taskIds: plan.taskIds,
-              taskMap: {
-                ...plan.taskMap,
-                id: Task(
-                  id: id,
-                  description: value,
-                  isComplete: task.isComplete,
-                ),
-              },
-            );
-          });
+          Plan plan = planNotifier.value;
+          plan = Plan(
+            name: plan.name,
+            taskIds: plan.taskIds,
+            taskMap: {
+              ...plan.taskMap,
+              id: Task(
+                id: id,
+                description: value,
+                isComplete: task.isComplete,
+              ),
+            },
+          );
         },
       ),
     );
