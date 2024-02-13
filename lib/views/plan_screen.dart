@@ -54,7 +54,7 @@ class _PlanScreenState extends State<PlanScreen> {
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         physics: const ClampingScrollPhysics(),
         itemCount: plan.taskIds.length,
-        itemExtent: _itemExtent,
+        // itemExtent: _itemExtent,
         itemBuilder: (context, index) {
           final id = plan.taskIds[index];
           final maybeTask = plan.taskMap[id];
@@ -63,13 +63,13 @@ class _PlanScreenState extends State<PlanScreen> {
 
           final task = maybeTask!;
 
-          return _buildTaskTile(task, id);
+          return _buildTaskTile(task, id, index);
         },
       ),
     );
   }
 
-  Widget _buildTaskTile(Task task, String id) {
+  Widget _buildTaskTile(Task task, String id, int index) {
     return ListTile(
       leading: Checkbox(
           value: task.isComplete,
@@ -91,6 +91,9 @@ class _PlanScreenState extends State<PlanScreen> {
           }),
       title: TextFormField(
         initialValue: task.description,
+        decoration: InputDecoration(
+          hintText: 'Enter task ${index + 1}',
+        ),
         onChanged: (value) {
           setState(() {
             plan = Plan(
