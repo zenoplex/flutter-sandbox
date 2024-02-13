@@ -20,7 +20,12 @@ class _PlanScreenState extends State<PlanScreen> {
       body: ValueListenableBuilder<Plan>(
         valueListenable: PlanProvider.of(context),
         builder: (context, plan, child) {
-          return _buildList(plan);
+          return Column(
+            children: [
+              Expanded(child: _buildList(plan)),
+              SafeArea(child: Text(plan.completenessMessage)),
+            ],
+          );
         },
       ),
       floatingActionButton: _buildActionButton(context),
