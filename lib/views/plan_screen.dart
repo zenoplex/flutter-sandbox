@@ -11,8 +11,6 @@ class PlanScreen extends StatefulWidget {
 }
 
 class _PlanScreenState extends State<PlanScreen> {
-  // TODO: temporary height
-  final double _itemExtent = 50.0;
   final ScrollController _scrollController = ScrollController();
 
   @override
@@ -60,7 +58,6 @@ class _PlanScreenState extends State<PlanScreen> {
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         physics: const ClampingScrollPhysics(),
         itemCount: plan.taskIds.length,
-        // itemExtent: _itemExtent,
         itemBuilder: (context, index) {
           final id = plan.taskIds[index];
           final maybeTask = plan.taskMap[id];
