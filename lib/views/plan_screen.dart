@@ -13,16 +13,7 @@ class _PlanScreenState extends State<PlanScreen> {
   // TODO: temporary height
   final double _itemExtent = 50.0;
   Plan plan = const Plan();
-  late ScrollController _scrollController;
-
-  @override
-  void initState() {
-    super.initState();
-    _scrollController = ScrollController()
-      ..addListener(() {
-        FocusScope.of(context).requestFocus(FocusNode());
-      });
-  }
+  final ScrollController _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -56,25 +47,25 @@ class _PlanScreenState extends State<PlanScreen> {
   }
 
   Widget _buildList() {
-    return ListView.builder(
-      // iOS specific, close keyboard on scroll
+    return Scrollbar(
       controller: _scrollController,
-      keyboardDismissBehavior: Theme.of(context).platform == TargetPlatform.iOS
-          ? ScrollViewKeyboardDismissBehavior.onDrag
-          : ScrollViewKeyboardDismissBehavior.manual,
-      physics: const ClampingScrollPhysics(),
-      itemCount: plan.taskIds.length,
-      itemExtent: _itemExtent,
-      itemBuilder: (context, index) {
-        final id = plan.taskIds[index];
-        final maybeTask = plan.taskMap[id];
+      child: ListView.builder(
+        controller: _scrollController,
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+        physics: const ClampingScrollPhysics(),
+        itemCount: plan.taskIds.length,
+        itemExtent: _itemExtent,
+        itemBuilder: (context, index) {
+          final id = plan.taskIds[index];
+          final maybeTask = plan.taskMap[id];
 
-        assert(maybeTask != null, 'Task $id not found in plan');
+          assert(maybeTask != null, 'Task $id not found in plan');
 
-        final task = maybeTask!;
+          final task = maybeTask!;
 
-        return _buildTaskTile(task, id);
-      },
+          return _buildTaskTile(task, id);
+        },
+      ),
     );
   }
 
