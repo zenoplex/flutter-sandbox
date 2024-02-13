@@ -46,23 +46,44 @@ class _PlanScreenState extends State<PlanScreen> {
       itemExtent: _itemExtent,
       itemBuilder: (context, index) {
         final id = plan.taskIds[index];
-        final task = plan.taskMap[id];
+        final maybeTask = plan.taskMap[id];
+
+        assert(maybeTask != null, 'Task $id not found in plan');
+
+        final task = maybeTask!;
 
         return ListTile(
           leading: Checkbox(
-              value: task?.isComplete,
+              value: task.isComplete,
               onChanged: (value) {
                 setState(() {
                   plan = Plan(name: plan.name, taskIds: plan.taskIds, taskMap: {
                     ...plan.taskMap,
                     id: Task(
                         id: id,
-                        description: task?.description ?? '',
+                        description: task.description,
                         isComplete: value ?? false)
                   });
                 });
               }),
-          title: Text(task?.description ?? ''),
+          title: TextFormField(
+            initialValue: task.description,
+            onChanged: (value) {
+              setState(() {
+                plan = Plan(
+                  name: plan.name,
+                  taskIds: plan.taskIds,
+                  taskMap: {
+                    ...plan.taskMap,
+                    id: Task(
+                        id: id,
+                        description: value,
+                        isComplete: task.isComplete),
+                  },
+                );
+              });
+            },
+          ),
         );
       },
     );
