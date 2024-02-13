@@ -63,13 +63,18 @@ class _PlanScreenState extends State<PlanScreen> {
           value: task.isComplete,
           onChanged: (value) {
             setState(() {
-              plan = Plan(name: plan.name, taskIds: plan.taskIds, taskMap: {
-                ...plan.taskMap,
-                id: Task(
+              plan = Plan(
+                name: plan.name,
+                taskIds: plan.taskIds,
+                taskMap: {
+                  ...plan.taskMap,
+                  id: Task(
                     id: id,
                     description: task.description,
-                    isComplete: value ?? false)
-              });
+                    isComplete: value ?? false,
+                  )
+                },
+              );
             });
           }),
       title: TextFormField(
@@ -82,7 +87,10 @@ class _PlanScreenState extends State<PlanScreen> {
               taskMap: {
                 ...plan.taskMap,
                 id: Task(
-                    id: id, description: value, isComplete: task.isComplete),
+                  id: id,
+                  description: value,
+                  isComplete: task.isComplete,
+                ),
               },
             );
           });
