@@ -52,40 +52,42 @@ class _PlanScreenState extends State<PlanScreen> {
 
         final task = maybeTask!;
 
-        return ListTile(
-          leading: Checkbox(
-              value: task.isComplete,
-              onChanged: (value) {
-                setState(() {
-                  plan = Plan(name: plan.name, taskIds: plan.taskIds, taskMap: {
-                    ...plan.taskMap,
-                    id: Task(
-                        id: id,
-                        description: task.description,
-                        isComplete: value ?? false)
-                  });
-                });
-              }),
-          title: TextFormField(
-            initialValue: task.description,
-            onChanged: (value) {
-              setState(() {
-                plan = Plan(
-                  name: plan.name,
-                  taskIds: plan.taskIds,
-                  taskMap: {
-                    ...plan.taskMap,
-                    id: Task(
-                        id: id,
-                        description: value,
-                        isComplete: task.isComplete),
-                  },
-                );
-              });
-            },
-          ),
-        );
+        return _buildTaskTile(task, id);
       },
+    );
+  }
+
+  Widget _buildTaskTile(Task task, String id) {
+    return ListTile(
+      leading: Checkbox(
+          value: task.isComplete,
+          onChanged: (value) {
+            setState(() {
+              plan = Plan(name: plan.name, taskIds: plan.taskIds, taskMap: {
+                ...plan.taskMap,
+                id: Task(
+                    id: id,
+                    description: task.description,
+                    isComplete: value ?? false)
+              });
+            });
+          }),
+      title: TextFormField(
+        initialValue: task.description,
+        onChanged: (value) {
+          setState(() {
+            plan = Plan(
+              name: plan.name,
+              taskIds: plan.taskIds,
+              taskMap: {
+                ...plan.taskMap,
+                id: Task(
+                    id: id, description: value, isComplete: task.isComplete),
+              },
+            );
+          });
+        },
+      ),
     );
   }
 }
