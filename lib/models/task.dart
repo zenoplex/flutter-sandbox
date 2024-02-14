@@ -3,5 +3,9 @@ class Task {
   final String description;
   final bool isComplete;
 
-  const Task({required this.id,  this.isComplete = false, this.description = ''});
+  const Task({
+    required this.id,
+    this.isComplete = false,
+    this.description = '',
+  });
 }
