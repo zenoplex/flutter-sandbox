@@ -4,7 +4,8 @@ import '../models/data_layer.dart';
 import '../plan_provider.dart';
 
 class PlanScreen extends StatefulWidget {
-  const PlanScreen({super.key});
+  final Plan plan;
+  const PlanScreen({super.key, required this.plan});
 
   @override
   State<PlanScreen> createState() => _PlanScreenState();
@@ -15,15 +16,19 @@ class _PlanScreenState extends State<PlanScreen> {
 
   @override
   Widget build(BuildContext context) {
+    ValueNotifier<List<Plan>> plansNotifier = PlanProvider.of(context);
     return Scaffold(
       appBar: AppBar(title: const Text('Master plan')),
-      body: ValueListenableBuilder<Plan>(
-        valueListenable: PlanProvider.of(context),
-        builder: (context, plan, child) {
+      body: ValueListenableBuilder<List<Plan>>(
+        valueListenable: plansNotifier,
+        builder: (context, plans, child) {
+          // TODO: Should not have to find the plan by name
+          Plan currentPlan =
+              plans.firstWhere((p) => p.name == widget.plan.name);
           return Column(
             children: [
-              Expanded(child: _buildList(plan)),
-              SafeArea(child: Text(plan.completenessMessage)),
+              Expanded(child: _buildList(currentPlan)),
+              SafeArea(child: Text(currentPlan.completenessMessage)),
             ],
           );
         },
@@ -39,18 +44,28 @@ class _PlanScreenState extends State<PlanScreen> {
   }
 
   Widget _buildActionButton(BuildContext context) {
-    ValueNotifier<Plan> planNotifier = PlanProvider.of(context);
+    ValueNotifier<List<Plan>> planNotifier = PlanProvider.of(context);
 
     return FloatingActionButton(
       child: const Icon(Icons.add),
       onPressed: () {
-        Plan plan = planNotifier.value;
-        final id = const Uuid().v4();
-        planNotifier.value = Plan(
-          name: plan.name,
-          taskIds: [...plan.taskIds, id],
-          taskMap: {...plan.taskMap, id: Task(id: id)},
+        // TODO: Should not have to find the plan by name
+        Plan currentPlan = planNotifier.value.firstWhere(
+          (p) => p.name == widget.plan.name,
         );
+        int planIndex =
+            planNotifier.value.indexWhere((p) => p.name == currentPlan.name);
+        final id = const Uuid().v4();
+
+        planNotifier.value = List<Plan>.from(planNotifier.value)
+          ..[planIndex] = Plan(
+            name: currentPlan.name,
+            taskIds: [...currentPlan.taskIds, id],
+            taskMap: {
+              ...currentPlan.taskMap,
+              id: Task(id: id),
+            },
+          );
       },
     );
   }
@@ -78,24 +93,31 @@ class _PlanScreenState extends State<PlanScreen> {
   }
 
   Widget _buildTaskTile(BuildContext context, Task task, String id, int index) {
-    ValueNotifier<Plan> planNotifier = PlanProvider.of(context);
+    ValueNotifier<List<Plan>> planNotifier = PlanProvider.of(context);
     return ListTile(
       leading: Checkbox(
           value: task.isComplete,
           onChanged: (value) {
-            Plan plan = planNotifier.value;
-            planNotifier.value = Plan(
-              name: plan.name,
-              taskIds: plan.taskIds,
-              taskMap: {
-                ...plan.taskMap,
-                id: Task(
-                  id: id,
-                  description: task.description,
-                  isComplete: value ?? false,
-                )
-              },
+            // TODO: Should not have to find the plan by name
+            Plan currentPlan = planNotifier.value.firstWhere(
+              (p) => p.name == widget.plan.name,
             );
+            int planIndex = planNotifier.value.indexWhere(
+              (p) => p.name == currentPlan.name,
+            );
+            planNotifier.value = List<Plan>.from(planNotifier.value)
+              ..[planIndex] = Plan(
+                name: currentPlan.name,
+                taskIds: currentPlan.taskIds,
+                taskMap: {
+                  ...currentPlan.taskMap,
+                  id: Task(
+                    id: id,
+                    description: task.description,
+                    isComplete: value ?? false,
+                  ),
+                },
+              );
           }),
       title: TextFormField(
         initialValue: task.description,
@@ -103,19 +125,26 @@ class _PlanScreenState extends State<PlanScreen> {
           hintText: 'Enter task ${index + 1}',
         ),
         onChanged: (value) {
-          Plan plan = planNotifier.value;
-          plan = Plan(
-            name: plan.name,
-            taskIds: plan.taskIds,
-            taskMap: {
-              ...plan.taskMap,
-              id: Task(
-                id: id,
-                description: value,
-                isComplete: task.isComplete,
-              ),
-            },
+          // TODO: Should not have to find the plan by name
+          Plan currentPlan = planNotifier.value.firstWhere(
+            (p) => p.name == widget.plan.name,
           );
+          int planIndex = planNotifier.value.indexWhere(
+            (p) => p.name == currentPlan.name,
+          );
+          planNotifier.value = List<Plan>.from(planNotifier.value)
+            ..[planIndex] = Plan(
+              name: currentPlan.name,
+              taskIds: currentPlan.taskIds,
+              taskMap: {
+                ...currentPlan.taskMap,
+                id: Task(
+                  id: id,
+                  description: value,
+                  isComplete: task.isComplete,
+                ),
+              },
+            );
         },
       ),
     );
