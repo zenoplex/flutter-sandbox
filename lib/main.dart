@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import './views/plan_creator_screen.dart';
 import './plan_provider.dart';
-import './views/plan_screen.dart';
 import './models/data_layer.dart';
 
 void main() {
@@ -21,8 +21,8 @@ class MasterPlanApp extends StatelessWidget {
         ),
       ),
       home: PlanProvider(
-        notifier: ValueNotifier<Plan>(const Plan()),
-        child: const PlanScreen(),
+        notifier: ValueNotifier<List<Plan>>(const []),
+        child: const PlanCreatorScreen(),
       ),
     );
   }

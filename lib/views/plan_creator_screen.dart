@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_sandbox/plan_provider.dart';
+import '../models/plan.dart';
 
 class PlanCreatorScreen extends StatefulWidget {
   const PlanCreatorScreen({super.key});
@@ -38,7 +40,17 @@ class _PlanCreatorScreenState extends State<PlanCreatorScreen> {
   }
 
   void _addPlan() {
-    print('add');
+    final text = _textEditingController.text;
+    if (text.isEmpty) return;
+
+    final plan = Plan(
+      name: text,
+    );
+    ValueNotifier<List<Plan>> planNotifier = PlanProvider.of(context);
+    planNotifier.value = List<Plan>.from(planNotifier.value)..add(plan);
+
+    _textEditingController.clear();
+    FocusScope.of(context).requestFocus(FocusNode());
   }
 
   @override
