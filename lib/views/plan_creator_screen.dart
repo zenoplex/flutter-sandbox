@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sandbox/plan_provider.dart';
+import '../plan_provider.dart';
+import '../views/plan_screen.dart';
 import '../models/plan.dart';
 
 class PlanCreatorScreen extends StatefulWidget {
@@ -34,9 +35,44 @@ class _PlanCreatorScreenState extends State<PlanCreatorScreen> {
                   onEditingComplete: _addPlan,
                 ),
               ),
-            )
+            ),
+            Expanded(child: _buildPlanList()),
           ],
         ));
+  }
+
+  Widget _buildPlanList() {
+    ValueNotifier<List<Plan>> planNotifier = PlanProvider.of(context);
+    List<Plan> plans = planNotifier.value;
+
+    if (plans.isEmpty) {
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Icon(Icons.note, size: 100, color: Colors.grey),
+          Text('You have no plans yet.',
+              style: Theme.of(context).textTheme.headlineSmall),
+        ],
+      );
+    }
+
+    return ListView.builder(
+      itemCount: plans.length,
+      itemBuilder: (context, index) {
+        final plan = plans[index];
+        return ListTile(
+          title: Text(plan.name),
+          subtitle: Text(plan.completenessMessage),
+          onTap: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (_) => PlanScreen(plan: plan),
+              ),
+            );
+          },
+        );
+      },
+    );
   }
 
   void _addPlan() {
