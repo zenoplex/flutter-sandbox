@@ -99,23 +99,13 @@ class _PlanScreenState extends State<PlanScreen> {
           value: task.isComplete,
           onChanged: (value) {
             final currentPlan = plansNotifier.value.planMap[widget.planId]!;
+
             plansNotifier.value = Plans(
               planIds: plansNotifier.value.planIds,
               planMap: {
                 ...plansNotifier.value.planMap,
-                widget.planId: Plan(
-                  id: currentPlan.id,
-                  name: currentPlan.name,
-                  taskIds: currentPlan.taskIds,
-                  taskMap: {
-                    ...currentPlan.taskMap,
-                    id: Task(
-                      id: id,
-                      description: task.description,
-                      isComplete: value!,
-                    ),
-                  },
-                ),
+                widget.planId:
+                    currentPlan.updateTask(taskId: task.id, isComplete: value),
               },
             );
           }),
@@ -130,19 +120,8 @@ class _PlanScreenState extends State<PlanScreen> {
             planIds: plansNotifier.value.planIds,
             planMap: {
               ...plansNotifier.value.planMap,
-              widget.planId: Plan(
-                id: currentPlan.id,
-                name: currentPlan.name,
-                taskIds: currentPlan.taskIds,
-                taskMap: {
-                  ...currentPlan.taskMap,
-                  id: Task(
-                    id: id,
-                    description: value,
-                    isComplete: task.isComplete,
-                  ),
-                },
-              ),
+              widget.planId:
+                  currentPlan.updateTask(taskId: task.id, description: value),
             },
           );
         },

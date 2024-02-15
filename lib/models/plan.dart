@@ -43,4 +43,24 @@ class Plan {
       },
     );
   }
+
+  Plan updateTask(
+      {required String taskId, String? description, bool? isComplete}) {
+    final maybeTask = taskMap[taskId];
+    assert(maybeTask != null, 'Task $taskId not found in plan');
+    final task = maybeTask!;
+
+    return Plan(
+      id: id,
+      name: name,
+      taskIds: taskIds,
+      taskMap: {
+        ...taskMap,
+        taskId: task.update(
+          newDescription: description,
+          newIsComplete: isComplete,
+        )
+      },
+    );
+  }
 }

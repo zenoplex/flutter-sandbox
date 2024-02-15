@@ -8,4 +8,12 @@ class Task {
     this.isComplete = false,
     this.description = '',
   });
+
+  Task update({String? newDescription, bool? newIsComplete}) {
+    return Task(
+      id: id,
+      description: newDescription ?? description,
+      isComplete: newIsComplete ?? isComplete,
+    );
+  }
 }
