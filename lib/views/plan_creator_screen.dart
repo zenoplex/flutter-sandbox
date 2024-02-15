@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:uuid/uuid.dart';
 import '../models/data_layer.dart';
 import '../plan_provider.dart';
 import '../views/plan_screen.dart';
@@ -84,18 +83,10 @@ class _PlanCreatorScreenState extends State<PlanCreatorScreen> {
     final text = _textEditingController.text;
     if (text.isEmpty) return;
 
-    final plan = Plan(
-      id: const Uuid().v4(),
-      name: text,
-    );
     ValueNotifier<Plans> planNotifier = PlanProvider.of(context);
-    planNotifier.value = Plans(
-      planIds: [...planNotifier.value.planIds, plan.id],
-      planMap: {
-        ...planNotifier.value.planMap,
-        plan.id: plan,
-      },
-    );
+
+    final plans = planNotifier.value;
+    planNotifier.value = plans.addPlan(name: text);
 
     _textEditingController.clear();
     FocusScope.of(context).requestFocus(FocusNode());

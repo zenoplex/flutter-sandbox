@@ -1,3 +1,4 @@
+import 'package:uuid/uuid.dart';
 import './plan.dart';
 
 class Plans {
@@ -8,4 +9,19 @@ class Plans {
     this.planIds = const [],
     this.planMap = const {},
   });
+
+  Plans addPlan({required String name}) {
+    final plan = Plan(
+      id: const Uuid().v4(),
+      name: name,
+    );
+
+    return Plans(
+      planIds: [...planIds, plan.id],
+      planMap: {
+        ...planMap,
+        plan.id: plan,
+      },
+    );
+  }
 }
