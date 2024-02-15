@@ -13,7 +13,7 @@ class MasterPlanApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PlanProvider(
-      notifier: ValueNotifier<List<Plan>>([]),
+      notifier: ValueNotifier<Plans>(const Plans()),
       child: MaterialApp(
         theme: ThemeData(
           useMaterial3: true,

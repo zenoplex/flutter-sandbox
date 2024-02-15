@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:uuid/uuid.dart';
+import '../models/data_layer.dart';
 import '../plan_provider.dart';
 import '../views/plan_screen.dart';
-import '../models/plan.dart';
 
 class PlanCreatorScreen extends StatefulWidget {
   const PlanCreatorScreen({super.key});
@@ -42,10 +43,10 @@ class _PlanCreatorScreenState extends State<PlanCreatorScreen> {
   }
 
   Widget _buildPlanList() {
-    ValueNotifier<List<Plan>> planNotifier = PlanProvider.of(context);
-    List<Plan> plans = planNotifier.value;
+    ValueNotifier<Plans> planNotifier = PlanProvider.of(context);
+    final Plans(:planIds, :planMap) = planNotifier.value;
 
-    if (plans.isEmpty) {
+    if (planIds.isEmpty) {
       return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -57,16 +58,20 @@ class _PlanCreatorScreenState extends State<PlanCreatorScreen> {
     }
 
     return ListView.builder(
-      itemCount: plans.length,
+      itemCount: planIds.length,
       itemBuilder: (context, index) {
-        final plan = plans[index];
+        final planId = planIds[index];
+        final maybePlan = planMap[planId];
+        assert(maybePlan != null);
+        final plan = maybePlan!;
+
         return ListTile(
           title: Text(plan.name),
           subtitle: Text(plan.completenessMessage),
           onTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (_) => PlanScreen(plan: plan),
+                builder: (_) => PlanScreen(planId: plan.id),
               ),
             );
           },
@@ -80,10 +85,17 @@ class _PlanCreatorScreenState extends State<PlanCreatorScreen> {
     if (text.isEmpty) return;
 
     final plan = Plan(
+      id: const Uuid().v4(),
       name: text,
     );
-    ValueNotifier<List<Plan>> planNotifier = PlanProvider.of(context);
-    planNotifier.value = List<Plan>.from(planNotifier.value)..add(plan);
+    ValueNotifier<Plans> planNotifier = PlanProvider.of(context);
+    planNotifier.value = Plans(
+      planIds: [...planNotifier.value.planIds, plan.id],
+      planMap: {
+        ...planNotifier.value.planMap,
+        plan.id: plan,
+      },
+    );
 
     _textEditingController.clear();
     FocusScope.of(context).requestFocus(FocusNode());

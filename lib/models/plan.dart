@@ -1,11 +1,13 @@
 import './task.dart';
 
 class Plan {
+  final String id;
   final String name;
   final List<String> taskIds;
   final Map<String, Task> taskMap;
 
   const Plan({
+    required this.id,
     this.name = '',
     this.taskIds = const [],
     this.taskMap = const {},
