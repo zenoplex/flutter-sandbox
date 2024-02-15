@@ -1,3 +1,5 @@
+import 'package:uuid/uuid.dart';
+
 import './task.dart';
 
 class Plan {
@@ -28,4 +30,17 @@ class Plan {
 
   String get completenessMessage =>
       '$completedCount out of ${taskIds.length} tasks.';
+
+  Plan addTask() {
+    final taskId = const Uuid().v4();
+    return Plan(
+      id: id,
+      name: name,
+      taskIds: [...taskIds, taskId],
+      taskMap: {
+        ...taskMap,
+        taskId: Task(id: taskId),
+      },
+    );
+  }
 }

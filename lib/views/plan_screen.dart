@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:uuid/uuid.dart';
 import '../models/data_layer.dart';
 import '../plan_provider.dart';
 
@@ -60,21 +59,12 @@ class _PlanScreenState extends State<PlanScreen> {
         child: const Icon(Icons.add),
         onPressed: () {
           final currentPlan = plansNotifier.value.planMap[widget.planId]!;
-          final id = const Uuid().v4();
 
           plansNotifier.value = Plans(
             planIds: plansNotifier.value.planIds,
             planMap: {
               ...plansNotifier.value.planMap,
-              widget.planId: Plan(
-                id: currentPlan.id,
-                name: currentPlan.name,
-                taskIds: [...currentPlan.taskIds, id],
-                taskMap: {
-                  ...currentPlan.taskMap,
-                  id: Task(id: id, description: '', isComplete: false),
-                },
-              ),
+              widget.planId: currentPlan.addTask(),
             },
           );
         });
