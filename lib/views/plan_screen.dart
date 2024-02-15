@@ -18,9 +18,14 @@ class _PlanScreenState extends State<PlanScreen> {
   @override
   Widget build(BuildContext context) {
     ValueNotifier<Plans> plansNotifier = PlanProvider.of(context);
+    final maybePlan = plansNotifier.value.planMap[widget.planId];
+    assert(maybePlan != null, 'Plan ${widget.planId} not found');
+    final currentPlan = maybePlan!;
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Master plan')),
+      appBar: AppBar(
+        title: Text('${currentPlan.name} plan'),
+      ),
       body: ValueListenableBuilder<Plans>(
         valueListenable: plansNotifier,
         builder: (context, plans, child) {
