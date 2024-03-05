@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import './views/plan_creator_screen.dart';
-import './plan_provider.dart';
-import './models/data_layer.dart';
+import 'package:flutter_sandbox/views/future_screen.dart';
 
 void main() {
   runApp(const MasterPlanApp());
@@ -12,18 +10,15 @@ class MasterPlanApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PlanProvider(
-      notifier: ValueNotifier<Plans>(const Plans()),
-      child: MaterialApp(
-        theme: ThemeData(
-          useMaterial3: true,
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: Colors.deepPurple,
-            brightness: Brightness.dark,
-          ),
+    return MaterialApp(
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.deepPurple,
+          brightness: Brightness.dark,
         ),
-        home: const PlanCreatorScreen(),
       ),
+      home: const FutureScreen(),
     );
   }
 }
