@@ -15,17 +15,19 @@ class _FutureScreenState extends State<FutureScreen> {
     return Scaffold(
       appBar: AppBar(title: const Text('Back from the Future')),
       body: Center(
-          child: Column(
-        children: [
-          const Spacer(),
-          ElevatedButton(onPressed: () {}, child: const Text('Go!')),
-          const Spacer(),
-          Text(result),
-          const Spacer(),
-          const CircularProgressIndicator(),
-          const Spacer(),
-        ],
-      )),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Spacer(),
+            ElevatedButton(onPressed: () {}, child: const Text('Go!')),
+            const Spacer(),
+            Text(result),
+            const Spacer(),
+            const CircularProgressIndicator(),
+            const Spacer(),
+          ],
+        ),
+      ),
     );
   }
 }
