@@ -12,7 +12,7 @@ class FutureScreen extends StatefulWidget {
 
 class _FutureScreenState extends State<FutureScreen> {
   String result = '';
-  late Completer completer;
+  late Completer<int> completer;
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +42,7 @@ class _FutureScreenState extends State<FutureScreen> {
     );
   }
 
-  Future getNumber() {
+  Future<int> getNumber() {
     completer = Completer<int>();
     calculate();
     return completer.future;
