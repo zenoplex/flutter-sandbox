@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
+import 'package:async/async.dart';
 import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
 
@@ -25,16 +26,7 @@ class _FutureScreenState extends State<FutureScreen> {
             const Spacer(),
             ElevatedButton(
                 onPressed: () async {
-                  try {
-                    final value = await getNumber();
-                    setState(() {
-                      result = value.toString();
-                    });
-                  } catch (_) {
-                    setState(() {
-                      result = 'An error occurred!';
-                    });
-                  }
+                  returnFutureGroup();
                 },
                 child: const Text('Go!')),
             const Spacer(),
@@ -46,6 +38,20 @@ class _FutureScreenState extends State<FutureScreen> {
         ),
       ),
     );
+  }
+
+  void returnFutureGroup() async {
+    FutureGroup<int> futureGroup = FutureGroup<int>();
+    futureGroup.add(returnOneAsync());
+    futureGroup.add(returnTwoAsync());
+    futureGroup.add(returnThreeAsync());
+    futureGroup.close();
+    final value = await futureGroup.future;
+    final total =
+        value.fold(0, (previousValue, element) => previousValue + element);
+    setState(() {
+      result = total.toString();
+    });
   }
 
   Future<int> getNumber() {
