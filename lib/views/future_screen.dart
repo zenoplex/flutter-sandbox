@@ -12,6 +12,7 @@ class FutureScreen extends StatefulWidget {
 
 class _FutureScreenState extends State<FutureScreen> {
   String result = '';
+  late Completer completer;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,10 @@ class _FutureScreenState extends State<FutureScreen> {
             const Spacer(),
             ElevatedButton(
                 onPressed: () async {
-                  await count();
+                  final value = await getNumber();
+                  setState(() {
+                    result = value.toString();
+                  });
                 },
                 child: const Text('Go!')),
             const Spacer(),
@@ -36,6 +40,17 @@ class _FutureScreenState extends State<FutureScreen> {
         ),
       ),
     );
+  }
+
+  Future getNumber() {
+    completer = Completer<int>();
+    calculate();
+    return completer.future;
+  }
+
+  Future calculate() async {
+    await Future.delayed(const Duration(seconds: 3));
+    completer.complete(42);
   }
 
   Future<Response> getData() async {
