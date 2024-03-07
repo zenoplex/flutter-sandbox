@@ -25,10 +25,16 @@ class _FutureScreenState extends State<FutureScreen> {
             const Spacer(),
             ElevatedButton(
                 onPressed: () async {
-                  final value = await getNumber();
-                  setState(() {
-                    result = value.toString();
-                  });
+                  try {
+                    final value = await getNumber();
+                    setState(() {
+                      result = value.toString();
+                    });
+                  } catch (_) {
+                    setState(() {
+                      result = 'An error occurred!';
+                    });
+                  }
                 },
                 child: const Text('Go!')),
             const Spacer(),
@@ -49,8 +55,13 @@ class _FutureScreenState extends State<FutureScreen> {
   }
 
   Future calculate() async {
-    await Future.delayed(const Duration(seconds: 3));
-    completer.complete(42);
+    try {
+      await Future.delayed(const Duration(seconds: 3));
+      // completer.complete(42);
+      throw Exception('An error occurred!');
+    } catch (_) {
+      completer.completeError({});
+    }
   }
 
   Future<Response> getData() async {
