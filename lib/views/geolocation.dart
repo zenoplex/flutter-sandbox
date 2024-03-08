@@ -9,7 +9,7 @@ class LocationScreen extends StatefulWidget {
 }
 
 class _LocationScreenState extends State<LocationScreen> {
-  String _position = '';
+  String? _position;
 
   @override
   void initState() {
@@ -34,8 +34,9 @@ class _LocationScreenState extends State<LocationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final myWidget =
-        _position == '' ? const CircularProgressIndicator() : Text(_position);
+    final myWidget = _position == null
+        ? const CircularProgressIndicator()
+        : Text(_position!);
     return Scaffold(
       appBar: AppBar(title: const Text('GeoLocation')),
       body: Center(
