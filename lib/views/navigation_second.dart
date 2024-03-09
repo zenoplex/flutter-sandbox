@@ -8,8 +8,6 @@ class NavigationSecond extends StatefulWidget {
 }
 
 class _NavigationSecondState extends State<NavigationSecond> {
-  Color? color;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,15 +19,21 @@ class _NavigationSecondState extends State<NavigationSecond> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pop(context, Colors.red.shade700);
+              },
               child: const Text('Red'),
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pop(context, Colors.green.shade700);
+              },
               child: const Text('Green'),
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pop(context, Colors.blue.shade700);
+              },
               child: const Text('Blue'),
             ),
           ],

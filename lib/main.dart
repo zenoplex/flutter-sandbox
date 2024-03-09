@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sandbox/views/geolocation.dart';
+import 'package:flutter_sandbox/views/navigation_first.dart';
 
 void main() {
   runApp(const MasterPlanApp());
@@ -18,7 +18,7 @@ class MasterPlanApp extends StatelessWidget {
           brightness: Brightness.dark,
         ),
       ),
-      home: const LocationScreen(),
+      home: const NavigationFirst(),
     );
   }
 }
