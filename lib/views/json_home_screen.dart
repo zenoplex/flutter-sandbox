@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_sandbox/models/pizza.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:path_provider/path_provider.dart';
 
 class JsonHomePage extends StatefulWidget {
   const JsonHomePage({super.key});
@@ -13,12 +14,15 @@ class JsonHomePage extends StatefulWidget {
 
 class _JsonHomePageState extends State<JsonHomePage> {
   int appCounter = 0;
+  String documentPath = '';
+  String tmpPath = '';
   List _pizzas = [];
 
   @override
   void initState() {
     super.initState();
     readAndWritePreference();
+    getPaths();
     readJsonFile().then((value) {
       setState(() {
         _pizzas = value;
@@ -47,6 +51,8 @@ class _JsonHomePageState extends State<JsonHomePage> {
               )
             ],
           ),
+          Text('Document Path: $documentPath'),
+          Text('Temporary Path: $tmpPath'),
           Expanded(
             child: ListView.builder(
               itemCount: _pizzas.length,
@@ -100,6 +106,16 @@ class _JsonHomePageState extends State<JsonHomePage> {
 
     setState(() {
       appCounter = 0;
+    });
+  }
+
+  Future getPaths() async {
+    final docDir = await getApplicationDocumentsDirectory();
+    final tmpDir = await getTemporaryDirectory();
+
+    setState(() {
+      documentPath = docDir.path;
+      tmpPath = tmpDir.path;
     });
   }
 }
