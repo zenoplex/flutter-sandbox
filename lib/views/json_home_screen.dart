@@ -50,6 +50,13 @@ class _JsonHomePageState extends State<JsonHomePage> {
 
     List list = jsonDecode(data);
     List<Pizza> pizzas = list.map((item) => Pizza.fromJson(item)).toList();
+
+    print(convertToJson(pizzas));
+
     return pizzas;
+  }
+
+  String convertToJson(List<Pizza> pizzas) {
+    return jsonEncode(pizzas.map((pizza) => jsonEncode(pizza)).toList());
   }
 }
