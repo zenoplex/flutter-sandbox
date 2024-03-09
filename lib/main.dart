@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sandbox/views/navigation_dialog.dart';
+import 'package:flutter_sandbox/views/json_home_screen.dart';
 
 void main() {
   runApp(const MasterPlanApp());
@@ -11,6 +11,7 @@ class MasterPlanApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'MaterialApp title',
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
@@ -18,7 +19,7 @@ class MasterPlanApp extends StatelessWidget {
           brightness: Brightness.dark,
         ),
       ),
-      home: const NavigationDialog(),
+      home: const JsonHomePage(),
     );
   }
 }
