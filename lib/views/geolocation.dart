@@ -43,6 +43,10 @@ class _LocationScreenState extends State<LocationScreen> {
                   return const CircularProgressIndicator();
                 }
 
+                if (snapshot.hasError) {
+                  return Text('Something went wrong: ${snapshot.error}');
+                }
+
                 if (snapshot.connectionState == ConnectionState.done) {
                   return Text(snapshot.data.toString());
                 }
