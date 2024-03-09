@@ -32,8 +32,12 @@ class _JsonHomePageState extends State<JsonHomePage> {
       body: ListView.builder(
         itemCount: _pizzas.length,
         itemBuilder: (context, index) {
+          final Pizza pizza = _pizzas[index];
           return ListTile(
-            title: Text('$index'),
+            title: Text(pizza.name),
+            subtitle: Text(pizza.description),
+            leading: const Icon(Icons.local_pizza),
+            trailing: Text(pizza.price.toString()),
           );
         },
       ),
