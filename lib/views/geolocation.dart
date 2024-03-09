@@ -9,41 +9,47 @@ class LocationScreen extends StatefulWidget {
 }
 
 class _LocationScreenState extends State<LocationScreen> {
-  String? _position;
+  Future<Position>? position;
 
   @override
   void initState() {
     super.initState();
 
-    getPosition().then((position) {
-      setState(() {
-        _position =
-            'Latitude: ${position!.latitude}, Longitude: ${position.longitude}';
-      });
-    });
+    position = getPosition();
   }
 
-  Future<Position?> getPosition() async {
+  Future<Position> getPosition() async {
     await Geolocator.requestPermission();
     await Geolocator.isLocationServiceEnabled();
     // Simulate delay
     await Future.delayed(const Duration(seconds: 2));
-    Position? position = await Geolocator.getCurrentPosition();
+    Position position = await Geolocator.getCurrentPosition();
     return position;
   }
 
   @override
   Widget build(BuildContext context) {
-    final myWidget = _position == null
-        ? const CircularProgressIndicator()
-        : Text(_position!);
     return Scaffold(
       appBar: AppBar(title: const Text('GeoLocation')),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            myWidget,
+            FutureBuilder(
+              future: position,
+              builder:
+                  (BuildContext context, AsyncSnapshot<Position> snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const CircularProgressIndicator();
+                }
+
+                if (snapshot.connectionState == ConnectionState.done) {
+                  return Text(snapshot.data.toString());
+                }
+
+                return const Text('');
+              },
+            )
           ],
         ),
       ),
