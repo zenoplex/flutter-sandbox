@@ -27,6 +27,7 @@ class _NavigationDialogState extends State<NavigationDialog> {
 
   _showColorDialog(BuildContext context) async {
     color = await showDialog(
+        barrierDismissible: false,
         context: context,
         builder: (_) {
           return AlertDialog(
