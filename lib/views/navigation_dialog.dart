@@ -26,13 +26,33 @@ class _NavigationDialogState extends State<NavigationDialog> {
   }
 
   _showColorDialog(BuildContext context) async {
-    await showDialog(
+    color = await showDialog(
         context: context,
         builder: (_) {
-          return const AlertDialog(
-              title: Text('Pick a color'),
-              content: Text('Color picker goes here!'),
-              actions: []);
+          return AlertDialog(
+              title: const Text('Pick a color'),
+              content: const Text('Color picker goes here!'),
+              actions: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context, Colors.red.shade700);
+                  },
+                  child: const Text('Red'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context, Colors.green.shade700);
+                  },
+                  child: const Text('Green'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context, Colors.blue.shade700);
+                  },
+                  child: const Text('Blue'),
+                ),
+              ]);
         });
+    setState(() {});
   }
 }
