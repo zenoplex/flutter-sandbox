@@ -35,7 +35,18 @@ class _JsonHomePageState extends State<JsonHomePage> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('You have opened this app $appCounter times.'),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Text('You have opened this app $appCounter times.'),
+              ElevatedButton(
+                onPressed: () {
+                  deletePreference();
+                },
+                child: const Text('Reset'),
+              )
+            ],
+          ),
           Expanded(
             child: ListView.builder(
               itemCount: _pizzas.length,
@@ -80,6 +91,15 @@ class _JsonHomePageState extends State<JsonHomePage> {
 
     setState(() {
       appCounter = count;
+    });
+  }
+
+  Future deletePreference() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.clear();
+
+    setState(() {
+      appCounter = 0;
     });
   }
 }
