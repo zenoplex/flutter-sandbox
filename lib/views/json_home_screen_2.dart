@@ -28,14 +28,17 @@ class _JsonHomePageState extends State<JsonHomePage> {
                 return const Center(child: CircularProgressIndicator());
               }
 
+              final List<Pizza> data =
+                  snapshot.data == null ? [] : snapshot.data!;
+
               return ListView.builder(
-                  itemCount: snapshot.data == null ? 0 : snapshot.data!.length,
+                  itemCount: data.length,
                   itemBuilder: (context, index) {
                     return ListTile(
                       leading: const Icon(Icons.local_pizza),
-                      title: Text(snapshot.data![index].name),
-                      subtitle: Text(snapshot.data![index].description),
-                      trailing: Text(snapshot.data![index].price.toString()),
+                      title: Text(data[index].name),
+                      subtitle: Text(data[index].description),
+                      trailing: Text(data[index].price.toString()),
                     );
                   });
             }));
