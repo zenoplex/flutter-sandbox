@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sandbox/views/json_home_screen.dart';
+import 'package:flutter_sandbox/views/json_home_screen_2.dart';
 
 void main() {
   runApp(const MasterPlanApp());
