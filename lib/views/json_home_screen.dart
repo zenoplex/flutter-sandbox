@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sandbox/models/pizza.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:path_provider/path_provider.dart';
+import 'dart:io';
 
 class JsonHomePage extends StatefulWidget {
   const JsonHomePage({super.key});
@@ -17,12 +18,17 @@ class _JsonHomePageState extends State<JsonHomePage> {
   String documentPath = '';
   String tmpPath = '';
   List _pizzas = [];
+  late File file;
+  String fileText = '';
 
   @override
   void initState() {
     super.initState();
     readAndWritePreference();
-    getPaths();
+    getPaths().then((_) {
+      file = File('$documentPath/example.txt');
+      writeFile();
+    });
     readJsonFile().then((value) {
       setState(() {
         _pizzas = value;
@@ -53,6 +59,13 @@ class _JsonHomePageState extends State<JsonHomePage> {
           ),
           Text('Document Path: $documentPath'),
           Text('Temporary Path: $tmpPath'),
+          ElevatedButton(
+            onPressed: () {
+              readFile();
+            },
+            child: const Text('Read file'),
+          ),
+          Text(fileText),
           Expanded(
             child: ListView.builder(
               itemCount: _pizzas.length,
@@ -117,5 +130,26 @@ class _JsonHomePageState extends State<JsonHomePage> {
       documentPath = docDir.path;
       tmpPath = tmpDir.path;
     });
+  }
+
+  Future<bool> writeFile() async {
+    try {
+      await file.writeAsString('Hello, World! ${DateTime.now()}');
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  Future<bool> readFile() async {
+    try {
+      fileText = await file.readAsString();
+      setState(() {
+        fileText = fileText;
+      });
+      return true;
+    } catch (e) {
+      return false;
+    }
   }
 }
