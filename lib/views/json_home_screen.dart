@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_sandbox/models/pizza.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
@@ -20,6 +21,10 @@ class _JsonHomePageState extends State<JsonHomePage> {
   List _pizzas = [];
   late File file;
   String fileText = '';
+  final passwordController = TextEditingController();
+  final storage = const FlutterSecureStorage();
+  final pwdKey = 'pwd_key';
+  String? pwdValue;
 
   @override
   void initState() {
@@ -66,6 +71,38 @@ class _JsonHomePageState extends State<JsonHomePage> {
             child: const Text('Read file'),
           ),
           Text(fileText),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Expanded(
+                child: TextField(
+                  controller: passwordController,
+                  obscureText: true,
+                ),
+              ),
+              ElevatedButton(
+                child: const Text('Save'),
+                onPressed: () {
+                  writeToSecureStorage();
+                },
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Text(pwdValue ?? 'NOT SET'),
+              ElevatedButton(
+                child: const Text('Read'),
+                onPressed: () async {
+                  final value = await readFromSecureStorage();
+                  setState(() {
+                    pwdValue = value;
+                  });
+                },
+              ),
+            ],
+          ),
           Expanded(
             child: ListView.builder(
               itemCount: _pizzas.length,
@@ -151,5 +188,13 @@ class _JsonHomePageState extends State<JsonHomePage> {
     } catch (e) {
       return false;
     }
+  }
+
+  Future writeToSecureStorage() async {
+    await storage.write(key: pwdKey, value: passwordController.text);
+  }
+
+  Future<String?> readFromSecureStorage() async {
+    return await storage.read(key: pwdKey);
   }
 }
