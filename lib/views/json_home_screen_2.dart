@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sandbox/models/pizza.dart';
 import 'package:flutter_sandbox/utils/http_helper.dart';
+import 'package:flutter_sandbox/views/pizza_detail.dart';
 
 class JsonHomePage extends StatefulWidget {
   const JsonHomePage({super.key});
@@ -13,6 +14,14 @@ class _JsonHomePageState extends State<JsonHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        floatingActionButton: FloatingActionButton(
+            child: const Icon(Icons.add),
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const PizzaDetailScreen()));
+            }),
         appBar: AppBar(
           title: const Text('JSON'),
         ),
