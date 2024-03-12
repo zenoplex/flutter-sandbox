@@ -5,6 +5,13 @@ import 'package:flutter_sandbox/models/pizza.dart';
 import 'package:http/http.dart' as http;
 
 class HttpHelper {
+  // Singleton
+  static final HttpHelper _httpHelper = HttpHelper._internal();
+  HttpHelper._internal();
+  factory HttpHelper() {
+    return _httpHelper;
+  }
+
   final String authority = 'gkvly.wiremockapi.cloud';
   final String path = '/pizzas';
 
