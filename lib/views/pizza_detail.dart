@@ -8,6 +8,12 @@ class PizzaDetailScreen extends StatefulWidget {
 }
 
 class _PizzaDetailScreenState extends State<PizzaDetailScreen> {
+  final TextEditingController idController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController descriptionController = TextEditingController();
+  final TextEditingController priceController = TextEditingController();
+  final TextEditingController imageUrlController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,25 +31,32 @@ class _PizzaDetailScreenState extends State<PizzaDetailScreen> {
                   ),
                 ),
                 const SizedBox(height: 24),
-                const TextField(
-                  decoration: InputDecoration(hintText: 'Insert ID'),
+                TextField(
+                  controller: idController,
+                  decoration: const InputDecoration(hintText: 'Insert ID'),
                 ),
                 const SizedBox(height: 24),
-                const TextField(
-                  decoration: InputDecoration(hintText: 'Insert Pizza name'),
-                ),
-                const SizedBox(height: 24),
-                const TextField(
+                TextField(
+                  controller: nameController,
                   decoration:
-                      InputDecoration(hintText: 'Insert Pizza description'),
+                      const InputDecoration(hintText: 'Insert Pizza name'),
                 ),
                 const SizedBox(height: 24),
-                const TextField(
-                  decoration: InputDecoration(hintText: 'Insert Price'),
+                TextField(
+                  controller: descriptionController,
+                  decoration: const InputDecoration(
+                      hintText: 'Insert Pizza description'),
                 ),
                 const SizedBox(height: 24),
-                const TextField(
-                  decoration: InputDecoration(hintText: 'Insert Image Url'),
+                TextField(
+                  controller: priceController,
+                  decoration: const InputDecoration(hintText: 'Insert Price'),
+                ),
+                const SizedBox(height: 24),
+                TextField(
+                  controller: imageUrlController,
+                  decoration:
+                      const InputDecoration(hintText: 'Insert Image Url'),
                 ),
                 const SizedBox(height: 24),
                 ElevatedButton(onPressed: () {}, child: const Text('Save')),
@@ -51,5 +64,15 @@ class _PizzaDetailScreenState extends State<PizzaDetailScreen> {
             ),
           ),
         ));
+  }
+
+  @override
+  void dispose() {
+    idController.dispose();
+    nameController.dispose();
+    descriptionController.dispose();
+    priceController.dispose();
+    imageUrlController.dispose();
+    super.dispose();
   }
 }
