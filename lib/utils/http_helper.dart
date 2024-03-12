@@ -13,9 +13,9 @@ class HttpHelper {
   }
 
   final String authority = 'gkvly.wiremockapi.cloud';
-  final String path = '/pizzas';
 
   Future<List<Pizza>> getPizzas() async {
+    const String path = '/pizzas';
     final Uri url = Uri.https(authority, path);
     final http.Response response = await http.get(url);
 
@@ -26,5 +26,14 @@ class HttpHelper {
     }
 
     return [];
+  }
+
+  Future<String> postPizza(Pizza pizza) async {
+    const String path = '/pizza';
+    String body = json.encode(pizza.toJson());
+    final Uri url = Uri.https(authority, path);
+    final http.Response response = await http.post(url, body: body);
+
+    return response.body;
   }
 }
