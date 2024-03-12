@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_sandbox/models/pizza.dart';
+import 'package:flutter_sandbox/utils/http_helper.dart';
 
 class PizzaDetailScreen extends StatefulWidget {
   const PizzaDetailScreen({super.key});
@@ -8,6 +10,7 @@ class PizzaDetailScreen extends StatefulWidget {
 }
 
 class _PizzaDetailScreenState extends State<PizzaDetailScreen> {
+  String result = '';
   final TextEditingController idController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
@@ -24,7 +27,7 @@ class _PizzaDetailScreenState extends State<PizzaDetailScreen> {
             child: Column(
               children: [
                 Text(
-                  '',
+                  result,
                   style: TextStyle(
                     backgroundColor: Colors.green.shade200,
                     color: Colors.black,
@@ -59,7 +62,11 @@ class _PizzaDetailScreenState extends State<PizzaDetailScreen> {
                       const InputDecoration(hintText: 'Insert Image Url'),
                 ),
                 const SizedBox(height: 24),
-                ElevatedButton(onPressed: () {}, child: const Text('Save')),
+                ElevatedButton(
+                    onPressed: () {
+                      postPizza();
+                    },
+                    child: const Text('Save')),
               ],
             ),
           ),
@@ -74,5 +81,20 @@ class _PizzaDetailScreenState extends State<PizzaDetailScreen> {
     priceController.dispose();
     imageUrlController.dispose();
     super.dispose();
+  }
+
+  Future postPizza() async {
+    HttpHelper helper = HttpHelper();
+    Pizza pizza = Pizza(
+      id: int.tryParse(idController.text) ?? 0,
+      name: nameController.text,
+      description: descriptionController.text,
+      price: double.tryParse(priceController.text) ?? 0,
+      imageUrl: imageUrlController.text,
+    );
+    String res = await helper.postPizza(pizza);
+    setState(() {
+      result = res;
+    });
   }
 }
