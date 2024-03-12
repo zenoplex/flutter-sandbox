@@ -11,6 +11,14 @@ class Pizza {
   final double price;
   final String imageUrl;
 
+  const Pizza({
+    required this.id,
+    required this.name,
+    required this.description,
+    required this.price,
+    required this.imageUrl,
+  });
+
   Pizza.fromJson(Map<String, dynamic> json)
       : id = int.tryParse(json[keyId].toString()) ?? 0,
         name = json[keyName] != null ? json[keyName].toString() : 'No Name',
