@@ -19,7 +19,8 @@ class HttpHelper {
     final Uri url = Uri.https(authority, path);
     final http.Response response = await http.get(url);
 
-    if (response.statusCode == HttpStatus.ok) {
+    if (response.statusCode >= HttpStatus.ok &&
+        response.statusCode < HttpStatus.multipleChoices) {
       final List json = jsonDecode(response.body);
       List<Pizza> pizzas = json.map((item) => Pizza.fromJson(item)).toList();
       return pizzas;
@@ -34,6 +35,12 @@ class HttpHelper {
     final Uri url = Uri.https(authority, path);
     final http.Response response = await http.post(url, body: body);
 
-    return response.body;
+    if (response.statusCode >= HttpStatus.ok &&
+        response.statusCode < HttpStatus.multipleChoices) {
+      final Map json = jsonDecode(response.body);
+      return json['message'];
+    }
+
+    return 'Something went wrong.';
   }
 }
