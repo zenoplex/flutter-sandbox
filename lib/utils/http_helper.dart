@@ -59,29 +59,3 @@ class HttpHelper {
     return 'Something went wrong.';
   }
 }
-
-class PartialPizza {
-  final int id;
-  final String? name;
-  final String? description;
-  final double? price;
-  final String? imageUrl;
-
-  const PartialPizza({
-    required this.id,
-    this.name,
-    this.description,
-    this.price,
-    this.imageUrl,
-  });
-
-  Map<String, dynamic> toJson() {
-    return {
-      keyId: id,
-      keyName: name,
-      keyDescription: description,
-      keyPrice: price,
-      keyImageUrl: imageUrl,
-    };
-  }
-}

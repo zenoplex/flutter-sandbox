@@ -37,3 +37,36 @@ class Pizza {
     };
   }
 }
+
+class PartialPizza {
+  final int id;
+  final String? name;
+  final String? description;
+  final double? price;
+  final String? imageUrl;
+
+  const PartialPizza({
+    required this.id,
+    this.name,
+    this.description,
+    this.price,
+    this.imageUrl,
+  });
+
+  PartialPizza.fromPizza(Pizza pizza)
+      : id = pizza.id,
+        name = pizza.name,
+        description = pizza.description,
+        price = pizza.price,
+        imageUrl = pizza.imageUrl;
+
+  Map<String, dynamic> toJson() {
+    return {
+      keyId: id,
+      keyName: name,
+      keyDescription: description,
+      keyPrice: price,
+      keyImageUrl: imageUrl,
+    };
+  }
+}
