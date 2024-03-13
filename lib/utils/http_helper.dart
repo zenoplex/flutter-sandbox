@@ -43,4 +43,45 @@ class HttpHelper {
 
     return 'Something went wrong.';
   }
+
+  Future<String> putPizza(PartialPizza pizza) async {
+    final String path = '/pizza/${pizza.id}';
+    String body = json.encode(pizza.toJson());
+    final Uri url = Uri.https(authority, path);
+    final http.Response response = await http.put(url, body: body);
+
+    if (response.statusCode >= HttpStatus.ok &&
+        response.statusCode < HttpStatus.multipleChoices) {
+      final Map json = jsonDecode(response.body);
+      return json['message'];
+    }
+
+    return 'Something went wrong.';
+  }
+}
+
+class PartialPizza {
+  final int id;
+  final String? name;
+  final String? description;
+  final double? price;
+  final String? imageUrl;
+
+  const PartialPizza({
+    required this.id,
+    this.name,
+    this.description,
+    this.price,
+    this.imageUrl,
+  });
+
+  Map<String, dynamic> toJson() {
+    return {
+      keyId: id,
+      keyName: name,
+      keyDescription: description,
+      keyPrice: price,
+      keyImageUrl: imageUrl,
+    };
+  }
 }
