@@ -43,11 +43,24 @@ class _JsonHomePageState extends State<JsonHomePage> {
               return ListView.builder(
                   itemCount: data.length,
                   itemBuilder: (context, index) {
+                    final Pizza pizza = data[index];
                     return ListTile(
                       leading: const Icon(Icons.local_pizza),
-                      title: Text(data[index].name),
-                      subtitle: Text(data[index].description),
-                      trailing: Text(data[index].price.toString()),
+                      title: Text(pizza.name),
+                      subtitle: Text(pizza.description),
+                      trailing: Text(pizza.price.toString()),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return PizzaDetailScreen(
+                                selectedPizza: pizza,
+                              );
+                            },
+                          ),
+                        );
+                      },
                     );
                   });
             }));

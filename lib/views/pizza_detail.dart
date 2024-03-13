@@ -3,7 +3,8 @@ import 'package:flutter_sandbox/models/pizza.dart';
 import 'package:flutter_sandbox/utils/http_helper.dart';
 
 class PizzaDetailScreen extends StatefulWidget {
-  const PizzaDetailScreen({super.key});
+  final Pizza? selectedPizza;
+  const PizzaDetailScreen({super.key, this.selectedPizza});
 
   @override
   State<PizzaDetailScreen> createState() => _PizzaDetailScreenState();
@@ -16,6 +17,19 @@ class _PizzaDetailScreenState extends State<PizzaDetailScreen> {
   final TextEditingController descriptionController = TextEditingController();
   final TextEditingController priceController = TextEditingController();
   final TextEditingController imageUrlController = TextEditingController();
+
+  @override
+  void initState() {
+    if (widget.selectedPizza != null) {
+      final pizza = widget.selectedPizza!;
+      idController.text = pizza.id.toString();
+      nameController.text = pizza.name;
+      descriptionController.text = pizza.description;
+      priceController.text = pizza.price.toString();
+      imageUrlController.text = pizza.imageUrl;
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +78,7 @@ class _PizzaDetailScreenState extends State<PizzaDetailScreen> {
                 const SizedBox(height: 24),
                 ElevatedButton(
                     onPressed: () {
-                      postPizza();
+                      savePizza();
                     },
                     child: const Text('Save')),
               ],
@@ -83,7 +97,7 @@ class _PizzaDetailScreenState extends State<PizzaDetailScreen> {
     super.dispose();
   }
 
-  Future postPizza() async {
+  Future savePizza() async {
     HttpHelper helper = HttpHelper();
     Pizza pizza = Pizza(
       id: int.tryParse(idController.text) ?? 0,
@@ -92,7 +106,9 @@ class _PizzaDetailScreenState extends State<PizzaDetailScreen> {
       price: double.tryParse(priceController.text) ?? 0,
       imageUrl: imageUrlController.text,
     );
-    String res = await helper.postPizza(pizza);
+    final String res = await (widget.selectedPizza == null
+        ? helper.postPizza(pizza)
+        : helper.putPizza(PartialPizza.fromPizza(pizza)));
     setState(() {
       result = res;
     });
