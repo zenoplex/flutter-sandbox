@@ -44,23 +44,40 @@ class _JsonHomePageState extends State<JsonHomePage> {
                   itemCount: data.length,
                   itemBuilder: (context, index) {
                     final Pizza pizza = data[index];
-                    return ListTile(
-                      leading: const Icon(Icons.local_pizza),
-                      title: Text(pizza.name),
-                      subtitle: Text(pizza.description),
-                      trailing: Text(pizza.price.toString()),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return PizzaDetailScreen(
-                                selectedPizza: pizza,
-                              );
-                            },
+                    return Dismissible(
+                      key: Key(pizza.id.toString()),
+                      onDismissed: (_) async {
+                        final scaffoldMessenger = ScaffoldMessenger.of(context);
+
+                        HttpHelper helper = HttpHelper();
+                        final String message =
+                            await helper.deletePizza(pizza.id);
+                        data.removeWhere((element) => element.id == pizza.id);
+
+                        scaffoldMessenger.showSnackBar(
+                          SnackBar(
+                            content: Text(message),
                           ),
                         );
                       },
+                      child: ListTile(
+                        leading: const Icon(Icons.local_pizza),
+                        title: Text(pizza.name),
+                        subtitle: Text(pizza.description),
+                        trailing: Text(pizza.price.toString()),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return PizzaDetailScreen(
+                                  selectedPizza: pizza,
+                                );
+                              },
+                            ),
+                          );
+                        },
+                      ),
                     );
                   });
             }));
