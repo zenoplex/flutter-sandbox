@@ -58,4 +58,18 @@ class HttpHelper {
 
     return 'Something went wrong.';
   }
+
+  Future<String> deletePizza(int id) async {
+    final String path = '/pizza/$id';
+    final Uri url = Uri.https(authority, path);
+    final http.Response response = await http.delete(url);
+
+    if (response.statusCode >= HttpStatus.ok &&
+        response.statusCode < HttpStatus.multipleChoices) {
+      final Map json = jsonDecode(response.body);
+      return json['message'];
+    }
+
+    return 'Something went wrong.';
+  }
 }
