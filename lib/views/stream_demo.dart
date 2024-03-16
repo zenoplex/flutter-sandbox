@@ -16,13 +16,11 @@ class _StreamHomePageState extends State<StreamHomePage> {
   final ColorStream colorStream = ColorStream();
   int lastNumber = 0;
   final NumberStream numberStream = NumberStream();
-  // final StreamController<int> numberStreamController = StreamController<int>();
-  late StreamController numberStreamController;
 
   @override
   void initState() {
-    numberStreamController = numberStream.controller;
-    final Stream stream = numberStreamController.stream;
+    final Stream stream = numberStream.controller.stream;
+
     stream.listen((event) {
       setState(() {
         lastNumber = event;
@@ -62,7 +60,7 @@ class _StreamHomePageState extends State<StreamHomePage> {
 
   @override
   void dispose() {
-    numberStreamController.close();
+    numberStream.close();
     super.dispose();
   }
 
