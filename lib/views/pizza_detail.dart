@@ -11,7 +11,6 @@ class PizzaDetailScreen extends StatefulWidget {
 }
 
 class _PizzaDetailScreenState extends State<PizzaDetailScreen> {
-  String result = '';
   final TextEditingController idController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
@@ -40,14 +39,6 @@ class _PizzaDetailScreenState extends State<PizzaDetailScreen> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Text(
-                  result,
-                  style: TextStyle(
-                    backgroundColor: Colors.green.shade200,
-                    color: Colors.black,
-                  ),
-                ),
-                const SizedBox(height: 24),
                 TextField(
                   controller: idController,
                   decoration: const InputDecoration(hintText: 'Insert ID'),
@@ -98,7 +89,9 @@ class _PizzaDetailScreenState extends State<PizzaDetailScreen> {
   }
 
   Future savePizza() async {
-    HttpHelper helper = HttpHelper();
+    final navigator = Navigator.of(context);
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
+    final HttpHelper helper = HttpHelper();
     Pizza pizza = Pizza(
       id: int.tryParse(idController.text) ?? 0,
       name: nameController.text,
@@ -106,11 +99,16 @@ class _PizzaDetailScreenState extends State<PizzaDetailScreen> {
       price: double.tryParse(priceController.text) ?? 0,
       imageUrl: imageUrlController.text,
     );
-    final String res = await (widget.selectedPizza == null
+    final String message = await (widget.selectedPizza == null
         ? helper.postPizza(pizza)
         : helper.putPizza(PartialPizza.fromPizza(pizza)));
-    setState(() {
-      result = res;
-    });
+
+    navigator.pop();
+
+    scaffoldMessenger.showSnackBar(
+      SnackBar(
+        content: Text(message),
+      ),
+    );
   }
 }
