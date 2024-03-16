@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sandbox/views/json_home_screen_2.dart';
+import 'package:flutter_sandbox/views/stream_demo.dart';
 
 void main() {
   runApp(const MasterPlanApp());
@@ -19,7 +19,7 @@ class MasterPlanApp extends StatelessWidget {
           brightness: Brightness.dark,
         ),
       ),
-      home: const JsonHomePage(),
+      home: const StreamHomePage(),
     );
   }
 }
