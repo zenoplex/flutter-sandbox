@@ -104,6 +104,11 @@ class _StreamHomePageState extends State<StreamHomePage> {
   void addRandomNumber() {
     Random random = Random();
     final int num = random.nextInt(10);
+
+    if (numberStream.controller.isClosed) {
+      return;
+    }
+
     if (num <= 5) {
       numberStream.addError();
       return;
