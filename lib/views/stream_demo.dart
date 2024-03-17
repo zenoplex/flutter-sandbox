@@ -15,6 +15,7 @@ class _StreamHomePageState extends State<StreamHomePage> {
   Color bgColor = Colors.blueGrey;
   final ColorStream colorStream = ColorStream();
   int lastNumber = 0;
+  String values = '';
   final NumberStream numberStream = NumberStream();
   final StreamTransformer transformer =
       StreamTransformer<int, int>.fromHandlers(
@@ -29,13 +30,15 @@ class _StreamHomePageState extends State<StreamHomePage> {
     },
   );
   late StreamSubscription subscription;
+  late StreamSubscription subscription2;
 
   @override
   void initState() {
-    final Stream stream = numberStream.controller.stream;
+    final Stream stream = numberStream.controller.stream.asBroadcastStream();
     subscription = stream.transform(transformer).listen((event) {
       setState(() {
         lastNumber = event;
+        values += '$event - ';
       });
     });
 
@@ -46,6 +49,13 @@ class _StreamHomePageState extends State<StreamHomePage> {
     });
     subscription.onDone(() {
       print('onDone was called');
+    });
+
+    subscription2 = stream.transform(transformer).listen((event) {
+      setState(() {
+        lastNumber = event;
+        values += '$event - ';
+      });
     });
 
     changeColor();
@@ -66,6 +76,7 @@ class _StreamHomePageState extends State<StreamHomePage> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              Text(values),
               Text(lastNumber.toString()),
               ElevatedButton(
                 onPressed: () {
