@@ -17,7 +17,26 @@ class _StreamBuilderAppState extends State<StreamBuilderApp> {
       appBar: AppBar(
         title: const Text('Stream'),
       ),
-      body: Container(),
+      body: StreamBuilder(
+        stream: numberStream,
+        initialData: 0,
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return Text('Error: ${snapshot.error.toString()}');
+          }
+
+          if (snapshot.hasData) {
+            return Center(
+              child: Text(
+                snapshot.data.toString(),
+                style: const TextStyle(fontSize: 96),
+              ),
+            );
+          }
+
+          return const SizedBox.shrink();
+        },
+      ),
     );
   }
 }
