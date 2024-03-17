@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sandbox/views/stream_demo.dart';
+import 'package:flutter_sandbox/views/stream_builder_app.dart';
 
 void main() {
   runApp(const MasterPlanApp());
@@ -19,7 +19,7 @@ class MasterPlanApp extends StatelessWidget {
           brightness: Brightness.dark,
         ),
       ),
-      home: const StreamHomePage(),
+      home: const StreamBuilderApp(),
     );
   }
 }
