@@ -1,5 +1,5 @@
+import 'package:flutter_sandbox/models/plan.dart';
 import 'package:uuid/uuid.dart';
-import './plan.dart';
 
 class Plans {
   final List<String> planIds;

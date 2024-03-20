@@ -19,8 +19,8 @@ class FlexScreen extends StatelessWidget {
             const DemoFlexible(),
             const Expanded(child: Spacer()),
             const Center(child: DemoFooter()),
-          ]),
-        ));
+          ],),
+        ),);
   }
 
   Iterable _header(BuildContext context, String text) {
@@ -46,10 +46,10 @@ class DemoExpanded extends StatelessWidget {
               color: Colors.purple,
               text: 'Expanded',
               textColor: Colors.white,
-            )),
+            ),),
             LabeledContainer(width: 40, color: Colors.green, text: '40'),
           ],
-        ));
+        ),);
   }
 }
 
@@ -63,16 +63,14 @@ class DemoFlexible extends StatelessWidget {
         child: Row(
           children: [
             Flexible(
-                flex: 1,
-                child: LabeledContainer(color: Colors.orange, text: '25%')),
+                child: LabeledContainer(color: Colors.orange, text: '25%'),),
             Flexible(
-                flex: 1,
-                child: LabeledContainer(color: Colors.deepOrange, text: '25%')),
+                child: LabeledContainer(color: Colors.deepOrange, text: '25%'),),
             Flexible(
                 flex: 2,
-                child: LabeledContainer(color: Colors.blue, text: '50%')),
+                child: LabeledContainer(color: Colors.blue, text: '50%'),),
           ],
-        ));
+        ),);
   }
 }
 
@@ -83,11 +81,11 @@ class DemoFooter extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         decoration: BoxDecoration(
-            color: Colors.yellow, borderRadius: BorderRadius.circular(40)),
+            color: Colors.yellow, borderRadius: BorderRadius.circular(40),),
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
         child: Text(
           'Sticky Footer',
           style: Theme.of(context).textTheme.titleSmall,
-        ));
+        ),);
   }
 }

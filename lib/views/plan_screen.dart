@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../models/data_layer.dart';
-import '../plan_provider.dart';
+import 'package:flutter_sandbox/models/data_layer.dart';
+import 'package:flutter_sandbox/plan_provider.dart';
 
 class PlanScreen extends StatefulWidget {
   final String planId;
@@ -16,7 +16,7 @@ class _PlanScreenState extends State<PlanScreen> {
 
   @override
   Widget build(BuildContext context) {
-    ValueNotifier<Plans> plansNotifier = PlanProvider.of(context);
+    final ValueNotifier<Plans> plansNotifier = PlanProvider.of(context);
     final maybePlan = plansNotifier.value.planMap[widget.planId];
     assert(maybePlan != null, 'Plan ${widget.planId} not found');
     final currentPlan = maybePlan!;
@@ -53,7 +53,7 @@ class _PlanScreenState extends State<PlanScreen> {
   }
 
   Widget _buildActionButton(BuildContext context) {
-    ValueNotifier<Plans> plansNotifier = PlanProvider.of(context);
+    final ValueNotifier<Plans> plansNotifier = PlanProvider.of(context);
 
     return FloatingActionButton(
         child: const Icon(Icons.add),
@@ -67,7 +67,7 @@ class _PlanScreenState extends State<PlanScreen> {
               widget.planId: currentPlan.addTask(),
             },
           );
-        });
+        },);
   }
 
   Widget _buildList(Plan plan) {
@@ -93,7 +93,7 @@ class _PlanScreenState extends State<PlanScreen> {
   }
 
   Widget _buildTaskTile(BuildContext context, Task task, String id, int index) {
-    ValueNotifier<Plans> plansNotifier = PlanProvider.of(context);
+    final ValueNotifier<Plans> plansNotifier = PlanProvider.of(context);
     return ListTile(
       leading: Checkbox(
           value: task.isComplete,
@@ -108,7 +108,7 @@ class _PlanScreenState extends State<PlanScreen> {
                     currentPlan.updateTask(taskId: task.id, isComplete: value),
               },
             );
-          }),
+          },),
       title: TextFormField(
         initialValue: task.description,
         decoration: InputDecoration(

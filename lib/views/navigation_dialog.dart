@@ -22,7 +22,7 @@ class _NavigationDialogState extends State<NavigationDialog> {
               _showColorDialog(context);
             },
           ),
-        ));
+        ),);
   }
 
   _showColorDialog(BuildContext context) async {
@@ -52,8 +52,8 @@ class _NavigationDialogState extends State<NavigationDialog> {
                   },
                   child: const Text('Blue'),
                 ),
-              ]);
-        });
+              ],);
+        },);
     setState(() {});
   }
 }

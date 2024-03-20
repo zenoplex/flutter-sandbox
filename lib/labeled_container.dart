@@ -13,7 +13,7 @@ class LabeledContainer extends StatelessWidget {
       this.height = double.infinity,
       this.color,
       this.textColor,
-      super.key});
+      super.key,});
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +22,6 @@ class LabeledContainer extends StatelessWidget {
         height: height,
         color: color,
         alignment: Alignment.center,
-        child: Text(text, style: TextStyle(color: textColor, fontSize: 20)));
+        child: Text(text, style: TextStyle(color: textColor, fontSize: 20)),);
   }
 }

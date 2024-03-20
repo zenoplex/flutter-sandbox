@@ -22,7 +22,7 @@ class _StreamBuilderAppState extends State<StreamBuilderApp> {
         initialData: 0,
         builder: (context, snapshot) {
           if (snapshot.hasError) {
-            return Text('Error: ${snapshot.error.toString()}');
+            return Text('Error: ${snapshot.error}');
           }
 
           if (snapshot.hasData) {

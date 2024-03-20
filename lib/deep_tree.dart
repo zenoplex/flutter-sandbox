@@ -22,11 +22,11 @@ class DeepTree extends StatelessWidget {
             child: Container(color: Colors.purple),
           ),
           const Text(
-              'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'),
+              'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',),
           const Text(
-              'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'),
+              'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',),
         ],
-      )),
-    ));
+      ),),
+    ),);
   }
 }

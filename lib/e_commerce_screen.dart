@@ -13,7 +13,7 @@ class ECommerceScreen extends StatelessWidget {
           children: <Widget>[
             _buildToggleBar(context),
             SizedBox(
-                height: 100, child: Image.asset('assets/woman_shopping.jpg')),
+                height: 100, child: Image.asset('assets/woman_shopping.jpg'),),
             const DealButtons(),
             _buildProductTitle(context),
           ],
@@ -47,11 +47,11 @@ class ECommerceScreen extends StatelessWidget {
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                   const Text(
-                      'Dolor sit amet, consectetur adipiscing elit. Quisque faucibus.')
+                      'Dolor sit amet, consectetur adipiscing elit. Quisque faucibus.',),
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );
@@ -68,7 +68,7 @@ class ECommerceScreen extends StatelessWidget {
   }
 
   Padding _buildToggleItem(BuildContext context, String text,
-      {bool selected = false}) {
+      {bool selected = false,}) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Text(
@@ -91,17 +91,17 @@ class ECommerceScreen extends StatelessWidget {
   AppBar _buildAppBar() {
     return AppBar(
       shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(bottom: Radius.circular(30))),
+          borderRadius: BorderRadius.vertical(bottom: Radius.circular(30)),),
       leading: const Padding(
         padding: EdgeInsets.all(20.0),
         child: Icon(Icons.home),
       ),
-      title: const Text('Let\'s go shopping!'),
+      title: const Text("Let's go shopping!"),
       actions: const [
         Padding(
           padding: EdgeInsets.all(20.0),
           child: Icon(Icons.shopping_cart),
-        )
+        ),
       ],
     );
   }
@@ -121,7 +121,7 @@ class DealButtons extends StatelessWidget {
           children: <Widget>[
             DealButton(text: 'Best Sellers', color: Colors.orangeAccent),
             SizedBox(width: 10),
-            DealButton(text: 'Daily Deals', color: Colors.indigoAccent)
+            DealButton(text: 'Daily Deals', color: Colors.indigoAccent),
           ],
         ),
         SizedBox(height: 15),
@@ -154,7 +154,7 @@ class DealButton extends StatelessWidget {
       child: Container(
         height: 80,
         decoration: BoxDecoration(
-            color: color, borderRadius: BorderRadius.circular(20)),
+            color: color, borderRadius: BorderRadius.circular(20),),
         child: Padding(
           padding: const EdgeInsets.all(10.0),
           child: Center(

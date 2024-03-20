@@ -74,7 +74,6 @@ class _StreamHomePageState extends State<StreamHomePage> {
           width: double.infinity,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(values),
               Text(lastNumber.toString()),
@@ -89,7 +88,7 @@ class _StreamHomePageState extends State<StreamHomePage> {
                   stopStream();
                 },
                 child: const Text('Stop stream'),
-              )
+              ),
             ],
           ),
         ),
@@ -104,8 +103,8 @@ class _StreamHomePageState extends State<StreamHomePage> {
     super.dispose();
   }
 
-  void changeColor() async {
-    await for (Color eventColor in colorStream.getColors()) {
+  Future<void> changeColor() async {
+    await for (final Color eventColor in colorStream.getColors()) {
       setState(() {
         bgColor = eventColor;
       });
@@ -113,7 +112,7 @@ class _StreamHomePageState extends State<StreamHomePage> {
   }
 
   void addRandomNumber() {
-    Random random = Random();
+    final Random random = Random();
     final int num = random.nextInt(10);
 
     if (numberStream.controller.isClosed) {

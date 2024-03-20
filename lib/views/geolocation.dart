@@ -23,7 +23,7 @@ class _LocationScreenState extends State<LocationScreen> {
     await Geolocator.isLocationServiceEnabled();
     // Simulate delay
     await Future.delayed(const Duration(seconds: 2));
-    Position position = await Geolocator.getCurrentPosition();
+    final Position position = await Geolocator.getCurrentPosition();
     return position;
   }
 
@@ -53,7 +53,7 @@ class _LocationScreenState extends State<LocationScreen> {
 
                 return const Text('');
               },
-            )
+            ),
           ],
         ),
       ),

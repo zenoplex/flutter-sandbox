@@ -20,7 +20,7 @@ class _RandomBlocScreenState extends State<RandomBlocScreen> {
         initialData: 0,
         builder: (context, snapshot) {
           return Text(
-            'Random Number: ${snapshot.data.toString()}',
+            'Random Number: ${snapshot.data}',
             style: const TextStyle(fontSize: 30),
           );
         },

@@ -34,7 +34,7 @@ class _NavigationFirstState extends State<NavigationFirst> {
             context,
             MaterialPageRoute(
               builder: (context) => const NavigationSecond(),
-            )) ??
+            ),) ??
         Colors.blue.shade700;
 
     setState(() {});

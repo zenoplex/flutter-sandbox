@@ -14,9 +14,9 @@ class TextLayout extends StatelessWidget {
           style: GoogleFonts.leckerliOne(fontSize: 40),
         ),
         Text('Text can wrap without issue',
-            style: Theme.of(context).textTheme.titleLarge),
+            style: Theme.of(context).textTheme.titleLarge,),
         const Text(
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut fermentum ante eu sapien tincidunt, eu pulvinar eros pharetra. Vestibulum non efficitur magna, vel interdum dui. Donec consectetur lorem purus, sit amet consequat sapien dignissim vel. '),
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut fermentum ante eu sapien tincidunt, eu pulvinar eros pharetra. Vestibulum non efficitur magna, vel interdum dui. Donec consectetur lorem purus, sit amet consequat sapien dignissim vel. ',),
         const Divider(),
         RichText(
             text: const TextSpan(
@@ -33,10 +33,10 @@ class TextLayout extends StatelessWidget {
                       style: TextStyle(
                           decoration: TextDecoration.underline,
                           decorationStyle: TextDecorationStyle.double,
-                          fontSize: 30))
+                          fontSize: 30,),),
                 ],
-              )
-            ]))
+              ),
+            ],),),
       ],
     );
   }

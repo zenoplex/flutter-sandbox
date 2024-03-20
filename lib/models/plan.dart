@@ -1,6 +1,5 @@
+import 'package:flutter_sandbox/models/task.dart';
 import 'package:uuid/uuid.dart';
-
-import './task.dart';
 
 class Plan {
   final String id;
@@ -45,7 +44,7 @@ class Plan {
   }
 
   Plan updateTask(
-      {required String taskId, String? description, bool? isComplete}) {
+      {required String taskId, String? description, bool? isComplete,}) {
     final maybeTask = taskMap[taskId];
     assert(maybeTask != null, 'Task $taskId not found in plan');
     final task = maybeTask!;
@@ -59,7 +58,7 @@ class Plan {
         taskId: task.update(
           newDescription: description,
           newIsComplete: isComplete,
-        )
+        ),
       },
     );
   }

@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
 import 'dart:async';
+
+import 'package:flutter/material.dart';
 
 class StopWatch extends StatefulWidget {
   final String name;
@@ -68,9 +69,9 @@ class _StopWatchState extends State<StopWatch> {
             style: textTheme.headlineSmall,
           ),
           Text('Total run time is ${_secondsText(totalRuntime)}'),
-        ]),
+        ],),
       ),
-    ));
+    ),);
   }
 
   void _lap() {
@@ -85,7 +86,7 @@ class _StopWatchState extends State<StopWatch> {
     scrollController.animateTo(
         scrollController.position.maxScrollExtent + itemHeight,
         duration: const Duration(milliseconds: 300),
-        curve: Curves.easeOut);
+        curve: Curves.easeOut,);
   }
 
   @override
@@ -100,7 +101,7 @@ class _StopWatchState extends State<StopWatch> {
               child: _buildLapDisplay(),
             ),
           ],
-        )));
+        ),),);
   }
 
   Widget _buildCounter(BuildContext context) {
@@ -114,12 +115,12 @@ class _StopWatchState extends State<StopWatch> {
               style: Theme.of(context)
                   .textTheme
                   .headlineSmall!
-                  .copyWith(color: Colors.white)),
+                  .copyWith(color: Colors.white),),
           Text(_secondsText(milliseconds),
               style: Theme.of(context)
                   .textTheme
                   .headlineSmall!
-                  .copyWith(color: Colors.white)),
+                  .copyWith(color: Colors.white),),
           const SizedBox(
             height: 20,
           ),
@@ -150,7 +151,7 @@ class _StopWatchState extends State<StopWatch> {
               backgroundColor: Colors.yellow,
               foregroundColor: Colors.black,
             ),
-            child: const Text('Lap')),
+            child: const Text('Lap'),),
         const SizedBox(
           width: 20,
         ),
@@ -162,7 +163,7 @@ class _StopWatchState extends State<StopWatch> {
                     foregroundColor: Colors.white,
                   ),
                   child: const Text('Stop'),
-                )),
+                ),),
       ],
     );
   }

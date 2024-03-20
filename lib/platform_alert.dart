@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class PlatformAlert {
   final String title;
@@ -22,7 +22,7 @@ class PlatformAlert {
         context: context,
         builder: (context) {
           return _buildAlertDialog(context);
-        });
+        },);
   }
 
   void _buildMaterialAlert(BuildContext context) {
@@ -30,7 +30,7 @@ class PlatformAlert {
         context: context,
         builder: (context) {
           return _buildAlertDialog(context);
-        });
+        },);
   }
 
   AlertDialog _buildAlertDialog(BuildContext context) {
@@ -41,7 +41,7 @@ class PlatformAlert {
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
           child: const Text('Close'),
-        )
+        ),
       ],
     );
   }

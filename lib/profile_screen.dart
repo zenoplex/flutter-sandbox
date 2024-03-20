@@ -16,8 +16,8 @@ class ProfileScreen extends StatelessWidget {
                 ProfileImage(),
                 ProfileDetails(),
                 ProfileActions(),
-              ])))
-    ]));
+              ],),),),
+    ],),);
   }
 }
 
@@ -31,7 +31,7 @@ class ProfileImage extends StatelessWidget {
             image: true,
             label: 'Teto',
             child: Image.asset('assets/cat.jpg',
-                width: 200, height: 200, fit: BoxFit.fitWidth)));
+                width: 200, height: 200, fit: BoxFit.fitWidth,),),);
   }
 }
 
@@ -54,9 +54,9 @@ class ProfileDetails extends StatelessWidget {
             ),
             const StarRating(value: 5),
             _buildDetailsRow('Age', '10'),
-            _buildDetailsRow('Status', 'Good Girl')
+            _buildDetailsRow('Status', 'Good Girl'),
           ],
-        ));
+        ),);
   }
 
   Widget _buildDetailsRow(String heading, String value) {
@@ -66,7 +66,7 @@ class ProfileDetails extends StatelessWidget {
           '$heading: ',
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
-        Text(value)
+        Text(value),
       ],
     );
   }
@@ -82,7 +82,7 @@ class ProfileActions extends StatelessWidget {
       children: [
         _buildIcon(Icons.restaurant, 'Feed'),
         _buildIcon(Icons.favorite, 'Pet'),
-        _buildIcon(Icons.directions_walk, 'Walk')
+        _buildIcon(Icons.directions_walk, 'Walk'),
       ],
     );
   }
@@ -92,6 +92,6 @@ class ProfileActions extends StatelessWidget {
         padding: const EdgeInsets.all(20.0),
         child: Column(
           children: [Icon(icon, size: 40), Text(text)],
-        ));
+        ),);
   }
 }

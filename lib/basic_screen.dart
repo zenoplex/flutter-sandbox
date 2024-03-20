@@ -18,15 +18,15 @@ class BasicScreen extends StatelessWidget {
         Semantics(
             image: true,
             label: 'A beautiful beach',
-            child: Image.asset('assets/beach.jpg')),
-        const TextLayout()
-      ]),
+            child: Image.asset('assets/beach.jpg'),),
+        const TextLayout(),
+      ],),
       drawer: Drawer(
           child: Container(
               color: Colors.lightBlue,
               child: const Center(
                 child: Text("I'm a Drawer!"),
-              ))),
+              ),),),
     );
   }
 }

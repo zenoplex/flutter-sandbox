@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
 import 'dart:math' as math;
+
+import 'package:flutter/material.dart';
 
 class Star extends StatelessWidget {
   final Color color;
@@ -12,7 +13,7 @@ class Star extends StatelessWidget {
     return SizedBox(
         width: size,
         height: size,
-        child: CustomPaint(painter: _StarPainter(color: color)));
+        child: CustomPaint(painter: _StarPainter(color: color)),);
   }
 }
 
@@ -71,7 +72,7 @@ class StarRating extends StatelessWidget {
       {super.key,
       required this.value,
       this.size = 25,
-      this.color = Colors.deepOrange});
+      this.color = Colors.deepOrange,});
 
   @override
   Widget build(BuildContext context) {
@@ -83,6 +84,6 @@ class StarRating extends StatelessWidget {
                 child: Star(
                   color: color,
                   size: size,
-                ))));
+                ),),),);
   }
 }

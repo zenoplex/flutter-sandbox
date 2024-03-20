@@ -20,8 +20,8 @@ class _JsonHomePageState extends State<JsonHomePage> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const PizzaDetailScreen()));
-            }),
+                      builder: (context) => const PizzaDetailScreen(),),);
+            },),
         appBar: AppBar(
           title: const Text('JSON'),
         ),
@@ -49,7 +49,7 @@ class _JsonHomePageState extends State<JsonHomePage> {
                       onDismissed: (_) async {
                         final scaffoldMessenger = ScaffoldMessenger.of(context);
 
-                        HttpHelper helper = HttpHelper();
+                        final HttpHelper helper = HttpHelper();
                         final String message =
                             await helper.deletePizza(pizza.id);
                         data.removeWhere((element) => element.id == pizza.id);
@@ -79,13 +79,13 @@ class _JsonHomePageState extends State<JsonHomePage> {
                         },
                       ),
                     );
-                  });
-            }));
+                  },);
+            },),);
   }
 
   Future<List<Pizza>> callPizzas() async {
-    HttpHelper helper = HttpHelper();
-    List<Pizza> pizzas = await helper.getPizzas();
+    final HttpHelper helper = HttpHelper();
+    final List<Pizza> pizzas = await helper.getPizzas();
     return pizzas;
   }
 }

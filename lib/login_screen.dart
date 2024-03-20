@@ -20,7 +20,7 @@ class _LoginScreenState extends State<LoginScreen> {
         appBar: AppBar(
           title: const Text('Login'),
         ),
-        body: _buildLoginForm());
+        body: _buildLoginForm(),);
   }
 
   void _validate() {
@@ -32,7 +32,7 @@ class _LoginScreenState extends State<LoginScreen> {
     final email = _emailController.text;
 
     Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (_) => StopWatch(name: name, email: email)));
+        MaterialPageRoute(builder: (_) => StopWatch(name: name, email: email)),);
   }
 
   Widget _buildLoginForm() {
@@ -45,7 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
             controller: _nameController,
             decoration: const InputDecoration(labelText: 'Runner'),
             validator: (value) {
-              return value!.isEmpty ? 'Enter the runner\'s name.' : null;
+              return value!.isEmpty ? "Enter the runner's name." : null;
             },
           ),
           TextFormField(
@@ -54,7 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
             decoration: const InputDecoration(labelText: 'Email'),
             validator: (value) {
               if (value!.isEmpty) {
-                return 'Enter the runner\'s email.';
+                return "Enter the runner's email.";
               }
               if (!_emailRegexp.hasMatch(value)) {
                 return 'Enter a valid email.';
@@ -67,7 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
             onPressed: _validate,
             child: const Text('Continue'),
           ),
-        ]),
+        ],),
       ),
     );
   }

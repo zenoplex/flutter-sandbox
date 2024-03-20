@@ -1,8 +1,9 @@
-import 'package:flutter/material.dart';
 import 'dart:async';
+
 import 'package:async/async.dart';
-import 'package:http/http.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 
 class FutureScreen extends StatefulWidget {
   const FutureScreen({super.key});
@@ -28,7 +29,7 @@ class _FutureScreenState extends State<FutureScreen> {
                 onPressed: () async {
                   returnFutureGroup();
                 },
-                child: const Text('Go!')),
+                child: const Text('Go!'),),
             const Spacer(),
             Text(result),
             const Spacer(),
@@ -40,8 +41,8 @@ class _FutureScreenState extends State<FutureScreen> {
     );
   }
 
-  void returnFutureGroup() async {
-    FutureGroup<int> futureGroup = FutureGroup<int>();
+  Future<void> returnFutureGroup() async {
+    final FutureGroup<int> futureGroup = FutureGroup<int>();
     futureGroup.add(returnOneAsync());
     futureGroup.add(returnTwoAsync());
     futureGroup.add(returnThreeAsync());
@@ -73,7 +74,7 @@ class _FutureScreenState extends State<FutureScreen> {
   Future<Response> getData() async {
     const authority = 'www.googleapis.com';
     const path = '/books/v1/volumes/junbDwAAQBAJ';
-    Uri url = Uri.https(authority, path);
+    final Uri url = Uri.https(authority, path);
     return http.get(url);
   }
 

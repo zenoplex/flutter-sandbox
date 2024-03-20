@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../models/data_layer.dart';
-import '../plan_provider.dart';
-import '../views/plan_screen.dart';
+import 'package:flutter_sandbox/models/data_layer.dart';
+import 'package:flutter_sandbox/plan_provider.dart';
+import 'package:flutter_sandbox/views/plan_screen.dart';
 
 class PlanCreatorScreen extends StatefulWidget {
   const PlanCreatorScreen({super.key});
@@ -38,11 +38,11 @@ class _PlanCreatorScreenState extends State<PlanCreatorScreen> {
             ),
             Expanded(child: _buildPlanList()),
           ],
-        ));
+        ),);
   }
 
   Widget _buildPlanList() {
-    ValueNotifier<Plans> planNotifier = PlanProvider.of(context);
+    final ValueNotifier<Plans> planNotifier = PlanProvider.of(context);
     final Plans(:planIds, :planMap) = planNotifier.value;
 
     if (planIds.isEmpty) {
@@ -51,7 +51,7 @@ class _PlanCreatorScreenState extends State<PlanCreatorScreen> {
         children: [
           const Icon(Icons.note, size: 100, color: Colors.grey),
           Text('You have no plans yet.',
-              style: Theme.of(context).textTheme.headlineSmall),
+              style: Theme.of(context).textTheme.headlineSmall,),
         ],
       );
     }
@@ -83,7 +83,7 @@ class _PlanCreatorScreenState extends State<PlanCreatorScreen> {
     final text = _textEditingController.text;
     if (text.isEmpty) return;
 
-    ValueNotifier<Plans> planNotifier = PlanProvider.of(context);
+    final ValueNotifier<Plans> planNotifier = PlanProvider.of(context);
 
     final plans = planNotifier.value;
     planNotifier.value = plans.addPlan(name: text);

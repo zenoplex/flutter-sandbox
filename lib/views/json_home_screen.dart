@@ -1,11 +1,11 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_sandbox/models/pizza.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:path_provider/path_provider.dart';
-import 'dart:io';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class JsonHomePage extends StatefulWidget {
   const JsonHomePage({super.key});
@@ -59,7 +59,7 @@ class _JsonHomePageState extends State<JsonHomePage> {
                   deletePreference();
                 },
                 child: const Text('Reset'),
-              )
+              ),
             ],
           ),
           Text('Document Path: $documentPath'),
@@ -123,11 +123,11 @@ class _JsonHomePageState extends State<JsonHomePage> {
   }
 
   Future<List<Pizza>> readJsonFile() async {
-    String data = await DefaultAssetBundle.of(context)
+    final String data = await DefaultAssetBundle.of(context)
         .loadString('assets/pizzas_broken.json');
 
-    List list = jsonDecode(data);
-    List<Pizza> pizzas = list.map((item) => Pizza.fromJson(item)).toList();
+    final List list = jsonDecode(data);
+    final List<Pizza> pizzas = list.map((item) => Pizza.fromJson(item)).toList();
 
     print(convertToJson(pizzas));
 
@@ -139,7 +139,7 @@ class _JsonHomePageState extends State<JsonHomePage> {
   }
 
   Future readAndWritePreference() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
     int count = prefs.getInt('appCounter') ?? 0;
     count++;
 
@@ -151,7 +151,7 @@ class _JsonHomePageState extends State<JsonHomePage> {
   }
 
   Future deletePreference() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.clear();
 
     setState(() {

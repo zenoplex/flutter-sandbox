@@ -53,7 +53,7 @@ class _PizzaDetailScreenState extends State<PizzaDetailScreen> {
                 TextField(
                   controller: descriptionController,
                   decoration: const InputDecoration(
-                      hintText: 'Insert Pizza description'),
+                      hintText: 'Insert Pizza description',),
                 ),
                 const SizedBox(height: 24),
                 TextField(
@@ -71,11 +71,11 @@ class _PizzaDetailScreenState extends State<PizzaDetailScreen> {
                     onPressed: () {
                       savePizza();
                     },
-                    child: const Text('Save')),
+                    child: const Text('Save'),),
               ],
             ),
           ),
-        ));
+        ),);
   }
 
   @override
@@ -92,7 +92,7 @@ class _PizzaDetailScreenState extends State<PizzaDetailScreen> {
     final navigator = Navigator.of(context);
     final scaffoldMessenger = ScaffoldMessenger.of(context);
     final HttpHelper helper = HttpHelper();
-    Pizza pizza = Pizza(
+    final Pizza pizza = Pizza(
       id: int.tryParse(idController.text) ?? 0,
       name: nameController.text,
       description: descriptionController.text,
