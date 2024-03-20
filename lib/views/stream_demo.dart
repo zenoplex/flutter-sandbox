@@ -17,7 +17,7 @@ class _StreamHomePageState extends State<StreamHomePage> {
   int lastNumber = 0;
   String values = '';
   final NumberStream numberStream = NumberStream();
-  final StreamTransformer transformer =
+  final StreamTransformer<int, int> transformer =
       StreamTransformer<int, int>.fromHandlers(
     handleData: (value, sink) {
       sink.add(value * 10);
@@ -34,7 +34,7 @@ class _StreamHomePageState extends State<StreamHomePage> {
 
   @override
   void initState() {
-    final Stream stream = numberStream.controller.stream.asBroadcastStream();
+    final Stream<int> stream = numberStream.controller.stream.asBroadcastStream();
     subscription = stream.transform(transformer).listen((event) {
       setState(() {
         lastNumber = event;

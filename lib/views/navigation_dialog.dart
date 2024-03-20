@@ -8,7 +8,7 @@ class NavigationDialog extends StatefulWidget {
 }
 
 class _NavigationDialogState extends State<NavigationDialog> {
-  Color color = Colors.blue.shade700;
+  Color? color = Colors.blue.shade700;
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +25,8 @@ class _NavigationDialogState extends State<NavigationDialog> {
         ),);
   }
 
-  _showColorDialog(BuildContext context) async {
-    color = await showDialog(
+  Future<void> _showColorDialog(BuildContext context) async {
+    color = await showDialog<Color>(
         barrierDismissible: false,
         context: context,
         builder: (_) {

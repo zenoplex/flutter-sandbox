@@ -23,7 +23,7 @@ class FlexScreen extends StatelessWidget {
         ),);
   }
 
-  Iterable _header(BuildContext context, String text) {
+  Iterable<Widget> _header(BuildContext context, String text) {
     return [
       const SizedBox(height: 20),
       Text(text, style: Theme.of(context).textTheme.headlineSmall),

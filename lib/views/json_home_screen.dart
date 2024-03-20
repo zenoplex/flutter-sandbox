@@ -107,7 +107,14 @@ class _JsonHomePageState extends State<JsonHomePage> {
             child: ListView.builder(
               itemCount: _pizzas.length,
               itemBuilder: (context, index) {
-                final Pizza pizza = _pizzas[index];
+                final Pizza? maybePizza = _pizzas[index] as Pizza?;
+
+                if (maybePizza == null) {
+                  throw Exception('Unexpected null value');
+                }
+
+                final Pizza pizza = maybePizza;
+
                 return ListTile(
                   title: Text(pizza.name),
                   subtitle: Text(pizza.description),
@@ -126,7 +133,7 @@ class _JsonHomePageState extends State<JsonHomePage> {
     final String data = await DefaultAssetBundle.of(context)
         .loadString('assets/pizzas_broken.json');
 
-    final List list = jsonDecode(data);
+    final List<Map<String, dynamic>> list = jsonDecode(data) as List<Map<String, dynamic>>;
     final List<Pizza> pizzas = list.map((item) => Pizza.fromJson(item)).toList();
 
     print(convertToJson(pizzas));

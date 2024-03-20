@@ -34,7 +34,7 @@ class _StarPainter extends CustomPainter {
     return false;
   }
 
-  Path _getStarPath(Size size, verticies) {
+  Path _getStarPath(Size size, int verticies) {
     final double outerRadius = size.width * .5;
     final double innerRadius = outerRadius * .4;
     final centerX = size.width * .5;
