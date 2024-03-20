@@ -17,6 +17,7 @@ class _RandomBlocScreenState extends State<RandomBlocScreen> {
       appBar: AppBar(title: const Text('Random Number')),
       body: StreamBuilder<int>(
         stream: _bloc.randomNumber,
+        initialData: 0,
         builder: (context, snapshot) {
           return Text(
             'Random Number: ${snapshot.data.toString()}',
