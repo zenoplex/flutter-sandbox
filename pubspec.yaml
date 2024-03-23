@@ -41,6 +41,8 @@ dependencies:
   shared_preferences: ^2.2.2
   path_provider: ^2.1.2
   flutter_secure_storage: ^9.0.0
+  area:
+    path: packages/area
 
 dev_dependencies:
   flutter_test:
