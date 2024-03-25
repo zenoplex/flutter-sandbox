@@ -3,7 +3,7 @@ library area;
 
 import 'package:intl/intl.dart';
 
-final NumberFormat formatter = NumberFormat("#.###");
+final NumberFormat formatter = NumberFormat("#,###");
 
 String calculateAreaRect(double width, double height) {
   final double result = width * height;
