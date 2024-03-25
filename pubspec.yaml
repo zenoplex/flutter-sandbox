@@ -42,6 +42,8 @@ dependencies:
   path_provider: ^2.1.2
   flutter_secure_storage: ^9.0.0
   area:
+    # If I publish this package to my own repository, I can use the following:
+    # git: https://github.com/username/repo.git
     path: packages/area
 
 dev_dependencies:
