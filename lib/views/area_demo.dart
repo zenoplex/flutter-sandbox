@@ -1,3 +1,4 @@
+import 'package:area/area.dart';
 import 'package:flutter/material.dart';
 
 class AreaApp extends StatefulWidget {
@@ -10,6 +11,7 @@ class AreaApp extends StatefulWidget {
 class _AreaAppState extends State<AreaApp> {
   final TextEditingController widthController = TextEditingController();
   final TextEditingController heightController = TextEditingController();
+  String result = '';
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +23,22 @@ class _AreaAppState extends State<AreaApp> {
         children: [
           AppTextField(widthController, 'Width'),
           AppTextField(heightController, 'Height'),
+          ElevatedButton(
+            onPressed: () {
+              final double width = double.tryParse(widthController.text) ?? 0;
+              final double height = double.tryParse(heightController.text) ?? 0;
+              final String res = calculateAreaRect(width, height);
+
+              setState(() {
+                result = res;
+              });
+            },
+            child: const Text('Calculate Area'),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(24.0),
+            child: Text(result),
+          ),
         ],
       ),
     );
