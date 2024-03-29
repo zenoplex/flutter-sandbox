@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sandbox/views/area_demo.dart';
+import 'package:flutter_sandbox/views/google_map_demo.dart';
 
 void main() {
   runApp(const MasterPlanApp());
@@ -19,7 +19,7 @@ class MasterPlanApp extends StatelessWidget {
           brightness: Brightness.dark,
         ),
       ),
-      home: const AreaApp(),
+      home: const GoogleMapApp(),
     );
   }
 }
