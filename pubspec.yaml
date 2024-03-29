@@ -46,6 +46,7 @@ dependencies:
     # git: https://github.com/username/repo.git
     path: packages/area
   google_maps_flutter: ^2.5.3
+  flutter_config: ^2.0.2
 
 dev_dependencies:
   flutter_test:
