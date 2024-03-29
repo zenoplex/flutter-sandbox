@@ -45,6 +45,7 @@ dependencies:
     # If I publish this package to my own repository, I can use the following:
     # git: https://github.com/username/repo.git
     path: packages/area
+  google_maps_flutter: ^2.5.3
 
 dev_dependencies:
   flutter_test:
