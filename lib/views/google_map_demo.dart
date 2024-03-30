@@ -15,7 +15,8 @@ class GoogleMapApp extends StatefulWidget {
 }
 
 class _GoogleMapAppState extends State<GoogleMapApp> {
-  final List<Marker> markers = [];
+  List<Marker> markers = [];
+  late LatLng userLocation;
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +25,9 @@ class _GoogleMapAppState extends State<GoogleMapApp> {
         title: const Text('Google Map'),
         actions: [
           IconButton(
-            onPressed: () {
-              findPlaces();
+            onPressed: () async {
+              final dynamic data = await findPlaces();
+              setMarkers(data['places'] as List<dynamic>);
             },
             icon: const Icon(Icons.map),
           ),
@@ -35,9 +37,10 @@ class _GoogleMapAppState extends State<GoogleMapApp> {
         future: getUserLocation(),
         builder: (BuildContext context, AsyncSnapshot<LatLng?> snapshot) {
           if (snapshot.hasData) {
+            userLocation = snapshot.data!;
             return GoogleMap(
               initialCameraPosition: CameraPosition(
-                target: snapshot.data!,
+                target: userLocation,
                 zoom: 12,
               ),
               markers: Set.of(markers),
@@ -68,6 +71,7 @@ class _GoogleMapAppState extends State<GoogleMapApp> {
     return null;
   }
 
+  // TODO: Should be moved out of widget
   Future findPlaces() async {
     final String apiKey = FlutterConfig.get('GOOGLE_MAP_API_KEY') as String;
     final Uri url =
@@ -76,8 +80,11 @@ class _GoogleMapAppState extends State<GoogleMapApp> {
       "includedTypes": ["restaurant"],
       "locationRestriction": {
         "circle": {
-          "center": {"latitude": 37.7937, "longitude": -122.3965},
-          "radius": 500.0,
+          "center": {
+            "latitude": userLocation.latitude,
+            "longitude": userLocation.longitude,
+          },
+          "radius": 1000.0,
         },
       },
     });
@@ -86,7 +93,7 @@ class _GoogleMapAppState extends State<GoogleMapApp> {
       headers: {
         "X-Goog-Api-Key": apiKey,
         // TODO: Limit required data
-        "X-Goog-FieldMask": "*",
+        "X-Goog-FieldMask": "places.id,places.displayName,places.location",
       },
       body: body,
     );
@@ -97,5 +104,22 @@ class _GoogleMapAppState extends State<GoogleMapApp> {
       return data;
     }
     throw Exception('Failed to fetch data');
+  }
+
+  void setMarkers(List<dynamic> places) {
+    final List<Marker> newMarkers = places.map((place) {
+      return Marker(
+        markerId: MarkerId(place['id'] as String),
+        position: LatLng(
+          place['location']['latitude'] as double,
+          place['location']['longitude'] as double,
+        ),
+        infoWindow: InfoWindow(title: place['displayName']['text'] as String),
+      );
+    }).toList();
+
+    setState(() {
+      markers = newMarkers;
+    });
   }
 }
