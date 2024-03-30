@@ -93,7 +93,6 @@ class _GoogleMapAppState extends State<GoogleMapApp> {
       url,
       headers: {
         "X-Goog-Api-Key": apiKey,
-        // TODO: Limit required data
         "X-Goog-FieldMask": "places.id,places.displayName,places.location",
       },
       body: body,
