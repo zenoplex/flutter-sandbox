@@ -10,10 +10,15 @@ class GoogleMapApp extends StatefulWidget {
 }
 
 class _GoogleMapAppState extends State<GoogleMapApp> {
+  final List<Marker> markers = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Google Map')),
+      appBar: AppBar(
+        title: const Text('Google Map'),
+        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.map))],
+      ),
       body: FutureBuilder(
         future: getUserLocation(),
         builder: (BuildContext context, AsyncSnapshot<LatLng?> snapshot) {
