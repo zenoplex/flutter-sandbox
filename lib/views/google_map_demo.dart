@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_config/flutter_config.dart';
+import 'package:flutter_sandbox/models/place.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:location/location.dart';
@@ -26,7 +27,7 @@ class _GoogleMapAppState extends State<GoogleMapApp> {
         actions: [
           IconButton(
             onPressed: () async {
-              final dynamic data = await findPlaces();
+              final Map<String, dynamic> data = await findPlaces();
               setMarkers(data['places'] as List<dynamic>);
             },
             icon: const Icon(Icons.map),
@@ -72,7 +73,7 @@ class _GoogleMapAppState extends State<GoogleMapApp> {
   }
 
   // TODO: Should be moved out of widget
-  Future findPlaces() async {
+  Future<Map<String, dynamic>> findPlaces() async {
     final String apiKey = FlutterConfig.get('GOOGLE_MAP_API_KEY') as String;
     final Uri url =
         Uri.parse('https://places.googleapis.com/v1/places:searchNearby');
@@ -100,21 +101,24 @@ class _GoogleMapAppState extends State<GoogleMapApp> {
 
     if (response.statusCode >= HttpStatus.ok &&
         response.statusCode < HttpStatus.multipleChoices) {
-      final data = json.decode(response.body);
+      final Map<String, dynamic> data =
+          json.decode(response.body) as Map<String, dynamic>;
       return data;
     }
     throw Exception('Failed to fetch data');
   }
 
   void setMarkers(List<dynamic> places) {
-    final List<Marker> newMarkers = places.map((place) {
+    final List<Marker> newMarkers = places.map((data) {
+      final Place place = Place.fromJson(data as Map<String, dynamic>);
+
       return Marker(
-        markerId: MarkerId(place['id'] as String),
+        markerId: MarkerId(place.id),
         position: LatLng(
-          place['location']['latitude'] as double,
-          place['location']['longitude'] as double,
+          place.location.latitude,
+          place.location.longitude,
         ),
-        infoWindow: InfoWindow(title: place['displayName']['text'] as String),
+        infoWindow: InfoWindow(title: place.displayName.text),
       );
     }).toList();
 
