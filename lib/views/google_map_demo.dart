@@ -1,5 +1,10 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_config/flutter_config.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:http/http.dart' as http;
 import 'package:location/location.dart';
 
 class GoogleMapApp extends StatefulWidget {
@@ -17,7 +22,14 @@ class _GoogleMapAppState extends State<GoogleMapApp> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Google Map'),
-        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.map))],
+        actions: [
+          IconButton(
+            onPressed: () {
+              findPlaces();
+            },
+            icon: const Icon(Icons.map),
+          ),
+        ],
       ),
       body: FutureBuilder(
         future: getUserLocation(),
@@ -28,6 +40,7 @@ class _GoogleMapAppState extends State<GoogleMapApp> {
                 target: snapshot.data!,
                 zoom: 12,
               ),
+              markers: Set.of(markers),
             );
           }
 
@@ -53,5 +66,36 @@ class _GoogleMapAppState extends State<GoogleMapApp> {
       return LatLng(latitude, longitude);
     }
     return null;
+  }
+
+  Future findPlaces() async {
+    final String apiKey = FlutterConfig.get('GOOGLE_MAP_API_KEY') as String;
+    final Uri url =
+        Uri.parse('https://places.googleapis.com/v1/places:searchNearby');
+    final body = json.encode({
+      "includedTypes": ["restaurant"],
+      "locationRestriction": {
+        "circle": {
+          "center": {"latitude": 37.7937, "longitude": -122.3965},
+          "radius": 500.0,
+        },
+      },
+    });
+    final response = await http.post(
+      url,
+      headers: {
+        "X-Goog-Api-Key": apiKey,
+        // TODO: Limit required data
+        "X-Goog-FieldMask": "*",
+      },
+      body: body,
+    );
+
+    if (response.statusCode >= HttpStatus.ok &&
+        response.statusCode < HttpStatus.multipleChoices) {
+      final data = json.decode(response.body);
+      return data;
+    }
+    throw Exception('Failed to fetch data');
   }
 }
