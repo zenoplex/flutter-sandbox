@@ -2,11 +2,13 @@ class Place {
   String id;
   _Location location;
   _DisplayName displayName;
+  String formattedAddress;
 
   Place({
     required this.id,
     required this.location,
     required this.displayName,
+    required this.formattedAddress,
   });
 
   factory Place.fromJson(Map<String, dynamic> json) => Place(
@@ -14,6 +16,7 @@ class Place {
         location: _Location.fromJson(json["location"] as Map<String, dynamic>),
         displayName:
             _DisplayName.fromJson(json["displayName"] as Map<String, dynamic>),
+        formattedAddress: json["formattedAddress"] as String,
       );
 
   Map<String, dynamic> toJson() => {
