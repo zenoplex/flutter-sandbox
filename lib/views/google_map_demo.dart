@@ -27,7 +27,7 @@ class _GoogleMapAppState extends State<GoogleMapApp> {
         actions: [
           IconButton(
             onPressed: () async {
-              final Map<String, dynamic> data = await findPlaces();
+              final Map<String, dynamic> data = await findPlaces(userLocation);
               setMarkers(data['places'] as List<dynamic>);
             },
             icon: const Icon(Icons.map),
@@ -75,42 +75,6 @@ class _GoogleMapAppState extends State<GoogleMapApp> {
     return null;
   }
 
-  // TODO: Should be moved out of widget
-  Future<Map<String, dynamic>> findPlaces() async {
-    final String apiKey = FlutterConfig.get('GOOGLE_MAP_API_KEY') as String;
-    final Uri url =
-        Uri.parse('https://places.googleapis.com/v1/places:searchNearby');
-    final body = json.encode({
-      "includedTypes": ["restaurant"],
-      "locationRestriction": {
-        "circle": {
-          "center": {
-            "latitude": userLocation.latitude,
-            "longitude": userLocation.longitude,
-          },
-          "radius": 1000.0,
-        },
-      },
-    });
-    final response = await http.post(
-      url,
-      headers: {
-        "X-Goog-Api-Key": apiKey,
-        "X-Goog-FieldMask":
-            "places.id,places.displayName,places.location,places.formattedAddress",
-      },
-      body: body,
-    );
-
-    if (response.statusCode >= HttpStatus.ok &&
-        response.statusCode < HttpStatus.multipleChoices) {
-      final Map<String, dynamic> data =
-          json.decode(response.body) as Map<String, dynamic>;
-      return data;
-    }
-    throw Exception('Failed to fetch data');
-  }
-
   void setMarkers(List<dynamic> places) {
     final List<Marker> newMarkers = places.map((data) {
       final Place place = Place.fromJson(data as Map<String, dynamic>);
@@ -132,4 +96,39 @@ class _GoogleMapAppState extends State<GoogleMapApp> {
       markers = newMarkers;
     });
   }
+}
+
+Future<Map<String, dynamic>> findPlaces(LatLng location) async {
+  final String apiKey = FlutterConfig.get('GOOGLE_MAP_API_KEY') as String;
+  final Uri url =
+      Uri.parse('https://places.googleapis.com/v1/places:searchNearby');
+  final body = json.encode({
+    "includedTypes": ["restaurant"],
+    "locationRestriction": {
+      "circle": {
+        "center": {
+          "latitude": location.latitude,
+          "longitude": location.longitude,
+        },
+        "radius": 1000.0,
+      },
+    },
+  });
+  final response = await http.post(
+    url,
+    headers: {
+      "X-Goog-Api-Key": apiKey,
+      "X-Goog-FieldMask":
+          "places.id,places.displayName,places.location,places.formattedAddress",
+    },
+    body: body,
+  );
+
+  if (response.statusCode >= HttpStatus.ok &&
+      response.statusCode < HttpStatus.multipleChoices) {
+    final Map<String, dynamic> data =
+        json.decode(response.body) as Map<String, dynamic>;
+    return data;
+  }
+  throw Exception('Failed to fetch data');
 }
