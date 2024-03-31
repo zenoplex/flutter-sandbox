@@ -56,10 +56,13 @@ class _GoogleMapAppState extends State<GoogleMapApp> {
 
   Future<LatLng?> getUserLocation() async {
     final Location location = Location();
+    // TODO: Should request permission and enable service before hand
     final PermissionStatus hasPermission = await location.hasPermission();
     final bool isServiceEnabled = await location.serviceEnabled();
 
     if (hasPermission == PermissionStatus.granted && isServiceEnabled) {
+      // Note: In iOS simulator, custom location does not resolve getLocation.
+      // @see https://stackoverflow.com/questions/24842594/ios-simulator-location-not-working
       final LocationData locationData = await location.getLocation();
       final double? latitude = locationData.latitude;
       final double? longitude = locationData.longitude;
