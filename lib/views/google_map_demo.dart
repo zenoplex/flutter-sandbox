@@ -96,7 +96,8 @@ class _GoogleMapAppState extends State<GoogleMapApp> {
       url,
       headers: {
         "X-Goog-Api-Key": apiKey,
-        "X-Goog-FieldMask": "places.id,places.displayName,places.location",
+        "X-Goog-FieldMask":
+            "places.id,places.displayName,places.location,places.formattedAddress",
       },
       body: body,
     );
@@ -120,7 +121,10 @@ class _GoogleMapAppState extends State<GoogleMapApp> {
           place.location.latitude,
           place.location.longitude,
         ),
-        infoWindow: InfoWindow(title: place.displayName.text),
+        infoWindow: InfoWindow(
+          title: place.displayName.text,
+          snippet: place.formattedAddress,
+        ),
       );
     }).toList();
 
