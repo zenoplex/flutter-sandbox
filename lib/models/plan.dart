@@ -43,8 +43,11 @@ class Plan {
     );
   }
 
-  Plan updateTask(
-      {required String taskId, String? description, bool? isComplete,}) {
+  Plan updateTask({
+    required String taskId,
+    String? description,
+    bool? isComplete,
+  }) {
     final maybeTask = taskMap[taskId];
     assert(maybeTask != null, 'Task $taskId not found in plan');
     final task = maybeTask!;

@@ -7,17 +7,24 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Stack(children: [
-      Image.asset('assets/beach.jpg'),
-      SafeArea(
-          child: Transform.translate(
+      body: Stack(
+        children: [
+          Image.asset('assets/beach.jpg'),
+          SafeArea(
+            child: Transform.translate(
               offset: const Offset(0, 40),
-              child: const Column(children: [
-                ProfileImage(),
-                ProfileDetails(),
-                ProfileActions(),
-              ],),),),
-    ],),);
+              child: const Column(
+                children: [
+                  ProfileImage(),
+                  ProfileDetails(),
+                  ProfileActions(),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
 
@@ -27,11 +34,17 @@ class ProfileImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipOval(
-        child: Semantics(
-            image: true,
-            label: 'Teto',
-            child: Image.asset('assets/cat.jpg',
-                width: 200, height: 200, fit: BoxFit.fitWidth,),),);
+      child: Semantics(
+        image: true,
+        label: 'Teto',
+        child: Image.asset(
+          'assets/cat.jpg',
+          width: 200,
+          height: 200,
+          fit: BoxFit.fitWidth,
+        ),
+      ),
+    );
   }
 }
 
@@ -41,22 +54,23 @@ class ProfileDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Teto',
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineLarge
-                  ?.copyWith(fontWeight: FontWeight.bold),
-            ),
-            const StarRating(value: 5),
-            _buildDetailsRow('Age', '10'),
-            _buildDetailsRow('Status', 'Good Girl'),
-          ],
-        ),);
+      padding: const EdgeInsets.all(20.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Teto',
+            style: Theme.of(context)
+                .textTheme
+                .headlineLarge
+                ?.copyWith(fontWeight: FontWeight.bold),
+          ),
+          const StarRating(value: 5),
+          _buildDetailsRow('Age', '10'),
+          _buildDetailsRow('Status', 'Good Girl'),
+        ],
+      ),
+    );
   }
 
   Widget _buildDetailsRow(String heading, String value) {
@@ -89,9 +103,10 @@ class ProfileActions extends StatelessWidget {
 
   Widget _buildIcon(IconData icon, String text) {
     return Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          children: [Icon(icon, size: 40), Text(text)],
-        ),);
+      padding: const EdgeInsets.all(20.0),
+      child: Column(
+        children: [Icon(icon, size: 40), Text(text)],
+      ),
+    );
   }
 }

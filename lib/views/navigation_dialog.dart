@@ -13,47 +13,50 @@ class _NavigationDialogState extends State<NavigationDialog> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: color,
-        appBar: AppBar(title: const Text('Navigation Dialog')),
-        body: Center(
-          child: ElevatedButton(
-            child: const Text('Change Color'),
-            onPressed: () {
-              _showColorDialog(context);
-            },
-          ),
-        ),);
+      backgroundColor: color,
+      appBar: AppBar(title: const Text('Navigation Dialog')),
+      body: Center(
+        child: ElevatedButton(
+          child: const Text('Change Color'),
+          onPressed: () {
+            _showColorDialog(context);
+          },
+        ),
+      ),
+    );
   }
 
   Future<void> _showColorDialog(BuildContext context) async {
     color = await showDialog<Color>(
-        barrierDismissible: false,
-        context: context,
-        builder: (_) {
-          return AlertDialog(
-              title: const Text('Pick a color'),
-              content: const Text('Color picker goes here!'),
-              actions: [
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.pop(context, Colors.red.shade700);
-                  },
-                  child: const Text('Red'),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.pop(context, Colors.green.shade700);
-                  },
-                  child: const Text('Green'),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.pop(context, Colors.blue.shade700);
-                  },
-                  child: const Text('Blue'),
-                ),
-              ],);
-        },);
+      barrierDismissible: false,
+      context: context,
+      builder: (_) {
+        return AlertDialog(
+          title: const Text('Pick a color'),
+          content: const Text('Color picker goes here!'),
+          actions: [
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context, Colors.red.shade700);
+              },
+              child: const Text('Red'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context, Colors.green.shade700);
+              },
+              child: const Text('Green'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context, Colors.blue.shade700);
+              },
+              child: const Text('Blue'),
+            ),
+          ],
+        );
+      },
+    );
     setState(() {});
   }
 }

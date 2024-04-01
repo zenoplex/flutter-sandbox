@@ -133,8 +133,10 @@ class _JsonHomePageState extends State<JsonHomePage> {
     final String data = await DefaultAssetBundle.of(context)
         .loadString('assets/pizzas_broken.json');
 
-    final List<Map<String, dynamic>> list = jsonDecode(data) as List<Map<String, dynamic>>;
-    final List<Pizza> pizzas = list.map((item) => Pizza.fromJson(item)).toList();
+    final List<Map<String, dynamic>> list =
+        jsonDecode(data) as List<Map<String, dynamic>>;
+    final List<Pizza> pizzas =
+        list.map((item) => Pizza.fromJson(item)).toList();
 
     print(convertToJson(pizzas));
 

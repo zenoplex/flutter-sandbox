@@ -7,20 +7,23 @@ class FlexScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Flexible and Expanded'),
-        ),
-        body: SafeArea(
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      appBar: AppBar(
+        title: const Text('Flexible and Expanded'),
+      ),
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
             ..._header(context, 'Expanded'),
             const DemoExpanded(),
             ..._header(context, 'Flexible'),
             const DemoFlexible(),
             const Expanded(child: Spacer()),
             const Center(child: DemoFooter()),
-          ],),
-        ),);
+          ],
+        ),
+      ),
+    );
   }
 
   Iterable<Widget> _header(BuildContext context, String text) {
@@ -37,19 +40,21 @@ class DemoExpanded extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const SizedBox(
-        height: 100,
-        child: Row(
-          children: [
-            LabeledContainer(width: 100, color: Colors.green, text: '100'),
-            Expanded(
-                child: LabeledContainer(
+      height: 100,
+      child: Row(
+        children: [
+          LabeledContainer(width: 100, color: Colors.green, text: '100'),
+          Expanded(
+            child: LabeledContainer(
               color: Colors.purple,
               text: 'Expanded',
               textColor: Colors.white,
-            ),),
-            LabeledContainer(width: 40, color: Colors.green, text: '40'),
-          ],
-        ),);
+            ),
+          ),
+          LabeledContainer(width: 40, color: Colors.green, text: '40'),
+        ],
+      ),
+    );
   }
 }
 
@@ -59,18 +64,22 @@ class DemoFlexible extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const SizedBox(
-        height: 100,
-        child: Row(
-          children: [
-            Flexible(
-                child: LabeledContainer(color: Colors.orange, text: '25%'),),
-            Flexible(
-                child: LabeledContainer(color: Colors.deepOrange, text: '25%'),),
-            Flexible(
-                flex: 2,
-                child: LabeledContainer(color: Colors.blue, text: '50%'),),
-          ],
-        ),);
+      height: 100,
+      child: Row(
+        children: [
+          Flexible(
+            child: LabeledContainer(color: Colors.orange, text: '25%'),
+          ),
+          Flexible(
+            child: LabeledContainer(color: Colors.deepOrange, text: '25%'),
+          ),
+          Flexible(
+            flex: 2,
+            child: LabeledContainer(color: Colors.blue, text: '50%'),
+          ),
+        ],
+      ),
+    );
   }
 }
 
@@ -80,12 +89,15 @@ class DemoFooter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        decoration: BoxDecoration(
-            color: Colors.yellow, borderRadius: BorderRadius.circular(40),),
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-        child: Text(
-          'Sticky Footer',
-          style: Theme.of(context).textTheme.titleSmall,
-        ),);
+      decoration: BoxDecoration(
+        color: Colors.yellow,
+        borderRadius: BorderRadius.circular(40),
+      ),
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+      child: Text(
+        'Sticky Footer',
+        style: Theme.of(context).textTheme.titleSmall,
+      ),
+    );
   }
 }

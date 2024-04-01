@@ -58,20 +58,24 @@ class _StopWatchState extends State<StopWatch> {
     final textTheme = Theme.of(context).textTheme;
 
     return SafeArea(
-        child: Container(
-      color: Theme.of(context).bannerTheme.backgroundColor,
-      width: double.infinity,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 30.0),
-        child: Column(mainAxisSize: MainAxisSize.min, children: [
-          Text(
-            'Run finished!',
-            style: textTheme.headlineSmall,
+      child: Container(
+        color: Theme.of(context).bannerTheme.backgroundColor,
+        width: double.infinity,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 30.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'Run finished!',
+                style: textTheme.headlineSmall,
+              ),
+              Text('Total run time is ${_secondsText(totalRuntime)}'),
+            ],
           ),
-          Text('Total run time is ${_secondsText(totalRuntime)}'),
-        ],),
+        ),
       ),
-    ),);
+    );
   }
 
   void _lap() {
@@ -84,24 +88,27 @@ class _StopWatchState extends State<StopWatch> {
     // Thus added itemHeight to ensure its scrolling to the bottom of the list
     // However, this seems to only work with ClampingScrollPhysics()
     scrollController.animateTo(
-        scrollController.position.maxScrollExtent + itemHeight,
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeOut,);
+      scrollController.position.maxScrollExtent + itemHeight,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeOut,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text(widget.name)),
-        body: SafeArea(
-            child: Column(
+      appBar: AppBar(title: Text(widget.name)),
+      body: SafeArea(
+        child: Column(
           children: [
             _buildCounter(context),
             Expanded(
               child: _buildLapDisplay(),
             ),
           ],
-        ),),);
+        ),
+      ),
+    );
   }
 
   Widget _buildCounter(BuildContext context) {
@@ -111,16 +118,20 @@ class _StopWatchState extends State<StopWatch> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('Lap ${laps.length + 1}',
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineSmall!
-                  .copyWith(color: Colors.white),),
-          Text(_secondsText(milliseconds),
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineSmall!
-                  .copyWith(color: Colors.white),),
+          Text(
+            'Lap ${laps.length + 1}',
+            style: Theme.of(context)
+                .textTheme
+                .headlineSmall!
+                .copyWith(color: Colors.white),
+          ),
+          Text(
+            _secondsText(milliseconds),
+            style: Theme.of(context)
+                .textTheme
+                .headlineSmall!
+                .copyWith(color: Colors.white),
+          ),
           const SizedBox(
             height: 20,
           ),
@@ -146,24 +157,26 @@ class _StopWatchState extends State<StopWatch> {
           width: 20,
         ),
         ElevatedButton(
-            onPressed: isTicking ? _lap : null,
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.yellow,
-              foregroundColor: Colors.black,
-            ),
-            child: const Text('Lap'),),
+          onPressed: isTicking ? _lap : null,
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.yellow,
+            foregroundColor: Colors.black,
+          ),
+          child: const Text('Lap'),
+        ),
         const SizedBox(
           width: 20,
         ),
         Builder(
-            builder: (context) => ElevatedButton(
-                  onPressed: isTicking ? () => _stopTimer(context) : null,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.red,
-                    foregroundColor: Colors.white,
-                  ),
-                  child: const Text('Stop'),
-                ),),
+          builder: (context) => ElevatedButton(
+            onPressed: isTicking ? () => _stopTimer(context) : null,
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.red,
+              foregroundColor: Colors.white,
+            ),
+            child: const Text('Stop'),
+          ),
+        ),
       ],
     );
   }

@@ -17,10 +17,11 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Login'),
-        ),
-        body: _buildLoginForm(),);
+      appBar: AppBar(
+        title: const Text('Login'),
+      ),
+      body: _buildLoginForm(),
+    );
   }
 
   void _validate() {
@@ -32,7 +33,8 @@ class _LoginScreenState extends State<LoginScreen> {
     final email = _emailController.text;
 
     Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (_) => StopWatch(name: name, email: email)),);
+      MaterialPageRoute(builder: (_) => StopWatch(name: name, email: email)),
+    );
   }
 
   Widget _buildLoginForm() {
@@ -40,34 +42,37 @@ class _LoginScreenState extends State<LoginScreen> {
       key: _formKey,
       child: Padding(
         padding: const EdgeInsets.all(20.0),
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          TextFormField(
-            controller: _nameController,
-            decoration: const InputDecoration(labelText: 'Runner'),
-            validator: (value) {
-              return value!.isEmpty ? "Enter the runner's name." : null;
-            },
-          ),
-          TextFormField(
-            controller: _emailController,
-            keyboardType: TextInputType.emailAddress,
-            decoration: const InputDecoration(labelText: 'Email'),
-            validator: (value) {
-              if (value!.isEmpty) {
-                return "Enter the runner's email.";
-              }
-              if (!_emailRegexp.hasMatch(value)) {
-                return 'Enter a valid email.';
-              }
-              return null;
-            },
-          ),
-          const SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: _validate,
-            child: const Text('Continue'),
-          ),
-        ],),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TextFormField(
+              controller: _nameController,
+              decoration: const InputDecoration(labelText: 'Runner'),
+              validator: (value) {
+                return value!.isEmpty ? "Enter the runner's name." : null;
+              },
+            ),
+            TextFormField(
+              controller: _emailController,
+              keyboardType: TextInputType.emailAddress,
+              decoration: const InputDecoration(labelText: 'Email'),
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return "Enter the runner's email.";
+                }
+                if (!_emailRegexp.hasMatch(value)) {
+                  return 'Enter a valid email.';
+                }
+                return null;
+              },
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: _validate,
+              child: const Text('Continue'),
+            ),
+          ],
+        ),
       ),
     );
   }

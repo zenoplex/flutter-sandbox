@@ -56,18 +56,19 @@ class _PlanScreenState extends State<PlanScreen> {
     final ValueNotifier<Plans> plansNotifier = PlanProvider.of(context);
 
     return FloatingActionButton(
-        child: const Icon(Icons.add),
-        onPressed: () {
-          final currentPlan = plansNotifier.value.planMap[widget.planId]!;
+      child: const Icon(Icons.add),
+      onPressed: () {
+        final currentPlan = plansNotifier.value.planMap[widget.planId]!;
 
-          plansNotifier.value = Plans(
-            planIds: plansNotifier.value.planIds,
-            planMap: {
-              ...plansNotifier.value.planMap,
-              widget.planId: currentPlan.addTask(),
-            },
-          );
-        },);
+        plansNotifier.value = Plans(
+          planIds: plansNotifier.value.planIds,
+          planMap: {
+            ...plansNotifier.value.planMap,
+            widget.planId: currentPlan.addTask(),
+          },
+        );
+      },
+    );
   }
 
   Widget _buildList(Plan plan) {
@@ -96,19 +97,20 @@ class _PlanScreenState extends State<PlanScreen> {
     final ValueNotifier<Plans> plansNotifier = PlanProvider.of(context);
     return ListTile(
       leading: Checkbox(
-          value: task.isComplete,
-          onChanged: (value) {
-            final currentPlan = plansNotifier.value.planMap[widget.planId]!;
+        value: task.isComplete,
+        onChanged: (value) {
+          final currentPlan = plansNotifier.value.planMap[widget.planId]!;
 
-            plansNotifier.value = Plans(
-              planIds: plansNotifier.value.planIds,
-              planMap: {
-                ...plansNotifier.value.planMap,
-                widget.planId:
-                    currentPlan.updateTask(taskId: task.id, isComplete: value),
-              },
-            );
-          },),
+          plansNotifier.value = Plans(
+            planIds: plansNotifier.value.planIds,
+            planMap: {
+              ...plansNotifier.value.planMap,
+              widget.planId:
+                  currentPlan.updateTask(taskId: task.id, isComplete: value),
+            },
+          );
+        },
+      ),
       title: TextFormField(
         initialValue: task.description,
         decoration: InputDecoration(

@@ -11,9 +11,10 @@ class Star extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        width: size,
-        height: size,
-        child: CustomPaint(painter: _StarPainter(color: color)),);
+      width: size,
+      height: size,
+      child: CustomPaint(painter: _StarPainter(color: color)),
+    );
   }
 }
 
@@ -68,22 +69,26 @@ class StarRating extends StatelessWidget {
   final double size;
   final Color color;
 
-  const StarRating(
-      {super.key,
-      required this.value,
-      this.size = 25,
-      this.color = Colors.deepOrange,});
+  const StarRating({
+    super.key,
+    required this.value,
+    this.size = 25,
+    this.color = Colors.deepOrange,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Row(
-        children: List.generate(
-            value,
-            (_) => Padding(
-                padding: const EdgeInsets.all(2.0),
-                child: Star(
-                  color: color,
-                  size: size,
-                ),),),);
+      children: List.generate(
+        value,
+        (_) => Padding(
+          padding: const EdgeInsets.all(2.0),
+          child: Star(
+            color: color,
+            size: size,
+          ),
+        ),
+      ),
+    );
   }
 }

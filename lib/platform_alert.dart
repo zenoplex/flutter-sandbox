@@ -19,18 +19,20 @@ class PlatformAlert {
 
   void _buildCupertinoAlert(BuildContext context) {
     showCupertinoDialog(
-        context: context,
-        builder: (context) {
-          return _buildAlertDialog(context);
-        },);
+      context: context,
+      builder: (context) {
+        return _buildAlertDialog(context);
+      },
+    );
   }
 
   void _buildMaterialAlert(BuildContext context) {
     showDialog(
-        context: context,
-        builder: (context) {
-          return _buildAlertDialog(context);
-        },);
+      context: context,
+      builder: (context) {
+        return _buildAlertDialog(context);
+      },
+    );
   }
 
   AlertDialog _buildAlertDialog(BuildContext context) {

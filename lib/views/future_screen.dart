@@ -26,10 +26,11 @@ class _FutureScreenState extends State<FutureScreen> {
           children: [
             const Spacer(),
             ElevatedButton(
-                onPressed: () async {
-                  returnFutureGroup();
-                },
-                child: const Text('Go!'),),
+              onPressed: () async {
+                returnFutureGroup();
+              },
+              child: const Text('Go!'),
+            ),
             const Spacer(),
             Text(result),
             const Spacer(),

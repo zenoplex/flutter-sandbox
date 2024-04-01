@@ -34,7 +34,8 @@ class _StreamHomePageState extends State<StreamHomePage> {
 
   @override
   void initState() {
-    final Stream<int> stream = numberStream.controller.stream.asBroadcastStream();
+    final Stream<int> stream =
+        numberStream.controller.stream.asBroadcastStream();
     subscription = stream.transform(transformer).listen((event) {
       setState(() {
         lastNumber = event;

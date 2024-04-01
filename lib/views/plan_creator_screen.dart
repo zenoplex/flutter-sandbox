@@ -16,29 +16,30 @@ class _PlanCreatorScreenState extends State<PlanCreatorScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Master Plans'),
-        ),
-        body: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Material(
-                color: Theme.of(context).cardColor,
-                elevation: 10,
-                child: TextField(
-                  controller: _textEditingController,
-                  decoration: const InputDecoration(
-                    labelText: 'Add a plan',
-                    contentPadding: EdgeInsets.all(20.0),
-                  ),
-                  onEditingComplete: _addPlan,
+      appBar: AppBar(
+        title: const Text('Master Plans'),
+      ),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Material(
+              color: Theme.of(context).cardColor,
+              elevation: 10,
+              child: TextField(
+                controller: _textEditingController,
+                decoration: const InputDecoration(
+                  labelText: 'Add a plan',
+                  contentPadding: EdgeInsets.all(20.0),
                 ),
+                onEditingComplete: _addPlan,
               ),
             ),
-            Expanded(child: _buildPlanList()),
-          ],
-        ),);
+          ),
+          Expanded(child: _buildPlanList()),
+        ],
+      ),
+    );
   }
 
   Widget _buildPlanList() {
@@ -50,8 +51,10 @@ class _PlanCreatorScreenState extends State<PlanCreatorScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Icon(Icons.note, size: 100, color: Colors.grey),
-          Text('You have no plans yet.',
-              style: Theme.of(context).textTheme.headlineSmall,),
+          Text(
+            'You have no plans yet.',
+            style: Theme.of(context).textTheme.headlineSmall,
+          ),
         ],
       );
     }

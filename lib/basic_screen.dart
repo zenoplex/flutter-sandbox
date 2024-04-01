@@ -14,19 +14,25 @@ class BasicScreen extends StatelessWidget {
           Padding(padding: EdgeInsets.all(10.0), child: Icon(Icons.edit)),
         ],
       ),
-      body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Semantics(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Semantics(
             image: true,
             label: 'A beautiful beach',
-            child: Image.asset('assets/beach.jpg'),),
-        const TextLayout(),
-      ],),
+            child: Image.asset('assets/beach.jpg'),
+          ),
+          const TextLayout(),
+        ],
+      ),
       drawer: Drawer(
-          child: Container(
-              color: Colors.lightBlue,
-              child: const Center(
-                child: Text("I'm a Drawer!"),
-              ),),),
+        child: Container(
+          color: Colors.lightBlue,
+          child: const Center(
+            child: Text("I'm a Drawer!"),
+          ),
+        ),
+      ),
     );
   }
 }

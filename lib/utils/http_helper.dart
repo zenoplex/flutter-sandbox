@@ -21,8 +21,10 @@ class HttpHelper {
 
     if (response.statusCode >= HttpStatus.ok &&
         response.statusCode < HttpStatus.multipleChoices) {
-      final List<Map<String, dynamic>> json = jsonDecode(response.body) as List<Map<String, dynamic>>;
-      final List<Pizza> pizzas = json.map((item) => Pizza.fromJson(item)).toList();
+      final List<Map<String, dynamic>> json =
+          jsonDecode(response.body) as List<Map<String, dynamic>>;
+      final List<Pizza> pizzas =
+          json.map((item) => Pizza.fromJson(item)).toList();
       return pizzas;
     }
 
@@ -74,13 +76,14 @@ class HttpHelper {
   }
 
   String _getResponseMessage(http.Response response) {
-      final dynamic json = jsonDecode(response.body);
-      final dynamic message = json is Map<dynamic, dynamic> ? json['message'] : {};
+    final dynamic json = jsonDecode(response.body);
+    final dynamic message =
+        json is Map<dynamic, dynamic> ? json['message'] : {};
 
-      if (message is String) {
-        return message;
-      }
-
-      throw const FormatException('Invalid response');
+    if (message is String) {
+      return message;
     }
+
+    throw const FormatException('Invalid response');
+  }
 }
