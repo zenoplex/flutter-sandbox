@@ -11,11 +11,12 @@ class _AnimationDemoState extends State<AnimationDemo> {
   final List<Color> colors = const [
     Colors.red,
     Colors.green,
-    Colors.blue,
     Colors.yellow,
     Colors.purple,
     Colors.orange,
   ];
+  final List<double> sizes = const [100, 125, 150, 175, 200];
+  final List<double> tops = const [0, 50, 100, 150, 200];
   int iteration = 0;
 
   @override
@@ -23,18 +24,24 @@ class _AnimationDemoState extends State<AnimationDemo> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Animation Demo'),
-        actions: [IconButton(onPressed: (){
-          setState(() {
-            iteration = (iteration + 1) % colors.length;
-          });
-        }, icon: const Icon(Icons.run_circle),),],
+        actions: [
+          IconButton(
+            onPressed: () {
+              setState(() {
+                iteration = (iteration + 1) % colors.length;
+              });
+            },
+            icon: const Icon(Icons.run_circle),
+          ),
+        ],
       ),
       body: Center(
         child: AnimatedContainer(
-          width: 100,
-          height: 100,
+          width: sizes[iteration],
+          height: sizes[iteration],
           duration: const Duration(seconds: 1),
           color: colors[iteration],
+          margin: EdgeInsets.only(top: tops[iteration]),
         ),
       ),
     );
