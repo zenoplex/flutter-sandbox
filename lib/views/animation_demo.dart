@@ -39,9 +39,10 @@ class _AnimationDemoState extends State<AnimationDemo> {
         child: AnimatedContainer(
           width: sizes[iteration],
           height: sizes[iteration],
-          duration: const Duration(seconds: 1),
+          duration: const Duration(milliseconds: 500),
           color: colors[iteration],
           margin: EdgeInsets.only(top: tops[iteration]),
+          curve: Curves.easeOutExpo,
         ),
       ),
     );
