@@ -1,4 +1,4 @@
-part of area;
+part of 'area.dart';
 
 String calculateAreaRect(double width, double height) {
   final NumberFormat formatter = NumberFormat("#,###");
