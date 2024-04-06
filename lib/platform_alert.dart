@@ -18,7 +18,7 @@ class PlatformAlert {
   }
 
   void _buildCupertinoAlert(BuildContext context) {
-    showCupertinoDialog(
+    showCupertinoDialog<void>(
       context: context,
       builder: (context) {
         return _buildAlertDialog(context);
@@ -27,7 +27,7 @@ class PlatformAlert {
   }
 
   void _buildMaterialAlert(BuildContext context) {
-    showDialog(
+    showDialog<void>(
       context: context,
       builder: (context) {
         return _buildAlertDialog(context);
