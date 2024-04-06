@@ -64,7 +64,7 @@ class _FutureScreenState extends State<FutureScreen> {
 
   Future calculate() async {
     try {
-      await Future.delayed(const Duration(seconds: 3));
+      await Future<void>.delayed(const Duration(seconds: 3));
       // completer.complete(42);
       throw Exception('An error occurred!');
     } catch (_) {
@@ -80,17 +80,17 @@ class _FutureScreenState extends State<FutureScreen> {
   }
 
   Future<int> returnOneAsync() async {
-    await Future.delayed(const Duration(seconds: 1));
+    await Future<void>.delayed(const Duration(seconds: 1));
     return 1;
   }
 
   Future<int> returnTwoAsync() async {
-    await Future.delayed(const Duration(seconds: 1));
+    await Future<void>.delayed(const Duration(seconds: 1));
     return 2;
   }
 
   Future<int> returnThreeAsync() async {
-    await Future.delayed(const Duration(seconds: 1));
+    await Future<void>.delayed(const Duration(seconds: 1));
     return 3;
   }
 

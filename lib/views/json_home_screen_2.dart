@@ -19,7 +19,7 @@ class _JsonHomePageState extends State<JsonHomePage> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(
+            MaterialPageRoute<Widget>(
               builder: (context) => const PizzaDetailScreen(),
             ),
           );
@@ -68,7 +68,7 @@ class _JsonHomePageState extends State<JsonHomePage> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
+                      MaterialPageRoute<Widget>(
                         builder: (context) {
                           return PizzaDetailScreen(
                             selectedPizza: pizza,

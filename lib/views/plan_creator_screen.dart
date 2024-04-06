@@ -72,7 +72,7 @@ class _PlanCreatorScreenState extends State<PlanCreatorScreen> {
           subtitle: Text(plan.completenessMessage),
           onTap: () {
             Navigator.of(context).push(
-              MaterialPageRoute(
+              MaterialPageRoute<Widget>(
                 builder: (_) => PlanScreen(planId: plan.id),
               ),
             );

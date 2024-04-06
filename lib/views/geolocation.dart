@@ -22,7 +22,7 @@ class _LocationScreenState extends State<LocationScreen> {
     await Geolocator.requestPermission();
     await Geolocator.isLocationServiceEnabled();
     // Simulate delay
-    await Future.delayed(const Duration(seconds: 2));
+    await Future<void>.delayed(const Duration(seconds: 2));
     final Position position = await Geolocator.getCurrentPosition();
     return position;
   }

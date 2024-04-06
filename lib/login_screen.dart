@@ -33,7 +33,9 @@ class _LoginScreenState extends State<LoginScreen> {
     final email = _emailController.text;
 
     Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (_) => StopWatch(name: name, email: email)),
+      MaterialPageRoute<Widget>(
+        builder: (_) => StopWatch(name: name, email: email),
+      ),
     );
   }
 
