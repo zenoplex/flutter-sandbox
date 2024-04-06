@@ -77,8 +77,8 @@ class HttpHelper {
 
   String _getResponseMessage(http.Response response) {
     final dynamic json = jsonDecode(response.body);
-    final dynamic message =
-        json is Map<dynamic, dynamic> ? json['message'] : {};
+    final String? message =
+        json is Map<dynamic, String> ? json['message'] : "";
 
     if (message is String) {
       return message;
