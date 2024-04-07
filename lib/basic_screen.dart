@@ -25,10 +25,10 @@ class BasicScreen extends StatelessWidget {
           const TextLayout(),
         ],
       ),
-      drawer: Drawer(
-        child: Container(
+      drawer: const Drawer(
+        child: ColoredBox(
           color: Colors.lightBlue,
-          child: const Center(
+          child: Center(
             child: Text("I'm a Drawer!"),
           ),
         ),
