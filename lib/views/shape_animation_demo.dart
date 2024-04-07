@@ -10,8 +10,9 @@ class ShapeAnimationDemo extends StatefulWidget {
 class _ShapeAnimationDemoState extends State<ShapeAnimationDemo>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-  late Animation<double> _animation;
-  double position = 0;
+  late Animation<double> _animationTop;
+  late Animation<double> _animationLeft;
+  ({double left, double top}) position = (left: 0, top: 0);
 
   @override
   Widget build(BuildContext context) {
@@ -20,18 +21,19 @@ class _ShapeAnimationDemoState extends State<ShapeAnimationDemo>
         title: const Text('Animation Controller'),
         actions: [
           IconButton(
-              onPressed: () {
-                _controller.reset();
-                _controller.forward();
-              },
-              icon: const Icon(Icons.run_circle),),
+            onPressed: () {
+              _controller.reset();
+              _controller.forward();
+            },
+            icon: const Icon(Icons.run_circle),
+          ),
         ],
       ),
       body: Stack(
         children: [
           Positioned(
-            left: position,
-            top: position,
+            left: position.left,
+            top: position.top,
             child: const Ball(),
           ),
         ],
@@ -45,7 +47,8 @@ class _ShapeAnimationDemoState extends State<ShapeAnimationDemo>
       duration: const Duration(seconds: 2),
       vsync: this,
     );
-    _animation = Tween<double>(begin: 0, end: 200).animate(_controller)
+    _animationLeft = Tween<double>(begin: 0, end: 150).animate(_controller);
+    _animationTop = Tween<double>(begin: 0, end: 500).animate(_controller)
       ..addListener(moveBall);
     super.initState();
   }
@@ -58,7 +61,7 @@ class _ShapeAnimationDemoState extends State<ShapeAnimationDemo>
 
   void moveBall() {
     setState(() {
-      position = _animation.value;
+      position = (left: _animationLeft.value, top: _animationTop.value);
     });
   }
 }
