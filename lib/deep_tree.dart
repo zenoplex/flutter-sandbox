@@ -16,7 +16,8 @@ class DeepTree extends StatelessWidget {
                 children: [
                   FlutterLogo(),
                   Text(
-                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'),
+                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                  ),
                 ],
               ),
               Expanded(
