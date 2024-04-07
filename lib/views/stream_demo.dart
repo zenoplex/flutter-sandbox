@@ -101,6 +101,7 @@ class _StreamHomePageState extends State<StreamHomePage> {
   void dispose() {
     numberStream.close();
     subscription.cancel();
+    subscription2.cancel();
     super.dispose();
   }
 
