@@ -62,7 +62,7 @@ class _FutureScreenState extends State<FutureScreen> {
     return completer.future;
   }
 
-  Future calculate() async {
+  Future<void> calculate() async {
     try {
       await Future<void>.delayed(const Duration(seconds: 3));
       // completer.complete(42);
@@ -94,7 +94,7 @@ class _FutureScreenState extends State<FutureScreen> {
     return 3;
   }
 
-  Future count() async {
+  Future<void> count() async {
     int total = 0;
     total = await returnOneAsync();
     total += await returnTwoAsync();

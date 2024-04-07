@@ -29,8 +29,8 @@ class _StreamHomePageState extends State<StreamHomePage> {
       sink.close();
     },
   );
-  late StreamSubscription subscription;
-  late StreamSubscription subscription2;
+  late StreamSubscription<int> subscription;
+  late StreamSubscription<int> subscription2;
 
   @override
   void initState() {

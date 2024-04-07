@@ -29,7 +29,7 @@ class _NavigationFirstState extends State<NavigationFirst> {
     );
   }
 
-  Future _navigateAndGetColor(BuildContext context) async {
+  Future<void> _navigateAndGetColor(BuildContext context) async {
     color = await Navigator.push(
           context,
           MaterialPageRoute(

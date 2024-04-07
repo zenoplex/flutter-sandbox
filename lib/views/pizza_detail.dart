@@ -90,7 +90,7 @@ class _PizzaDetailScreenState extends State<PizzaDetailScreen> {
     super.dispose();
   }
 
-  Future savePizza() async {
+  Future<void> savePizza() async {
     final navigator = Navigator.of(context);
     final scaffoldMessenger = ScaffoldMessenger.of(context);
     final HttpHelper helper = HttpHelper();

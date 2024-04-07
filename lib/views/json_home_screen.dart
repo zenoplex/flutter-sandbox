@@ -18,7 +18,7 @@ class _JsonHomePageState extends State<JsonHomePage> {
   int appCounter = 0;
   String documentPath = '';
   String tmpPath = '';
-  List _pizzas = [];
+  List<Pizza> _pizzas = [];
   late File file;
   String fileText = '';
   final passwordController = TextEditingController();
@@ -107,11 +107,7 @@ class _JsonHomePageState extends State<JsonHomePage> {
             child: ListView.builder(
               itemCount: _pizzas.length,
               itemBuilder: (context, index) {
-                final Pizza? maybePizza = _pizzas[index] as Pizza?;
-
-                if (maybePizza == null) {
-                  throw Exception('Unexpected null value');
-                }
+                final Pizza maybePizza = _pizzas[index];
 
                 final Pizza pizza = maybePizza;
 
@@ -147,7 +143,7 @@ class _JsonHomePageState extends State<JsonHomePage> {
     return jsonEncode(pizzas.map((pizza) => jsonEncode(pizza)).toList());
   }
 
-  Future readAndWritePreference() async {
+  Future<void> readAndWritePreference() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     int count = prefs.getInt('appCounter') ?? 0;
     count++;
@@ -159,7 +155,7 @@ class _JsonHomePageState extends State<JsonHomePage> {
     });
   }
 
-  Future deletePreference() async {
+  Future<void> deletePreference() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.clear();
 
@@ -168,7 +164,7 @@ class _JsonHomePageState extends State<JsonHomePage> {
     });
   }
 
-  Future getPaths() async {
+  Future<void> getPaths() async {
     final docDir = await getApplicationDocumentsDirectory();
     final tmpDir = await getTemporaryDirectory();
 
@@ -196,7 +192,7 @@ class _JsonHomePageState extends State<JsonHomePage> {
     }
   }
 
-  Future writeToSecureStorage() async {
+  Future<void> writeToSecureStorage() async {
     await storage.write(key: pwdKey, value: passwordController.text);
   }
 
