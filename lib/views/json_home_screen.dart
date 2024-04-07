@@ -190,9 +190,6 @@ class _JsonHomePageState extends State<JsonHomePage> {
   Future<bool> readFile() async {
     try {
       fileText = await file.readAsString();
-      setState(() {
-        fileText = fileText;
-      });
       return true;
     } catch (e) {
       return false;
