@@ -13,6 +13,8 @@ class _ShapeAnimationDemoState extends State<ShapeAnimationDemo>
   late Animation<double> _animationTop;
   late Animation<double> _animationLeft;
   ({double left, double top}) position = (left: 0, top: 0);
+  ({double left, double top}) maxPosition = (left: 0, top: 0);
+  final int ballSize = 100;
 
   @override
   Widget build(BuildContext context) {
@@ -29,14 +31,24 @@ class _ShapeAnimationDemoState extends State<ShapeAnimationDemo>
           ),
         ],
       ),
-      body: Stack(
-        children: [
-          Positioned(
-            left: position.left,
-            top: position.top,
-            child: const Ball(),
-          ),
-        ],
+      body: SafeArea(
+        child: LayoutBuilder(
+          builder: (BuildContext context, BoxConstraints constraints) {
+            maxPosition = (
+              left: constraints.maxWidth - ballSize,
+              top: constraints.maxHeight - ballSize
+            );
+            return Stack(
+              children: [
+                Positioned(
+                  left: position.left,
+                  top: position.top,
+                  child: const Ball(),
+                ),
+              ],
+            );
+          },
+        ),
       ),
     );
   }
@@ -47,9 +59,14 @@ class _ShapeAnimationDemoState extends State<ShapeAnimationDemo>
       duration: const Duration(seconds: 2),
       vsync: this,
     );
-    _animationLeft = Tween<double>(begin: 0, end: 150).animate(_controller);
-    _animationTop = Tween<double>(begin: 0, end: 500).animate(_controller)
-      ..addListener(moveBall);
+    // _animationLeft = Tween<double>(begin: 0, end: 150).animate(_controller);
+    // _animationTop = Tween<double>(begin: 0, end: 500).animate(_controller)
+    //   ..addListener(moveBall);
+    _animationLeft =
+        CurvedAnimation(parent: _controller, curve: Curves.easeInOut);
+    _animationTop =
+        CurvedAnimation(parent: _controller, curve: Curves.easeInOut)
+          ..addListener(moveBall);
     super.initState();
   }
 
@@ -61,7 +78,10 @@ class _ShapeAnimationDemoState extends State<ShapeAnimationDemo>
 
   void moveBall() {
     setState(() {
-      position = (left: _animationLeft.value, top: _animationTop.value);
+      position = (
+        left: _animationLeft.value * maxPosition.left,
+        top: _animationTop.value * maxPosition.top
+      );
     });
   }
 }
