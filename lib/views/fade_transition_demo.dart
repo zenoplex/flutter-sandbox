@@ -10,7 +10,6 @@ class FadeTransitionDemo extends StatefulWidget {
 class _FadeTransitionDemoState extends State<FadeTransitionDemo>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-  late Animation<double> _animation;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +19,9 @@ class _FadeTransitionDemoState extends State<FadeTransitionDemo>
       ),
       body: Center(
         child: FadeTransition(
-          opacity: _animation,
+          opacity: _controller.drive(
+            Tween<double>(begin: 0.0, end: 1.0),
+          ),
           child: Container(
             width: 200,
             height: 200,
@@ -37,7 +38,6 @@ class _FadeTransitionDemoState extends State<FadeTransitionDemo>
       duration: const Duration(seconds: 3),
       vsync: this,
     )..repeat(reverse: true);
-    _animation = Tween<double>(begin: 0.0, end: 1.0).animate(_controller);
     super.initState();
   }
 
