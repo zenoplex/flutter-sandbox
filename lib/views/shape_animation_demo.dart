@@ -62,7 +62,9 @@ class _ShapeAnimationDemoState extends State<ShapeAnimationDemo>
     _controller = AnimationController(
       duration: const Duration(seconds: 2),
       vsync: this,
-    );
+    )..repeat(
+        reverse: true,
+      );
     _animation = CurvedAnimation(parent: _controller, curve: Curves.easeInOut);
     super.initState();
   }
