@@ -10,8 +10,7 @@ class ShapeAnimationDemo extends StatefulWidget {
 class _ShapeAnimationDemoState extends State<ShapeAnimationDemo>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-  late Animation<double> _animationTop;
-  late Animation<double> _animationLeft;
+  late Animation<double> _animation;
   ({double left, double top}) position = (left: 0, top: 0);
   ({double left, double top}) maxPosition = (left: 0, top: 0);
   final int ballSize = 100;
@@ -40,10 +39,15 @@ class _ShapeAnimationDemoState extends State<ShapeAnimationDemo>
             );
             return Stack(
               children: [
-                Positioned(
-                  left: position.left,
-                  top: position.top,
-                  child: const Ball(),
+                AnimatedBuilder(
+                  animation: _controller,
+                  builder: (context, child) {
+                    return Positioned(
+                      left: _animation.value * maxPosition.left,
+                      top: _animation.value * maxPosition.top,
+                      child: const Ball(),
+                    );
+                  },
                 ),
               ],
             );
@@ -59,14 +63,7 @@ class _ShapeAnimationDemoState extends State<ShapeAnimationDemo>
       duration: const Duration(seconds: 2),
       vsync: this,
     );
-    // _animationLeft = Tween<double>(begin: 0, end: 150).animate(_controller);
-    // _animationTop = Tween<double>(begin: 0, end: 500).animate(_controller)
-    //   ..addListener(moveBall);
-    _animationLeft =
-        CurvedAnimation(parent: _controller, curve: Curves.easeInOut);
-    _animationTop =
-        CurvedAnimation(parent: _controller, curve: Curves.easeInOut)
-          ..addListener(moveBall);
+    _animation = CurvedAnimation(parent: _controller, curve: Curves.easeInOut);
     super.initState();
   }
 
@@ -74,15 +71,6 @@ class _ShapeAnimationDemoState extends State<ShapeAnimationDemo>
   void dispose() {
     _controller.dispose();
     super.dispose();
-  }
-
-  void moveBall() {
-    setState(() {
-      position = (
-        left: _animationLeft.value * maxPosition.left,
-        top: _animationTop.value * maxPosition.top
-      );
-    });
   }
 }
 
