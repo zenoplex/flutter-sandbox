@@ -58,7 +58,10 @@ class _FadeTransitionListDemoState extends State<FadeTransitionListDemo> {
 
   void removePizza(int index) {
     final int item = _items[index];
-    _listKey.currentState!.removeItem(
+    final AnimatedListState? state = _listKey.currentState;
+    if (state == null) throw Exception('List key is null');
+
+    state.removeItem(
       index,
       (BuildContext context, Animation<double> animation) =>
           fadeListTile(context, item, animation),
@@ -68,8 +71,9 @@ class _FadeTransitionListDemoState extends State<FadeTransitionListDemo> {
   }
 
   void insertPizza() {
-    _listKey.currentState!
-        .insertItem(_items.length, duration: const Duration(seconds: 1));
+    final AnimatedListState? state = _listKey.currentState;
+    if (state == null) throw Exception('List key is null');
+    state.insertItem(_items.length, duration: const Duration(seconds: 1));
     _items.add(++counter);
   }
 }
