@@ -43,7 +43,8 @@ class _FadeTransitionListDemoState extends State<FadeTransitionListDemo> {
       opacity: Tween(begin: 0.0, end: 1.0).animate(animation),
       child: Card(
         child: ListTile(
-          title: const Text('Pizza'),
+          leading: const Icon(Icons.local_pizza),
+          title: Text('Pizza $item'),
           onTap: () {
             final index = _items.indexOf(item);
             if (index != -1) {
