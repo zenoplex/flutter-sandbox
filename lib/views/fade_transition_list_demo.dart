@@ -44,7 +44,12 @@ class _FadeTransitionListDemoState extends State<FadeTransitionListDemo> {
       child: Card(
         child: ListTile(
           title: const Text('Pizza'),
-          onTap: () {},
+          onTap: () {
+            final index = _items.indexOf(item);
+            if (index != -1) {
+              removePizza(index);
+            }
+          },
         ),
       ),
     );
