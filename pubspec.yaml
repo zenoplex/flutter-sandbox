@@ -28,6 +28,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  animations: ^2.0.11
   area:
     # If I publish this package to my own repository, I can use the following:
     # git: https://github.com/username/repo.git
