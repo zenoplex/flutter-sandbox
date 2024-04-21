@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 
 class DismissibleDemo extends StatefulWidget {
@@ -33,13 +34,43 @@ class _DismissibleDemoState extends State<DismissibleDemo> {
         itemCount: sweets.length,
         itemBuilder: (context, index) {
           final String sweet = sweets[index];
-          return Dismissible(
-            key: Key(sweet),
-            direction: DismissDirection.endToStart,
-            background: const ColoredBox(color: Colors.red),
-            child: ListTile(title: Text(sweet)),
-            onDismissed: (direction) {
-              sweets.removeAt(index);
+          return OpenContainer(
+            openBuilder: (context, action) {
+              return Scaffold(
+                appBar: AppBar(title: Text(sweet)),
+                body: const Center(
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        width: 200,
+                        height: 200,
+                        child:
+                            Icon(Icons.cake, size: 200, color: Colors.orange),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
+            closedBuilder: (context, openContainer) {
+              return Dismissible(
+                key: Key(sweet),
+                direction: DismissDirection.endToStart,
+                background: const ColoredBox(color: Colors.red),
+                // Wrapping the ListTile in Material to retain its tileColor
+                // https://github.com/flutter/flutter/issues/83108
+                child: Material(
+                  child: ListTile(
+                    title: Text(sweet),
+                    onTap: () {
+                      openContainer();
+                    },
+                  ),
+                ),
+                onDismissed: (direction) {
+                  sweets.removeAt(index);
+                },
+              );
             },
           );
         },
