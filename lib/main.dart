@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_config/flutter_config.dart';
-import 'package:flutter_sandbox/views/fade_transition_list_demo.dart';
+import 'package:flutter_sandbox/views/dismissible_demo.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Required by FlutterConfig
@@ -23,7 +23,7 @@ class MasterPlanApp extends StatelessWidget {
           brightness: Brightness.dark,
         ),
       ),
-      home: const FadeTransitionListDemo(),
+      home: const DismissibleDemo(),
     );
   }
 }
