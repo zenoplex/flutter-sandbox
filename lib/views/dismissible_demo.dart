@@ -35,6 +35,7 @@ class _DismissibleDemoState extends State<DismissibleDemo> {
         itemBuilder: (context, index) {
           final String sweet = sweets[index];
           return OpenContainer(
+            transitionDuration: const Duration(milliseconds: 700),
             openBuilder: (context, action) {
               return Scaffold(
                 appBar: AppBar(title: Text(sweet)),
