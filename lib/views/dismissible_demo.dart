@@ -35,6 +35,7 @@ class _DismissibleDemoState extends State<DismissibleDemo> {
           final String sweet = sweets[index];
           return Dismissible(
             key: Key(sweet),
+            direction: DismissDirection.endToStart,
             background: const ColoredBox(color: Colors.red),
             child: ListTile(title: Text(sweet)),
             onDismissed: (direction) {
