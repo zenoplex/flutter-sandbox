@@ -40,6 +40,7 @@ resource "google_project_service" "default" {
     "cloudresourcemanager.googleapis.com",
     "firebase.googleapis.com",
     "serviceusage.googleapis.com",
+    "storage.googleapis.com"
   ])
   service = each.key
 
