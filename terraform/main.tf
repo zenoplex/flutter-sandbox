@@ -64,7 +64,7 @@ resource "google_storage_bucket" "default" {
   provider      = google-beta
   project       = google_project.default.project_id
   name          = "${random_id.bucket_prefix.hex}-bucket-tfstate"
-  location      = "US"
+  location      = "ASIA"
   storage_class = "STANDARD"
   versioning {
     enabled = true
