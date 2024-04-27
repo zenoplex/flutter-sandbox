@@ -60,7 +60,7 @@ resource "random_id" "bucket_prefix" {
   byte_length = 8
 }
 
-resource "google_storage_bucket" "default" {
+resource "google_storage_bucket" "tfstate" {
   provider      = google-beta
   project       = google_project.default.project_id
   name          = "${random_id.bucket_prefix.hex}-bucket-tfstate"
