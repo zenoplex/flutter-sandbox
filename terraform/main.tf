@@ -12,7 +12,7 @@ provider "google-beta" {
 }
 
 provider "google-beta" {
-  alias = "no_user_project_override"
+  alias                 = "no_user_project_override"
   user_project_override = false
 }
 
@@ -54,4 +54,19 @@ resource "google_firebase_project" "flutter_cookbook" {
   depends_on = [
     google_project_service.default,
   ]
+}
+
+resource "random_id" "bucket_prefix" {
+  byte_length = 8
+}
+
+resource "google_storage_bucket" "default" {
+  provider      = google-beta
+  project       = google_project.default.project_id
+  name          = "${random_id.bucket_prefix.hex}-bucket-tfstate"
+  location      = "US"
+  storage_class = "STANDARD"
+  versioning {
+    enabled = true
+  }
 }
