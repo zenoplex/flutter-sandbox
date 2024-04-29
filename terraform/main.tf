@@ -1,4 +1,8 @@
 terraform {
+  backend "gcs" {
+    bucket = "0c12da7150fa35dd-bucket-tfstate"
+    prefix = "terraform.tfstate"
+  }
   required_providers {
     google-beta = {
       source  = "hashicorp/google-beta"
