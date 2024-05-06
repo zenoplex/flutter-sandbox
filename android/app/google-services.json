@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "680883159197",
+    "project_id": "flutter-cookbook-17c0",
+    "storage_bucket": "flutter-cookbook-17c0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:680883159197:android:46de63b9f4e21c7b075474",
+        "android_client_info": {
+          "package_name": "com.example.flutter_sandbox"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXaKVbXm4RGXCgaS0h97YqFLQQvEYgkWo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
