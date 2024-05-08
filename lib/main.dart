@@ -1,10 +1,15 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_config/flutter_config.dart';
-import 'package:flutter_sandbox/views/dismissible_demo.dart';
+import 'package:flutter_sandbox/firebase_options.dart';
+import 'package:flutter_sandbox/views/authentication_demo.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Required by FlutterConfig
   await FlutterConfig.loadEnvVariables();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  FirebaseUIAuth.configureProviders([EmailAuthProvider()]);
 
   runApp(const MasterPlanApp());
 }
@@ -23,7 +28,7 @@ class MasterPlanApp extends StatelessWidget {
           brightness: Brightness.dark,
         ),
       ),
-      home: const DismissibleDemo(),
+      home: const AuthenticationDemo(),
     );
   }
 }
