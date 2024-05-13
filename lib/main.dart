@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
+import 'package:firebase_ui_oauth_google/firebase_ui_oauth_google.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_config/flutter_config.dart';
 import 'package:flutter_sandbox/firebase_options.dart';
@@ -9,7 +10,17 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Required by FlutterConfig
   await FlutterConfig.loadEnvVariables();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  FirebaseUIAuth.configureProviders([EmailAuthProvider()]);
+
+  FirebaseUIAuth.configureProviders(
+    [
+      EmailAuthProvider(),
+      GoogleProvider(
+        iOSPreferPlist: true,
+        scopes: ['email', 'profile'],
+        clientId: FlutterConfig.get('GOOGLE_CLIENT_ID') as String,
+      ),
+    ],
+  );
 
   runApp(const MasterPlanApp());
 }
