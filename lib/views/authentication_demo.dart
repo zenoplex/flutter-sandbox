@@ -11,7 +11,33 @@ class AuthenticationDemo extends StatelessWidget {
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
-          return const SignInScreen();
+          return SignInScreen(
+            headerBuilder: (context, constraints, shrinkOffset) {
+              return Padding(
+                padding: const EdgeInsets.all(16),
+                child: Image.asset('assets/logo.jpg'),
+              );
+            },
+            subtitleBuilder: (context, action) {
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 16),
+                child: Text(
+                  action == AuthAction.signIn
+                      ? 'Sign in to continue'
+                      : 'Create an account',
+                ),
+              );
+            },
+            footerBuilder: (context, action) {
+              return const Padding(
+                padding: EdgeInsets.symmetric(vertical: 32.0),
+                child: Text(
+                  'Powered by me!',
+                  style: TextStyle(color: Colors.grey),
+                ),
+              );
+            },
+          );
         }
         return const Placeholder();
       },
