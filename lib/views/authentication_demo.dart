@@ -1,6 +1,33 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
+
+class HappyScreen extends StatefulWidget {
+  const HappyScreen({super.key});
+
+  @override
+  State<HappyScreen> createState() => _HappyScreenState();
+}
+
+class _HappyScreenState extends State<HappyScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Happy Happy!'),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          child: const Text("I'm happy!"),
+          onPressed: () {
+            FirebaseAnalytics.instance.logEvent(name: 'Happy');
+          },
+        ),
+      ),
+    );
+  }
+}
 
 class AuthenticationDemo extends StatelessWidget {
   const AuthenticationDemo({super.key});
@@ -39,7 +66,7 @@ class AuthenticationDemo extends StatelessWidget {
             },
           );
         }
-        return const Placeholder();
+        return const HappyScreen();
       },
     );
   }
