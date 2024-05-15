@@ -101,11 +101,6 @@ resource "google_identity_platform_default_supported_idp_config" "idp_config" {
   client_secret = var.google_client_secret
 }
 
-import {
-  id = "projects/${google_project.default.project_id}/databases/(default)"
-  to = google_firestore_database.database
-}
-
 resource "google_firestore_database" "database" {
   project     = google_project.default.project_id
   name        = "(default)"
