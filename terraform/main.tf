@@ -107,3 +107,13 @@ resource "google_firestore_database" "database" {
   location_id = "asia-northeast1"
   type        = "FIRESTORE_NATIVE"
 }
+
+resource "google_firebaserules_ruleset" "firestore" {
+  project = google_project.default.project_id
+  source {
+    files {
+      content = "service cloud.firestore {match /databases/{database}/documents { match /{document=**} { allow read, write: if false; } } }"
+      name    = "firestore.rules"
+    }
+  }
+}
