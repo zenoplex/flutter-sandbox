@@ -117,3 +117,11 @@ resource "google_firebaserules_ruleset" "firestore" {
     }
   }
 }
+
+resource "google_firestore_document" "document_id" {
+  project     = google_project.default.project_id
+  database    = google_firestore_database.database.name
+  collection  = "poll"
+  document_id = "document_id"
+  fields      = "{\"icecream\":{\"integerValue\": 0}, \"pizza\": {\"integerValue\": 0}}"
+}
