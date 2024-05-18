@@ -18,7 +18,9 @@ class _PollScreenState extends State<PollScreen> {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            vote('icecream');
+          },
           child: const Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -28,7 +30,9 @@ class _PollScreenState extends State<PollScreen> {
           ),
         ),
         ElevatedButton(
-          onPressed: () {vote(true);},
+          onPressed: () {
+            vote('pizza');
+          },
           child: const Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -42,13 +46,10 @@ class _PollScreenState extends State<PollScreen> {
   }
 }
 
-/// Vote
-Future<void> vote(bool voteForPizza) async {
+Future<void> vote(String fieldName) async {
   final FirebaseFirestore db = FirebaseFirestore.instance;
-  final CollectionReference collection = db.collection('poll');
-  final QuerySnapshot snapshot = await collection.get();
-
-  print(snapshot.docs[0].id);
+  final DocumentReference docRef = db.collection('poll').doc('document_id');
+  docRef.update({fieldName: FieldValue.increment(1)});
 }
 
 class HappyScreen extends StatefulWidget {
