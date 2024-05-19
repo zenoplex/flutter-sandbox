@@ -125,4 +125,11 @@ resource "google_firestore_document" "document_id" {
   document_id = "document_id"
   # NOTE: Could not use data "template_file" "document" on M1 mac
   fields = templatefile("${path.module}/templates/document_id.tftpl", {})
+
+  lifecycle {
+    ignore_changes = [
+      # TODO: How can I ignore changes on specific fields using templatefile directive?
+      fields,
+    ]
+  }
 }
