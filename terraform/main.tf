@@ -123,5 +123,6 @@ resource "google_firestore_document" "document_id" {
   database    = google_firestore_database.database.name
   collection  = "poll"
   document_id = "document_id"
-  fields      = "{\"icecream\":{\"integerValue\": 0}, \"pizza\": {\"integerValue\": 0}}"
+  # NOTE: Could not use data "template_file" "document" on M1 mac
+  fields = templatefile("${path.module}/templates/document_id.tftpl", {})
 }
