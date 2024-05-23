@@ -112,7 +112,7 @@ resource "google_firebaserules_ruleset" "firestore" {
   project = google_project.default.project_id
   source {
     files {
-      content = "service cloud.firestore {match /databases/{database}/documents { match /{document=**} { allow read, write: if false; } } }"
+      content = templatefile("${path.module}/templates/firebaserules_ruleset_firestore_content.tftpl", { collection : "poll", document_id : "document_id" })
       name    = "firestore.rules"
     }
   }
