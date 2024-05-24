@@ -49,6 +49,8 @@
 	<string>This app needs to access your location</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Needs access to photo library</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Needs access to camera</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
