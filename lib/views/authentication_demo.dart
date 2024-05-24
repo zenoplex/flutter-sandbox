@@ -93,15 +93,33 @@ class _UploadFileState extends State<UploadFile> {
       child: Column(
         children: [
           ElevatedButton(
-              onPressed: () {
-                getImage();
-              },
-              child: const Text('Choose file'),),
+            onPressed: () {
+              getImage();
+            },
+            child: const Text('Choose file'),
+          ),
           SizedBox(
             height: 200,
             child: _file == null
                 ? const Text('No file chosen')
-                : Image.file(_file!),
+                : Stack(
+                    alignment: Alignment.topRight,
+                    children: [
+                      Image.file(_file!),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          shape: const CircleBorder(),
+                          padding: const EdgeInsets.all(10),
+                        ),
+                        child: const Icon(Icons.close),
+                        onPressed: () {
+                          setState(() {
+                            _file = null;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
           ),
         ],
       ),
