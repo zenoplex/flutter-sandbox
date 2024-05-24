@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class PollScreen extends StatefulWidget {
   const PollScreen({super.key});
@@ -71,6 +74,50 @@ class _HappyScreenState extends State<HappyScreen> {
   }
 }
 
+class UploadFile extends StatefulWidget {
+  const UploadFile({super.key});
+
+  @override
+  State<UploadFile> createState() => _UploadFileState();
+}
+
+class _UploadFileState extends State<UploadFile> {
+  File? _file;
+  String? _message;
+  final picker = ImagePicker();
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(24),
+      child: Column(
+        children: [
+          ElevatedButton(
+              onPressed: () {
+                getImage();
+              },
+              child: const Text('Choose file'),),
+          SizedBox(
+            height: 200,
+            child: _file == null
+                ? const Text('No file chosen')
+                : Image.file(_file!),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<void> getImage() async {
+    final file = await picker.pickImage(source: ImageSource.gallery);
+    if (file == null) return;
+
+    setState(() {
+      _file = File(file.path);
+    });
+  }
+}
+
 class AuthenticationDemo extends StatelessWidget {
   const AuthenticationDemo({super.key});
 
@@ -113,7 +160,7 @@ class AuthenticationDemo extends StatelessWidget {
             title: const Text('Happy Happy!'),
           ),
           body: const Column(
-            children: [HappyScreen(), PollScreen()],
+            children: [HappyScreen(), PollScreen(), UploadFile()],
           ),
         );
       },
