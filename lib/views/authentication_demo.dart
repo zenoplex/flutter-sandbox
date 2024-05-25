@@ -3,9 +3,13 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_config/flutter_config.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart' as path;
 
 class PollScreen extends StatefulWidget {
   const PollScreen({super.key});
@@ -99,28 +103,43 @@ class _UploadFileState extends State<UploadFile> {
             child: const Text('Choose file'),
           ),
           SizedBox(
-            height: 200,
             child: _file == null
                 ? const Text('No file chosen')
-                : Stack(
-                    alignment: Alignment.topRight,
+                : Column(
                     children: [
-                      Image.file(_file!),
+                      Stack(
+                        alignment: Alignment.topRight,
+                        children: [
+                          Image.file(_file!),
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              shape: const CircleBorder(),
+                              padding: const EdgeInsets.all(10),
+                            ),
+                            child: const Icon(Icons.close),
+                            onPressed: () {
+                              setState(() {
+                                _message = null;
+                                _file = null;
+                              });
+                            },
+                          ),
+                        ],
+                      ),
                       ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          shape: const CircleBorder(),
-                          padding: const EdgeInsets.all(10),
-                        ),
-                        child: const Icon(Icons.close),
                         onPressed: () {
-                          setState(() {
-                            _file = null;
-                          });
+                          // Should be some custom UnexpectedError.
+                          if (_file == null) {
+                            throw Exception("File should be chosen: $_file");
+                          }
+                          uploadImage(_file!);
                         },
+                        child: const Text('Upload Image'),
                       ),
                     ],
                   ),
           ),
+          Text(_message ?? ''),
         ],
       ),
     );
@@ -132,6 +151,26 @@ class _UploadFileState extends State<UploadFile> {
 
     setState(() {
       _file = File(file.path);
+    });
+  }
+
+  // Should be in a separate service
+  Future<void> uploadImage(File file) async {
+    final String fileName = path.basename(file.path);
+    final FirebaseApp app = Firebase.app();
+    // Using different bucket
+    final Reference ref = FirebaseStorage.instanceFor(
+      app: app,
+      bucket: FlutterConfig.get('FIREBASE_STORAGE_BUCKET') as String,
+    ).ref(fileName);
+
+    final TaskSnapshot result = await ref.putFile(file);
+    final String message = result.state == TaskState.success
+        ? 'File uploaded'
+        : 'Error uploading file';
+
+    setState(() {
+      _message = message;
     });
   }
 }
