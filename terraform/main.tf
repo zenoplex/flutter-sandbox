@@ -138,21 +138,3 @@ resource "google_firestore_document" "document_id" {
     ]
   }
 }
-
-# TODO: Also need to add storage rules otherwise it's empty
-resource "google_storage_bucket" "firebase_storage" {
-  provider      = google-beta
-  project       = google_project.default.project_id
-  name          = "${random_id.bucket_prefix.hex}-bucket-firebase-storage"
-  location      = "asia-northeast1"
-  storage_class = "STANDARD"
-  versioning {
-    enabled = true
-  }
-}
-
-resource "google_firebase_storage_bucket" "default" {
-  provider  = google-beta
-  project   = google_project.default.project_id
-  bucket_id = google_storage_bucket.firebase_storage.id
-}
