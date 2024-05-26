@@ -95,6 +95,8 @@ class _UploadFileState extends State<UploadFile> {
     return Padding(
       padding: const EdgeInsets.all(24),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           ElevatedButton(
             onPressed: () {
@@ -102,12 +104,13 @@ class _UploadFileState extends State<UploadFile> {
             },
             child: const Text('Choose file'),
           ),
-          SizedBox(
-            child: _file == null
-                ? const Text('No file chosen')
-                : Column(
-                    children: [
-                      Stack(
+          Column(
+            children: [
+              SizedBox(
+                height: 300,
+                child: _file == null
+                    ? const Text('No file chosen')
+                    : Stack(
                         alignment: Alignment.topRight,
                         children: [
                           Image.file(_file!),
@@ -126,18 +129,18 @@ class _UploadFileState extends State<UploadFile> {
                           ),
                         ],
                       ),
-                      ElevatedButton(
-                        onPressed: () {
-                          // Should be some custom UnexpectedError.
-                          if (_file == null) {
-                            throw Exception("File should be chosen: $_file");
-                          }
-                          uploadImage(_file!);
-                        },
-                        child: const Text('Upload Image'),
-                      ),
-                    ],
-                  ),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  // Should be some custom UnexpectedError.
+                  if (_file == null) {
+                    throw Exception("File should be chosen: $_file");
+                  }
+                  uploadImage(_file!);
+                },
+                child: const Text('Upload Image'),
+              ),
+            ],
           ),
           Text(_message ?? ''),
         ],
