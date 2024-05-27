@@ -5,6 +5,7 @@ resource "google_firestore_database" "database" {
   type        = "FIRESTORE_NATIVE"
 }
 
+# TODO: Add ruleset_release resource
 resource "google_firebaserules_ruleset" "firestore" {
   project = google_project.default.project_id
   source {
