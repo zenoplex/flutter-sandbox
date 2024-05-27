@@ -11,11 +11,6 @@ terraform {
   }
 }
 
-locals {
-  collection  = "poll"
-  document_id = "document_id"
-}
-
 provider "google-beta" {
   user_project_override = true
 }
