@@ -8,6 +8,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_config/flutter_config.dart';
+import 'package:flutter_sandbox/ui/drawer.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as path;
 
@@ -222,6 +223,7 @@ class AuthenticationDemo extends StatelessWidget {
           body: const Column(
             children: [HappyScreen(), PollScreen(), UploadFile()],
           ),
+          drawer: const CustomDrawer(),
         );
       },
     );
