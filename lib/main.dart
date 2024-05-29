@@ -5,6 +5,7 @@ import 'package:firebase_ui_oauth_google/firebase_ui_oauth_google.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_config/flutter_config.dart';
 import 'package:flutter_sandbox/firebase_options.dart';
+import 'package:flutter_sandbox/views/animation_demo.dart';
 import 'package:flutter_sandbox/views/authentication_demo.dart';
 
 void main() async {
@@ -41,6 +42,7 @@ class MasterPlanApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'MaterialApp title',
+
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
@@ -48,7 +50,18 @@ class MasterPlanApp extends StatelessWidget {
           brightness: Brightness.dark,
         ),
       ),
-      home: const AuthenticationDemo(),
+      routes: {
+        '/': (context) => const AuthenticationDemo(),
+        '/settings': (context) => const AnimationDemo(),
+      },
+      // onGenerateRoute: (settings) {
+      //   print(settings);
+      //   return MaterialPageRoute<Widget>(
+      //     builder: (context) {
+      //       return routes[settings.name];
+      //     },
+      //   );
+      // },
     );
   }
 }
