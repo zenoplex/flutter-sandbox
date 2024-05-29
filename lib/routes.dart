@@ -4,20 +4,50 @@ import 'package:flutter_sandbox/basic_screen.dart';
 import 'package:flutter_sandbox/views/animation_demo.dart';
 import 'package:flutter_sandbox/views/area_demo.dart';
 import 'package:flutter_sandbox/views/authentication_demo.dart';
+import 'package:flutter_sandbox/views/dismissible_demo.dart';
+import 'package:flutter_sandbox/views/fade_transition_demo.dart';
+import 'package:flutter_sandbox/views/fade_transition_list_demo.dart';
+import 'package:flutter_sandbox/views/future_screen.dart';
+import 'package:flutter_sandbox/views/geolocation.dart';
+import 'package:flutter_sandbox/views/google_map_demo.dart';
 
 final routes = {
   '/': CustomRoute(label: 'Home', fn: (context) => const BasicScreen()),
   '/animation_demo': CustomRoute.fromWidget(
-    label: 'AnimationDemo',
+    label: 'Animation',
     widget: const AnimationDemo(),
   ),
   '/authentication_demo': CustomRoute.fromWidget(
-    label: 'AuthenticationDemo',
+    label: 'Authentication',
     widget: const AuthenticationDemo(),
   ),
   '/area_demo': CustomRoute.fromWidget(
-    label: 'AreaDemo',
+    label: 'Area Calculation',
     widget: const AreaApp(),
+  ),
+  '/dismissible_demo': CustomRoute.fromWidget(
+    label: 'Dismissible',
+    widget: const DismissibleDemo(),
+  ),
+  '/fade_transition_demo': CustomRoute.fromWidget(
+    label: 'FadeTransition',
+    widget: const FadeTransitionDemo(),
+  ),
+  '/fade_transition_list_demo': CustomRoute.fromWidget(
+    label: 'FadeTransitionList',
+    widget: const FadeTransitionListDemo(),
+  ),
+  '/future_demo': CustomRoute.fromWidget(
+    label: 'Future',
+    widget: const FutureScreen(),
+  ),
+  '/geolocation_demo': CustomRoute.fromWidget(
+    label: 'Geolocation',
+    widget: const LocationScreen(),
+  ),
+  '/google_map_demo': CustomRoute.fromWidget(
+    label: 'Google Map',
+    widget: const GoogleMapApp(),
   ),
 };
 
