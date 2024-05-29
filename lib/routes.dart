@@ -7,12 +7,12 @@ import 'package:flutter_sandbox/views/authentication_demo.dart';
 import 'package:flutter_sandbox/views/dismissible_demo.dart';
 import 'package:flutter_sandbox/views/fade_transition_demo.dart';
 import 'package:flutter_sandbox/views/fade_transition_list_demo.dart';
-import 'package:flutter_sandbox/views/future_screen.dart';
-import 'package:flutter_sandbox/views/geolocation.dart';
+import 'package:flutter_sandbox/views/future_demo.dart';
+import 'package:flutter_sandbox/views/geolocation_demo.dart';
 import 'package:flutter_sandbox/views/google_map_demo.dart';
 import 'package:flutter_sandbox/views/hero_animation_demo.dart';
-import 'package:flutter_sandbox/views/json_home_screen.dart';
-import 'package:flutter_sandbox/views/json_home_screen_2.dart';
+import 'package:flutter_sandbox/views/json_demo.dart';
+import 'package:flutter_sandbox/views/json_demo_2.dart';
 
 final routes = {
   '/': CustomRoute(label: 'Home', fn: (context) => const BasicScreen()),
