@@ -23,9 +23,9 @@ class CustomDrawer extends StatelessWidget {
           ),
           ...routes.entries.map((route) {
             return ListTile(
-              title: Text(route.key),
+              title: Text(route.value.label),
               onTap: () {
-                _handleTap(context, route.value);
+                _handleTap(context, route.key);
               },
             );
           }),
