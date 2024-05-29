@@ -7,14 +7,14 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class JsonHomePage extends StatefulWidget {
-  const JsonHomePage({super.key});
+class JsonDemo extends StatefulWidget {
+  const JsonDemo({super.key});
 
   @override
-  State<JsonHomePage> createState() => _JsonHomePageState();
+  State<JsonDemo> createState() => _JsonDemoState();
 }
 
-class _JsonHomePageState extends State<JsonHomePage> {
+class _JsonDemoState extends State<JsonDemo> {
   int appCounter = 0;
   String documentPath = '';
   String tmpPath = '';

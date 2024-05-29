@@ -3,14 +3,14 @@ import 'package:flutter_sandbox/models/pizza.dart';
 import 'package:flutter_sandbox/utils/http_helper.dart';
 import 'package:flutter_sandbox/views/pizza_detail.dart';
 
-class JsonHomePage extends StatefulWidget {
-  const JsonHomePage({super.key});
+class JsonDemo2 extends StatefulWidget {
+  const JsonDemo2({super.key});
 
   @override
-  State<JsonHomePage> createState() => _JsonHomePageState();
+  State<JsonDemo2> createState() => _JsonDemo2State();
 }
 
-class _JsonHomePageState extends State<JsonHomePage> {
+class _JsonDemo2State extends State<JsonDemo2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

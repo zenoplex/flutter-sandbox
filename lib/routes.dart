@@ -10,6 +10,9 @@ import 'package:flutter_sandbox/views/fade_transition_list_demo.dart';
 import 'package:flutter_sandbox/views/future_screen.dart';
 import 'package:flutter_sandbox/views/geolocation.dart';
 import 'package:flutter_sandbox/views/google_map_demo.dart';
+import 'package:flutter_sandbox/views/hero_animation_demo.dart';
+import 'package:flutter_sandbox/views/json_home_screen.dart';
+import 'package:flutter_sandbox/views/json_home_screen_2.dart';
 
 final routes = {
   '/': CustomRoute(label: 'Home', fn: (context) => const BasicScreen()),
@@ -48,6 +51,18 @@ final routes = {
   '/google_map_demo': CustomRoute.fromWidget(
     label: 'Google Map',
     widget: const GoogleMapApp(),
+  ),
+  '/hero_animation_demo': CustomRoute.fromWidget(
+    label: 'Hero Animation',
+    widget: HeroAnimationDemo(),
+  ),
+  '/json_demo_2_demo': CustomRoute.fromWidget(
+    label: 'JSON Demo 2',
+    widget: const JsonDemo2(),
+  ),
+  '/json_demo': CustomRoute.fromWidget(
+    label: 'JSON Demo',
+    widget: const JsonDemo(),
   ),
 };
 
