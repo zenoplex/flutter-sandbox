@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sandbox/text_layout.dart';
+import 'package:flutter_sandbox/ui/drawer.dart';
 
 class BasicScreen extends StatelessWidget {
   const BasicScreen({super.key});
@@ -25,14 +26,7 @@ class BasicScreen extends StatelessWidget {
           const TextLayout(),
         ],
       ),
-      drawer: const Drawer(
-        child: ColoredBox(
-          color: Colors.lightBlue,
-          child: Center(
-            child: Text("I'm a Drawer!"),
-          ),
-        ),
-      ),
+      drawer: const CustomDrawer(),
     );
   }
 }
