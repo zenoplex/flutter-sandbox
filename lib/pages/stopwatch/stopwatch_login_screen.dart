@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sandbox/stopwatch.dart';
+import 'package:flutter_sandbox/pages/stopwatch/stopwatch.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class StopWatchLoginScreen extends StatefulWidget {
+  const StopWatchLoginScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<StopWatchLoginScreen> createState() => _StopWatchLoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _StopWatchLoginScreenState extends State<StopWatchLoginScreen> {
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
