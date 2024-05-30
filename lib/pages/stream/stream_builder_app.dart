@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sandbox/number_stream.dart';
+import 'package:flutter_sandbox/pages/stream/number_stream.dart';
 
 class StreamBuilderApp extends StatefulWidget {
   const StreamBuilderApp({super.key});

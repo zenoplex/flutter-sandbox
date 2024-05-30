@@ -20,6 +20,8 @@ import 'package:flutter_sandbox/pages/navigation_dialog.dart';
 import 'package:flutter_sandbox/pages/pizzas/pizza_demo.dart';
 import 'package:flutter_sandbox/pages/random_bloc/random_bloc_demo.dart';
 import 'package:flutter_sandbox/pages/stopwatch/stopwatch_login_screen.dart';
+import 'package:flutter_sandbox/pages/stream/stream_builder_app.dart';
+import 'package:flutter_sandbox/pages/stream/stream_demo.dart';
 
 final routes = {
   '/': CustomRoute(label: 'Home', fn: (context) => const BasicScreen()),
@@ -98,6 +100,14 @@ final routes = {
   '/stopwatch': CustomRoute.fromWidget(
     label: 'Stop Watch Demo',
     widget: const StopWatchLoginScreen(),
+  ),
+  '/stream': CustomRoute.fromWidget(
+    label: 'Stream',
+    widget: const StreamHomePage(),
+  ),
+  '/stream_builder': CustomRoute.fromWidget(
+    label: 'Stream Builder',
+    widget: const StreamBuilderApp(),
   ),
 };
 
