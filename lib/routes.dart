@@ -19,6 +19,7 @@ import 'package:flutter_sandbox/pages/navigation/navigation_first.dart';
 import 'package:flutter_sandbox/pages/navigation_dialog.dart';
 import 'package:flutter_sandbox/pages/pizzas/pizza_demo.dart';
 import 'package:flutter_sandbox/pages/random_bloc/random_bloc_demo.dart';
+import 'package:flutter_sandbox/pages/shape_animation_demo.dart';
 import 'package:flutter_sandbox/pages/stopwatch/stopwatch_login_screen.dart';
 import 'package:flutter_sandbox/pages/stream/stream_builder_app.dart';
 import 'package:flutter_sandbox/pages/stream/stream_demo.dart';
@@ -96,6 +97,10 @@ final routes = {
   '/random_bloc': CustomRoute.fromWidget(
     label: 'Random Bloc Demo',
     widget: const RandomBlocDemo(),
+  ),
+  '/shape_animation': CustomRoute.fromWidget(
+    label: 'Shape Animation',
+    widget: const ShapeAnimationDemo(),
   ),
   '/stopwatch': CustomRoute.fromWidget(
     label: 'Stop Watch Demo',
