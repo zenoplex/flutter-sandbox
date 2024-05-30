@@ -4,6 +4,7 @@ import 'package:flutter_sandbox/pages/animation_demo.dart';
 import 'package:flutter_sandbox/pages/area_demo.dart';
 import 'package:flutter_sandbox/pages/authentication_demo.dart';
 import 'package:flutter_sandbox/pages/basic_screen.dart';
+import 'package:flutter_sandbox/pages/deep_tree.dart';
 import 'package:flutter_sandbox/pages/dismissible_demo.dart';
 import 'package:flutter_sandbox/pages/fade_transition_demo.dart';
 import 'package:flutter_sandbox/pages/fade_transition_list_demo.dart';
@@ -31,6 +32,10 @@ final routes = {
   '/area_demo': CustomRoute.fromWidget(
     label: 'Area Calculation',
     widget: const AreaApp(),
+  ),
+  '/deep_tree_demo': CustomRoute.fromWidget(
+    label: 'Deep Tree',
+    widget: const DeepTree(),
   ),
   '/dismissible_demo': CustomRoute.fromWidget(
     label: 'Dismissible',
