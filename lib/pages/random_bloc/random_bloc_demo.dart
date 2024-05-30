@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sandbox/random_bloc.dart';
+import 'package:flutter_sandbox/pages/random_bloc/random_bloc.dart';
 
-class RandomBlocScreen extends StatefulWidget {
-  const RandomBlocScreen({super.key});
+class RandomBlocDemo extends StatefulWidget {
+  const RandomBlocDemo({super.key});
 
   @override
-  State<RandomBlocScreen> createState() => _RandomBlocScreenState();
+  State<RandomBlocDemo> createState() => _RandomBlocDemoState();
 }
 
-class _RandomBlocScreenState extends State<RandomBlocScreen> {
+class _RandomBlocDemoState extends State<RandomBlocDemo> {
   final _bloc = RandomNumberBloc();
 
   @override

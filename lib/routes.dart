@@ -15,6 +15,7 @@ import 'package:flutter_sandbox/pages/json_demo.dart';
 import 'package:flutter_sandbox/pages/navigation/navigation_first.dart';
 import 'package:flutter_sandbox/pages/navigation_dialog.dart';
 import 'package:flutter_sandbox/pages/pizzas/pizza_demo.dart';
+import 'package:flutter_sandbox/pages/random_bloc/random_bloc_demo.dart';
 
 final routes = {
   '/': CustomRoute(label: 'Home', fn: (context) => const BasicScreen()),
@@ -73,6 +74,10 @@ final routes = {
   '/navigation': CustomRoute.fromWidget(
     label: 'Navigation Demo',
     widget: const NavigationFirst(),
+  ),
+  '/random_bloc': CustomRoute.fromWidget(
+    label: 'Random Bloc Demo',
+    widget: const RandomBlocDemo(),
   ),
 };
 
