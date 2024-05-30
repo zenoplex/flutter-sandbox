@@ -1,5 +1,6 @@
 // NOTE: I'm not sure this is how routing should be handled.
 import 'package:flutter/material.dart';
+import 'package:flutter_sandbox/pages/flex_screen.dart';
 import 'package:flutter_sandbox/pages/animation_demo.dart';
 import 'package:flutter_sandbox/pages/area_demo.dart';
 import 'package:flutter_sandbox/pages/authentication_demo.dart';
@@ -48,6 +49,10 @@ final routes = {
   '/fade_transition_list_demo': CustomRoute.fromWidget(
     label: 'FadeTransitionList',
     widget: const FadeTransitionListDemo(),
+  ),
+  '/flex': CustomRoute.fromWidget(
+    label: 'Flex',
+    widget: const FlexScreen(),
   ),
   '/future_demo': CustomRoute.fromWidget(
     label: 'Future',
