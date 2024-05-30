@@ -1,19 +1,20 @@
 // NOTE: I'm not sure this is how routing should be handled.
 import 'package:flutter/material.dart';
-import 'package:flutter_sandbox/basic_screen.dart';
-import 'package:flutter_sandbox/views/animation_demo.dart';
-import 'package:flutter_sandbox/views/area_demo.dart';
-import 'package:flutter_sandbox/views/authentication_demo.dart';
-import 'package:flutter_sandbox/views/dismissible_demo.dart';
-import 'package:flutter_sandbox/views/fade_transition_demo.dart';
-import 'package:flutter_sandbox/views/fade_transition_list_demo.dart';
-import 'package:flutter_sandbox/views/future_demo.dart';
-import 'package:flutter_sandbox/views/geolocation_demo.dart';
-import 'package:flutter_sandbox/views/google_map_demo.dart';
-import 'package:flutter_sandbox/views/hero_animation_demo.dart';
-import 'package:flutter_sandbox/views/json_demo.dart';
-import 'package:flutter_sandbox/views/json_demo_2.dart';
-import 'package:flutter_sandbox/views/navigation_dialog.dart';
+import 'package:flutter_sandbox/pages/animation_demo.dart';
+import 'package:flutter_sandbox/pages/area_demo.dart';
+import 'package:flutter_sandbox/pages/authentication_demo.dart';
+import 'package:flutter_sandbox/pages/basic_screen.dart';
+import 'package:flutter_sandbox/pages/dismissible_demo.dart';
+import 'package:flutter_sandbox/pages/fade_transition_demo.dart';
+import 'package:flutter_sandbox/pages/fade_transition_list_demo.dart';
+import 'package:flutter_sandbox/pages/future_demo.dart';
+import 'package:flutter_sandbox/pages/geolocation_demo.dart';
+import 'package:flutter_sandbox/pages/google_map_demo.dart';
+import 'package:flutter_sandbox/pages/hero_animation_demo.dart';
+import 'package:flutter_sandbox/pages/json_demo.dart';
+import 'package:flutter_sandbox/pages/navigation/navigation_first.dart';
+import 'package:flutter_sandbox/pages/navigation_dialog.dart';
+import 'package:flutter_sandbox/pages/pizzas/pizza_demo.dart';
 
 final routes = {
   '/': CustomRoute(label: 'Home', fn: (context) => const BasicScreen()),
@@ -58,8 +59,8 @@ final routes = {
     widget: HeroAnimationDemo(),
   ),
   '/json_demo_2_demo': CustomRoute.fromWidget(
-    label: 'JSON Demo 2',
-    widget: const JsonDemo2(),
+    label: 'Pizza Demo',
+    widget: const PizzaDemo(),
   ),
   '/json_demo': CustomRoute.fromWidget(
     label: 'JSON Demo',
@@ -68,6 +69,10 @@ final routes = {
   '/navigation_dialog': CustomRoute.fromWidget(
     label: 'Navigation Dialog Demo',
     widget: const NavigationDialog(),
+  ),
+  '/navigation': CustomRoute.fromWidget(
+    label: 'Navigation Demo',
+    widget: const NavigationFirst(),
   ),
 };
 

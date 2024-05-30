@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sandbox/models/pizza.dart';
 import 'package:flutter_sandbox/utils/http_helper.dart';
 
-class PizzaDetailScreen extends StatefulWidget {
+class PizzaDetail extends StatefulWidget {
   final Pizza? selectedPizza;
-  const PizzaDetailScreen({super.key, this.selectedPizza});
+  const PizzaDetail({super.key, this.selectedPizza});
 
   @override
-  State<PizzaDetailScreen> createState() => _PizzaDetailScreenState();
+  State<PizzaDetail> createState() => _PizzaDetailState();
 }
 
-class _PizzaDetailScreenState extends State<PizzaDetailScreen> {
+class _PizzaDetailState extends State<PizzaDetail> {
   final TextEditingController idController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();

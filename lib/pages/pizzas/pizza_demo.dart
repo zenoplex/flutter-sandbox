@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sandbox/models/pizza.dart';
+import 'package:flutter_sandbox/pages/pizzas/pizza_detail.dart';
 import 'package:flutter_sandbox/utils/http_helper.dart';
-import 'package:flutter_sandbox/views/pizza_detail.dart';
 
-class JsonDemo2 extends StatefulWidget {
-  const JsonDemo2({super.key});
+class PizzaDemo extends StatefulWidget {
+  const PizzaDemo({super.key});
 
   @override
-  State<JsonDemo2> createState() => _JsonDemo2State();
+  State<PizzaDemo> createState() => _PizzaDemoState();
 }
 
-class _JsonDemo2State extends State<JsonDemo2> {
+class _PizzaDemoState extends State<PizzaDemo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +20,7 @@ class _JsonDemo2State extends State<JsonDemo2> {
           Navigator.push(
             context,
             MaterialPageRoute<Widget>(
-              builder: (context) => const PizzaDetailScreen(),
+              builder: (context) => const PizzaDetail(),
             ),
           );
         },
@@ -70,7 +70,7 @@ class _JsonDemo2State extends State<JsonDemo2> {
                       context,
                       MaterialPageRoute<Widget>(
                         builder: (context) {
-                          return PizzaDetailScreen(
+                          return PizzaDetail(
                             selectedPizza: pizza,
                           );
                         },

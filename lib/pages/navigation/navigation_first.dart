@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sandbox/views/navigation_second.dart';
+import 'package:flutter_sandbox/pages/navigation/navigation_second.dart';
 
 class NavigationFirst extends StatefulWidget {
   const NavigationFirst({super.key});
