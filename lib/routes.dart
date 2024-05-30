@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sandbox/pages/animation_demo.dart';
 import 'package:flutter_sandbox/pages/area_demo.dart';
-import 'package:flutter_sandbox/pages/authentication_demo.dart';
+import 'package:flutter_sandbox/pages/authentication/authentication_demo.dart';
 import 'package:flutter_sandbox/pages/basic_screen.dart';
 import 'package:flutter_sandbox/pages/deep_tree.dart';
 import 'package:flutter_sandbox/pages/dismissible_demo.dart';
