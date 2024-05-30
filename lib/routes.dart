@@ -1,14 +1,15 @@
 // NOTE: I'm not sure this is how routing should be handled.
 import 'package:flutter/material.dart';
-import 'package:flutter_sandbox/pages/flex_screen.dart';
 import 'package:flutter_sandbox/pages/animation_demo.dart';
 import 'package:flutter_sandbox/pages/area_demo.dart';
 import 'package:flutter_sandbox/pages/authentication_demo.dart';
 import 'package:flutter_sandbox/pages/basic_screen.dart';
 import 'package:flutter_sandbox/pages/deep_tree.dart';
 import 'package:flutter_sandbox/pages/dismissible_demo.dart';
+import 'package:flutter_sandbox/pages/e_commerce_screen.dart';
 import 'package:flutter_sandbox/pages/fade_transition_demo.dart';
 import 'package:flutter_sandbox/pages/fade_transition_list_demo.dart';
+import 'package:flutter_sandbox/pages/flex_screen.dart';
 import 'package:flutter_sandbox/pages/future_demo.dart';
 import 'package:flutter_sandbox/pages/geolocation_demo.dart';
 import 'package:flutter_sandbox/pages/google_map_demo.dart';
@@ -41,6 +42,10 @@ final routes = {
   '/dismissible_demo': CustomRoute.fromWidget(
     label: 'Dismissible',
     widget: const DismissibleDemo(),
+  ),
+  '/e_commerce': CustomRoute.fromWidget(
+    label: 'ECommerce',
+    widget: const ECommerceScreen(),
   ),
   '/fade_transition_demo': CustomRoute.fromWidget(
     label: 'FadeTransition',
