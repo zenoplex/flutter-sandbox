@@ -13,6 +13,7 @@ import 'package:flutter_sandbox/views/google_map_demo.dart';
 import 'package:flutter_sandbox/views/hero_animation_demo.dart';
 import 'package:flutter_sandbox/views/json_demo.dart';
 import 'package:flutter_sandbox/views/json_demo_2.dart';
+import 'package:flutter_sandbox/views/navigation_dialog.dart';
 
 final routes = {
   '/': CustomRoute(label: 'Home', fn: (context) => const BasicScreen()),
@@ -63,6 +64,10 @@ final routes = {
   '/json_demo': CustomRoute.fromWidget(
     label: 'JSON Demo',
     widget: const JsonDemo(),
+  ),
+  '/navigation_dialog': CustomRoute.fromWidget(
+    label: 'Navigation Dialog Demo',
+    widget: const NavigationDialog(),
   ),
 };
 
