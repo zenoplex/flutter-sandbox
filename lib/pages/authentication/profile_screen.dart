@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sandbox/star.dart';
+import 'package:flutter_sandbox/pages/authentication/star.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
