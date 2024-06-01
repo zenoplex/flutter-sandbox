@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sandbox/text_layout.dart';
+import 'package:flutter_sandbox/pages/basic_screen/text_layout.dart';
 import 'package:flutter_sandbox/ui/drawer.dart';
 
 class BasicScreen extends StatelessWidget {
