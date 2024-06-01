@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_sandbox/streams.dart';
+import 'package:flutter_sandbox/pages/stream/streams.dart';
 
 class StreamHomePage extends StatefulWidget {
   const StreamHomePage({super.key});
