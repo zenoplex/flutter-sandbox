@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_sandbox/pages/stopwatch/platform_alert.dart';
 
 class StopWatch extends StatefulWidget {
   final String name;
@@ -51,6 +52,8 @@ class _StopWatchState extends State<StopWatch> {
     Future.delayed(const Duration(seconds: 3), () async {
       controller.close();
     });
+
+    const PlatformAlert(message: 'Run completed!', title: 'Run').show(context);
   }
 
   Widget _buildRunCompleteSheet(BuildContext context) {
