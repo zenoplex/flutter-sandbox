@@ -9,7 +9,7 @@ import 'package:flutter_sandbox/pages/dismissible_demo.dart';
 import 'package:flutter_sandbox/pages/e_commerce_screen.dart';
 import 'package:flutter_sandbox/pages/fade_transition_demo.dart';
 import 'package:flutter_sandbox/pages/fade_transition_list_demo.dart';
-import 'package:flutter_sandbox/pages/flex_screen.dart';
+import 'package:flutter_sandbox/pages/flex_screen/flex_screen.dart';
 import 'package:flutter_sandbox/pages/future_demo.dart';
 import 'package:flutter_sandbox/pages/geolocation_demo.dart';
 import 'package:flutter_sandbox/pages/google_map_demo.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sandbox/labeled_container.dart';
+import 'package:flutter_sandbox/pages/flex_screen/labeled_container.dart';
 
 class FlexScreen extends StatelessWidget {
   const FlexScreen({super.key});
