@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sandbox/models/data_layer.dart';
-import 'package:flutter_sandbox/plan_provider.dart';
+import 'package:flutter_sandbox/providers/plan_provider.dart';
 
 class PlanScreen extends StatefulWidget {
   final String planId;
