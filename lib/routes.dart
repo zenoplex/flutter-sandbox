@@ -14,6 +14,7 @@ import 'package:flutter_sandbox/pages/future_demo.dart';
 import 'package:flutter_sandbox/pages/geolocation_demo.dart';
 import 'package:flutter_sandbox/pages/google_map_demo.dart';
 import 'package:flutter_sandbox/pages/hero_animation_demo.dart';
+import 'package:flutter_sandbox/pages/immutable_widget.dart';
 import 'package:flutter_sandbox/pages/json_demo.dart';
 import 'package:flutter_sandbox/pages/navigation/navigation_first.dart';
 import 'package:flutter_sandbox/pages/navigation_dialog.dart';
@@ -77,6 +78,10 @@ final routes = {
   '/hero_animation_demo': CustomRoute.fromWidget(
     label: 'Hero Animation',
     widget: HeroAnimationDemo(),
+  ),
+  '/immutable_widget': CustomRoute.fromWidget(
+    label: 'Immutable Widget',
+    widget: const ImmutableWidget(),
   ),
   '/json_demo_2_demo': CustomRoute.fromWidget(
     label: 'Pizza Demo',
