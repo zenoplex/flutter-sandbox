@@ -1,5 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_sandbox/pages/camera/picture.dart';
 
 class CameraDemo extends StatefulWidget {
   const CameraDemo({super.key});
@@ -53,7 +54,16 @@ class _CameraDemoState extends State<CameraDemo> {
                 ElevatedButton(
                   onPressed: () async {
                     final file = await takePicker();
-                    print('Picture taken: $file');
+                    if (file == null) return;
+                    if (!context.mounted) return;
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute<Widget>(
+                        builder: (context) {
+                          return Picture(file);
+                        },
+                      ),
+                    );
                   },
                   child: const Text('Take Picture'),
                 ),
