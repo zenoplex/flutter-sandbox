@@ -12,7 +12,6 @@ class _CameraDemoState extends State<CameraDemo> {
   final List<CameraDescription> _cameras = [];
   List<Widget> _cameraButtons = [];
   CameraController? _cameraController;
-  CameraDescription? _activeCamera;
   CameraPreview? _preview;
 
   @override
@@ -70,14 +69,11 @@ class _CameraDemoState extends State<CameraDemo> {
     final List<CameraDescription> cameras = await availableCameras();
     if (cameras.isEmpty) return [];
 
-    _activeCamera ??= cameras.first;
-
     return cameras.map((camera) {
       return ElevatedButton(
         onPressed: () {
           setState(() {
-            _activeCamera = camera;
-            setCameraController();
+            setCameraController(camera);
           });
         },
         child: Row(
@@ -93,12 +89,11 @@ class _CameraDemoState extends State<CameraDemo> {
     }).toList();
   }
 
-  Future<void> setCameraController() async {
-    if (_activeCamera == null) return;
+  Future<void> setCameraController(CameraDescription? camera) async {
+    if (camera == null) return;
 
     if (_cameraController != null) await _cameraController!.dispose();
-    final camController =
-        CameraController(_activeCamera!, ResolutionPreset.high);
+    final camController = CameraController(camera, ResolutionPreset.high);
 
     try {
       await camController.initialize();
