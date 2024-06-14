@@ -25,6 +25,7 @@ import 'package:flutter_sandbox/pages/shape_animation_demo.dart';
 import 'package:flutter_sandbox/pages/stopwatch/stopwatch_login_screen.dart';
 import 'package:flutter_sandbox/pages/stream/stream_builder_app.dart';
 import 'package:flutter_sandbox/pages/stream/stream_demo.dart';
+import 'package:flutter_sandbox/views/camera_demo.dart';
 
 final routes = {
   '/': CustomRoute(label: 'Home', fn: (context) => const BasicScreen()),
@@ -39,6 +40,10 @@ final routes = {
   '/area_demo': CustomRoute.fromWidget(
     label: 'Area Calculation',
     widget: const AreaApp(),
+  ),
+  '/camera_demo': CustomRoute.fromWidget(
+    label: 'Camera',
+    widget: const CameraDemo(),
   ),
   '/deep_tree_demo': CustomRoute.fromWidget(
     label: 'Deep Tree',
