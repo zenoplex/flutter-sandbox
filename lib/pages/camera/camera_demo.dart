@@ -10,17 +10,18 @@ class CameraDemo extends StatefulWidget {
 }
 
 class _CameraDemoState extends State<CameraDemo> {
-  final List<CameraDescription> _cameras = [];
-  List<Widget> _cameraButtons = [];
+  List<CameraDescription> _cameras = [];
   CameraController? _cameraController;
   CameraPreview? _preview;
 
   @override
   void initState() {
     super.initState();
-    listCameras().then((result) {
+
+    Future(() async {
+      final cameras = await availableCameras();
       setState(() {
-        _cameraButtons = result;
+        _cameras = cameras;
       });
     });
   }
@@ -43,9 +44,26 @@ class _CameraDemoState extends State<CameraDemo> {
           children: [
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: _cameraButtons.isEmpty
+              children: _cameras.isEmpty
                   ? [const Text('No cameras available')]
-                  : _cameraButtons,
+                  : _cameras.map((camera) {
+                      return ElevatedButton(
+                        onPressed: () {
+                          setState(() {
+                            setCameraController(camera);
+                          });
+                        },
+                        child: Row(
+                          children: [
+                            const Icon(Icons.camera_alt),
+                            Text(
+                              camera.name,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ],
+                        ),
+                      );
+                    }).toList(),
             ),
             SizedBox(height: size.height / 2, child: _preview),
             Row(
@@ -73,30 +91,6 @@ class _CameraDemoState extends State<CameraDemo> {
         ),
       ),
     );
-  }
-
-  Future<List<Widget>> listCameras() async {
-    final List<CameraDescription> cameras = await availableCameras();
-    if (cameras.isEmpty) return [];
-
-    return cameras.map((camera) {
-      return ElevatedButton(
-        onPressed: () {
-          setState(() {
-            setCameraController(camera);
-          });
-        },
-        child: Row(
-          children: [
-            const Icon(Icons.camera_alt),
-            Text(
-              camera.name,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ],
-        ),
-      );
-    }).toList();
   }
 
   Future<void> setCameraController(CameraDescription? camera) async {
