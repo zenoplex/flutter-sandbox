@@ -4,6 +4,7 @@ import 'package:flutter_sandbox/pages/animation_demo.dart';
 import 'package:flutter_sandbox/pages/area_demo.dart';
 import 'package:flutter_sandbox/pages/authentication/authentication_demo.dart';
 import 'package:flutter_sandbox/pages/basic_screen/basic_screen.dart';
+import 'package:flutter_sandbox/pages/camera/camera_demo.dart';
 import 'package:flutter_sandbox/pages/deep_tree.dart';
 import 'package:flutter_sandbox/pages/dismissible_demo.dart';
 import 'package:flutter_sandbox/pages/e_commerce_screen.dart';
@@ -25,7 +26,6 @@ import 'package:flutter_sandbox/pages/shape_animation_demo.dart';
 import 'package:flutter_sandbox/pages/stopwatch/stopwatch_login_screen.dart';
 import 'package:flutter_sandbox/pages/stream/stream_builder_app.dart';
 import 'package:flutter_sandbox/pages/stream/stream_demo.dart';
-import 'package:flutter_sandbox/views/camera_demo.dart';
 
 final routes = {
   '/': CustomRoute(label: 'Home', fn: (context) => const BasicScreen()),
