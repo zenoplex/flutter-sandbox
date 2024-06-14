@@ -52,10 +52,9 @@ class _CameraDemoState extends State<CameraDemo> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton(
-                  onPressed: () {
-                    takePicker().then((value) {
-                      print('camera $value');
-                    });
+                  onPressed: () async {
+                    final file = await takePicker();
+                    print('Picture taken: $file');
                   },
                   child: const Text('Take Picture'),
                 ),
@@ -114,11 +113,11 @@ class _CameraDemoState extends State<CameraDemo> {
     });
   }
 
-  Future<dynamic> takePicker() async {
+  Future<XFile?> takePicker() async {
     print(_cameraController);
     if (_cameraController == null ||
         !_cameraController!.value.isInitialized ||
-        _cameraController!.value.isTakingPicture) return;
+        _cameraController!.value.isTakingPicture) return null;
 
     final camController = _cameraController!;
 
@@ -129,5 +128,6 @@ class _CameraDemoState extends State<CameraDemo> {
     } catch (e) {
       print('Failed to take picture: $e');
     }
+    return null;
   }
 }
