@@ -59,6 +59,21 @@ class Picture extends StatelessWidget {
                 },
                 child: const Text('Barcode Reader'),
               ),
+              ElevatedButton(
+                onPressed: () {
+                  final image = File(picture.path);
+                  final MlHelper helper = MlHelper();
+                  helper.labelImage(image).then((result) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute<Widget>(
+                        builder: (context) => ResultScreen(result),
+                      ),
+                    );
+                  });
+                },
+                child: const Text('Image Labeling'),
+              ),
             ],
           ),
         ],

@@ -1107,6 +1107,11 @@ PODS:
   - google_mlkit_commons (0.7.1):
     - Flutter
     - MLKitVision
+  - google_mlkit_image_labeling (0.12.0):
+    - Flutter
+    - google_mlkit_commons
+    - GoogleMLKit/ImageLabeling (~> 6.0.0)
+    - GoogleMLKit/ImageLabelingCustom (~> 6.0.0)
   - google_mlkit_text_recognition (0.13.0):
     - Flutter
     - google_mlkit_commons
@@ -1149,6 +1154,12 @@ PODS:
   - GoogleMLKit/BarcodeScanning (6.0.0):
     - GoogleMLKit/MLKitCore
     - MLKitBarcodeScanning (~> 5.0.0)
+  - GoogleMLKit/ImageLabeling (6.0.0):
+    - GoogleMLKit/MLKitCore
+    - MLKitImageLabeling (~> 5.0.0)
+  - GoogleMLKit/ImageLabelingCustom (6.0.0):
+    - GoogleMLKit/MLKitCore
+    - MLKitImageLabelingCustom (~> 5.0.0)
   - GoogleMLKit/MLKitCore (6.0.0):
     - MLKitCommon (~> 11.0.0)
   - GoogleMLKit/TextRecognition (6.0.0):
@@ -1295,6 +1306,22 @@ PODS:
     - GoogleUtilities/UserDefaults (< 8.0, >= 7.13.0)
     - GoogleUtilitiesComponents (~> 1.0)
     - GTMSessionFetcher/Core (< 4.0, >= 3.3.2)
+  - MLKitImageLabeling (5.0.0):
+    - MLKitCommon (~> 11.0)
+    - MLKitImageLabelingCommon (~> 7.0)
+    - MLKitVision (~> 7.0)
+    - MLKitVisionKit (~> 8.0)
+  - MLKitImageLabelingCommon (7.0.0):
+    - MLKitCommon (~> 11.0)
+    - MLKitVision (~> 7.0)
+  - MLKitImageLabelingCustom (5.0.0):
+    - MLKitCommon (~> 11.0)
+    - MLKitImageLabelingCommon (~> 7.0)
+    - MLKitVision (~> 7.0)
+    - MLKitVisionKit (~> 8.0)
+  - MLKitObjectDetectionCommon (7.0.0):
+    - MLKitCommon (~> 11.0)
+    - MLKitVision (~> 7.0)
   - MLKitTextRecognition (4.0.0):
     - MLKitCommon (~> 11.0)
     - MLKitTextRecognitionCommon (= 3.0.0)
@@ -1308,6 +1335,11 @@ PODS:
     - GTMSessionFetcher/Core (< 4.0, >= 3.3.2)
     - MLImage (= 1.0.0-beta5)
     - MLKitCommon (~> 11.0)
+  - MLKitVisionKit (8.0.0):
+    - MLKitCommon (~> 11.0)
+    - MLKitImageLabelingCommon (~> 7.0)
+    - MLKitObjectDetectionCommon (~> 7.0)
+    - MLKitVision (~> 7.0)
   - nanopb (2.30909.1):
     - nanopb/decode (= 2.30909.1)
     - nanopb/encode (= 2.30909.1)
@@ -1339,6 +1371,7 @@ DEPENDENCIES:
   - google_maps_flutter_ios (from `.symlinks/plugins/google_maps_flutter_ios/ios`)
   - google_mlkit_barcode_scanning (from `.symlinks/plugins/google_mlkit_barcode_scanning/ios`)
   - google_mlkit_commons (from `.symlinks/plugins/google_mlkit_commons/ios`)
+  - google_mlkit_image_labeling (from `.symlinks/plugins/google_mlkit_image_labeling/ios`)
   - google_mlkit_text_recognition (from `.symlinks/plugins/google_mlkit_text_recognition/ios`)
   - google_sign_in_ios (from `.symlinks/plugins/google_sign_in_ios/darwin`)
   - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
@@ -1382,9 +1415,14 @@ SPEC REPOS:
     - MLImage
     - MLKitBarcodeScanning
     - MLKitCommon
+    - MLKitImageLabeling
+    - MLKitImageLabelingCommon
+    - MLKitImageLabelingCustom
+    - MLKitObjectDetectionCommon
     - MLKitTextRecognition
     - MLKitTextRecognitionCommon
     - MLKitVision
+    - MLKitVisionKit
     - nanopb
     - PromisesObjC
     - RecaptchaInterop
@@ -1422,6 +1460,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/google_mlkit_barcode_scanning/ios"
   google_mlkit_commons:
     :path: ".symlinks/plugins/google_mlkit_commons/ios"
+  google_mlkit_image_labeling:
+    :path: ".symlinks/plugins/google_mlkit_image_labeling/ios"
   google_mlkit_text_recognition:
     :path: ".symlinks/plugins/google_mlkit_text_recognition/ios"
   google_sign_in_ios:
@@ -1470,6 +1510,7 @@ SPEC CHECKSUMS:
   google_maps_flutter_ios: f135b968a67c05679e0a53538e900b5c174b0d99
   google_mlkit_barcode_scanning: 383d0c2dd62d92b36c0b10c7e69cf98d3650dc40
   google_mlkit_commons: 96aaca445520311b84a2da013dedf3427fe4cc69
+  google_mlkit_image_labeling: 6e0b7cbdec78650a00cccefc95f1ee8e6168a58c
   google_mlkit_text_recognition: 393c2526da49aa6c9c883e6d69100f54af011e24
   google_sign_in_ios: 07375bfbf2620bc93a602c0e27160d6afc6ead38
   GoogleAppMeasurement: ccefe3eac9b0aa27f96066809fb1a7fe4b462626
@@ -1490,9 +1531,14 @@ SPEC CHECKSUMS:
   MLImage: 1824212150da33ef225fbd3dc49f184cf611046c
   MLKitBarcodeScanning: 10ca0845a6d15f2f6e911f682a1998b68b973e8b
   MLKitCommon: afec63980417d29ffbb4790529a1b0a2291699e1
+  MLKitImageLabeling: c13caec3baa684553ec823d5dfbca3e3be8ce9a2
+  MLKitImageLabelingCommon: fa802f14c3a321121409f6cbe1df89ba9cf1a00c
+  MLKitImageLabelingCustom: 57b8782ddda60b3027a796efcc0c6970f9e2b78f
+  MLKitObjectDetectionCommon: f3ca8581a0741be6ce609920367316571a280efa
   MLKitTextRecognition: c83c18ad25496f2077f6ec93c5940487ff2eb343
   MLKitTextRecognitionCommon: c0b3a63d529296a19bce1f8bc8a513644ed4d1f6
   MLKitVision: e858c5f125ecc288e4a31127928301eaba9ae0c1
+  MLKitVisionKit: 6d2ea9741b262ec0fed2a5a3de521cfa671c6e83
   nanopb: d4d75c12cd1316f4a64e3c6963f879ecd4b5e0d5
   path_provider_foundation: 3784922295ac71e43754bd15e0653ccfd36a147c
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
