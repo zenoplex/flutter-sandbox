@@ -44,6 +44,21 @@ class Picture extends StatelessWidget {
                 },
                 child: const Text('Text Recognition'),
               ),
+              ElevatedButton(
+                onPressed: () {
+                  final image = File(picture.path);
+                  final MlHelper helper = MlHelper();
+                  helper.scanBarcode(image).then((result) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute<Widget>(
+                        builder: (context) => ResultScreen(result),
+                      ),
+                    );
+                  });
+                },
+                child: const Text('Barcode Reader'),
+              ),
             ],
           ),
         ],
