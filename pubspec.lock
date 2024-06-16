@@ -668,6 +668,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.12.0"
+  google_mlkit_language_id:
+    dependency: "direct main"
+    description:
+      name: google_mlkit_language_id
+      sha256: "37fa373d722b4f712216c4c70313d13add07df196427cfaa3f3d6f9f34b4bf9b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.11.0"
   google_mlkit_text_recognition:
     dependency: "direct main"
     description:
