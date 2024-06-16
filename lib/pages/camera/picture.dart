@@ -35,43 +35,46 @@ class Picture extends StatelessWidget {
             height: deviceHeight / 1.5,
             child: Image.file(File(picture.path)),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ElevatedButton(
-                onPressed: () async {
-                  final image = File(picture.path);
-                  final MlHelper helper = MlHelper();
-                  final result = await helper.textFromImage(image);
+          SizedBox(
+            height: 50,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: [
+                ElevatedButton(
+                  onPressed: () async {
+                    final image = File(picture.path);
+                    final MlHelper helper = MlHelper();
+                    final result = await helper.textFromImage(image);
 
-                  if (!context.mounted) return;
-                  _showResult(context, result);
-                },
-                child: const Text('Text Recognition'),
-              ),
-              ElevatedButton(
-                onPressed: () async {
-                  final image = File(picture.path);
-                  final MlHelper helper = MlHelper();
-                  final result = await helper.scanBarcode(image);
+                    if (!context.mounted) return;
+                    _showResult(context, result);
+                  },
+                  child: const Text('Text Recognition'),
+                ),
+                ElevatedButton(
+                  onPressed: () async {
+                    final image = File(picture.path);
+                    final MlHelper helper = MlHelper();
+                    final result = await helper.scanBarcode(image);
 
-                  if (!context.mounted) return;
-                  _showResult(context, result);
-                },
-                child: const Text('Barcode Reader'),
-              ),
-              ElevatedButton(
-                onPressed: () async {
-                  final image = File(picture.path);
-                  final MlHelper helper = MlHelper();
-                  final result = await helper.labelImage(image);
+                    if (!context.mounted) return;
+                    _showResult(context, result);
+                  },
+                  child: const Text('Barcode Reader'),
+                ),
+                ElevatedButton(
+                  onPressed: () async {
+                    final image = File(picture.path);
+                    final MlHelper helper = MlHelper();
+                    final result = await helper.labelImage(image);
 
-                  if (!context.mounted) return;
-                  _showResult(context, result);
-                },
-                child: const Text('Image Labeling'),
-              ),
-            ],
+                    if (!context.mounted) return;
+                    _showResult(context, result);
+                  },
+                  child: const Text('Image Labeling'),
+                ),
+              ],
+            ),
           ),
         ],
       ),
