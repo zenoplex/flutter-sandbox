@@ -12,6 +12,15 @@ class Picture extends StatelessWidget {
     super.key,
   });
 
+  void _showResult(BuildContext context, String result) {
+    Navigator.push(
+      context,
+      MaterialPageRoute<Widget>(
+        builder: (context) => ResultScreen(result),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final deviceHeight = MediaQuery.of(context).size.height;
@@ -30,47 +39,35 @@ class Picture extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
                   final image = File(picture.path);
                   final MlHelper helper = MlHelper();
-                  helper.textFromImage(image).then((result) {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute<Widget>(
-                        builder: (context) => ResultScreen(result),
-                      ),
-                    );
-                  });
+                  final result = await helper.textFromImage(image);
+
+                  if (!context.mounted) return;
+                  _showResult(context, result);
                 },
                 child: const Text('Text Recognition'),
               ),
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
                   final image = File(picture.path);
                   final MlHelper helper = MlHelper();
-                  helper.scanBarcode(image).then((result) {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute<Widget>(
-                        builder: (context) => ResultScreen(result),
-                      ),
-                    );
-                  });
+                  final result = await helper.scanBarcode(image);
+
+                  if (!context.mounted) return;
+                  _showResult(context, result);
                 },
                 child: const Text('Barcode Reader'),
               ),
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
                   final image = File(picture.path);
                   final MlHelper helper = MlHelper();
-                  helper.labelImage(image).then((result) {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute<Widget>(
-                        builder: (context) => ResultScreen(result),
-                      ),
-                    );
-                  });
+                  final result = await helper.labelImage(image);
+
+                  if (!context.mounted) return;
+                  _showResult(context, result);
                 },
                 child: const Text('Image Labeling'),
               ),
