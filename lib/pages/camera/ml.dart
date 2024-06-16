@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:google_mlkit_barcode_scanning/google_mlkit_barcode_scanning.dart';
+import 'package:google_mlkit_face_detection/google_mlkit_face_detection.dart';
 import 'package:google_mlkit_image_labeling/google_mlkit_image_labeling.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 
@@ -38,5 +39,34 @@ class MlHelper {
     });
 
     return str.trim();
+  }
+
+  /// Note: Face detection does not seem to work properly on iOS
+  Future<String> detectFace(File image) async {
+    final options = FaceDetectorOptions(
+      enableClassification: true,
+      enableTracking: true,
+      enableLandmarks: true,
+      enableContours: true,
+      performanceMode: FaceDetectorMode.accurate,
+    );
+    final faceDetector = FaceDetector(options: options);
+    final inputImage = InputImage.fromFile(image);
+    final faces = await faceDetector.processImage(inputImage);
+
+    final str = faces.asMap().entries.fold("", (acc, entry) {
+      final face = entry.value;
+      final text = """
+Face: ${entry.key}
+Smiling: ${face.smilingProbability ?? 0 * 100}%
+Left eye open: ${face.leftEyeOpenProbability ?? 0 * 100}%
+Right eye open: ${face.rightEyeOpenProbability ?? 0 * 100}%
+""";
+      return "$acc$text\n";
+    });
+
+    final result = faces.isNotEmpty ? str.trim() : "No faces detected";
+
+    return result;
   }
 }

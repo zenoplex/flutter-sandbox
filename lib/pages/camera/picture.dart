@@ -73,6 +73,17 @@ class Picture extends StatelessWidget {
                   },
                   child: const Text('Image Labeling'),
                 ),
+                ElevatedButton(
+                  onPressed: () async {
+                    final image = File(picture.path);
+                    final MlHelper helper = MlHelper();
+                    final result = await helper.detectFace(image);
+
+                    if (!context.mounted) return;
+                    _showResult(context, result);
+                  },
+                  child: const Text('Detect Face'),
+                ),
               ],
             ),
           ),
