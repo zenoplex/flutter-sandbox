@@ -56,9 +56,11 @@ class _CameraDemoState extends State<CameraDemo> {
                         child: Row(
                           children: [
                             const Icon(Icons.camera_alt),
-                            Text(
-                              camera.name,
-                              overflow: TextOverflow.ellipsis,
+                            Flexible(
+                              child: Text(
+                                camera.name,
+                                overflow: TextOverflow.ellipsis,
+                              ),
                             ),
                           ],
                         ),
