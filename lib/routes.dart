@@ -17,6 +17,7 @@ import 'package:flutter_sandbox/pages/google_map_demo.dart';
 import 'package:flutter_sandbox/pages/hero_animation_demo.dart';
 import 'package:flutter_sandbox/pages/immutable_widget.dart';
 import 'package:flutter_sandbox/pages/json_demo.dart';
+import 'package:flutter_sandbox/pages/language_identifier/language.dart';
 import 'package:flutter_sandbox/pages/navigation/navigation_first.dart';
 import 'package:flutter_sandbox/pages/navigation_dialog.dart';
 import 'package:flutter_sandbox/pages/pizzas/pizza_demo.dart';
@@ -88,6 +89,10 @@ final routes = {
   '/immutable_widget': CustomRoute.fromWidget(
     label: 'Immutable Widget',
     widget: const ImmutableWidget(),
+  ),
+  '/language_identifier': CustomRoute.fromWidget(
+    label: 'Language Identifier',
+    widget: const LanguageScreen(),
   ),
   '/json_demo_2_demo': CustomRoute.fromWidget(
     label: 'Pizza Demo',

@@ -1116,6 +1116,10 @@ PODS:
     - google_mlkit_commons
     - GoogleMLKit/ImageLabeling (~> 6.0.0)
     - GoogleMLKit/ImageLabelingCustom (~> 6.0.0)
+  - google_mlkit_language_id (0.11.0):
+    - Flutter
+    - google_mlkit_commons
+    - GoogleMLKit/LanguageID (~> 6.0.0)
   - google_mlkit_text_recognition (0.13.0):
     - Flutter
     - google_mlkit_commons
@@ -1167,6 +1171,9 @@ PODS:
   - GoogleMLKit/ImageLabelingCustom (6.0.0):
     - GoogleMLKit/MLKitCore
     - MLKitImageLabelingCustom (~> 5.0.0)
+  - GoogleMLKit/LanguageID (6.0.0):
+    - GoogleMLKit/MLKitCore
+    - MLKitLanguageID (~> 6.0.0)
   - GoogleMLKit/MLKitCore (6.0.0):
     - MLKitCommon (~> 11.0.0)
   - GoogleMLKit/TextRecognition (6.0.0):
@@ -1180,6 +1187,8 @@ PODS:
   - GoogleToolboxForMac/Logger (4.2.1):
     - GoogleToolboxForMac/Defines (= 4.2.1)
   - "GoogleToolboxForMac/NSData+zlib (4.2.1)":
+    - GoogleToolboxForMac/Defines (= 4.2.1)
+  - GoogleToolboxForMac/StringEncoding (4.2.1):
     - GoogleToolboxForMac/Defines (= 4.2.1)
   - GoogleUtilities/AppDelegateSwizzler (7.13.3):
     - GoogleUtilities/Environment
@@ -1329,6 +1338,14 @@ PODS:
     - MLKitImageLabelingCommon (~> 7.0)
     - MLKitVision (~> 7.0)
     - MLKitVisionKit (~> 8.0)
+  - MLKitLanguageID (6.0.0):
+    - MLKitNaturalLanguage (~> 7.0)
+  - MLKitNaturalLanguage (7.0.0):
+    - GoogleToolboxForMac/Logger (< 5.0, >= 4.2.1)
+    - "GoogleToolboxForMac/NSData+zlib (< 5.0, >= 4.2.1)"
+    - GoogleToolboxForMac/StringEncoding (< 5.0, >= 4.2.1)
+    - GTMSessionFetcher/Core (< 4.0, >= 3.3.2)
+    - MLKitCommon (~> 11.0)
   - MLKitObjectDetectionCommon (7.0.0):
     - MLKitCommon (~> 11.0)
     - MLKitVision (~> 7.0)
@@ -1383,6 +1400,7 @@ DEPENDENCIES:
   - google_mlkit_commons (from `.symlinks/plugins/google_mlkit_commons/ios`)
   - google_mlkit_face_detection (from `.symlinks/plugins/google_mlkit_face_detection/ios`)
   - google_mlkit_image_labeling (from `.symlinks/plugins/google_mlkit_image_labeling/ios`)
+  - google_mlkit_language_id (from `.symlinks/plugins/google_mlkit_language_id/ios`)
   - google_mlkit_text_recognition (from `.symlinks/plugins/google_mlkit_text_recognition/ios`)
   - google_sign_in_ios (from `.symlinks/plugins/google_sign_in_ios/darwin`)
   - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
@@ -1430,6 +1448,8 @@ SPEC REPOS:
     - MLKitImageLabeling
     - MLKitImageLabelingCommon
     - MLKitImageLabelingCustom
+    - MLKitLanguageID
+    - MLKitNaturalLanguage
     - MLKitObjectDetectionCommon
     - MLKitTextRecognition
     - MLKitTextRecognitionCommon
@@ -1476,6 +1496,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/google_mlkit_face_detection/ios"
   google_mlkit_image_labeling:
     :path: ".symlinks/plugins/google_mlkit_image_labeling/ios"
+  google_mlkit_language_id:
+    :path: ".symlinks/plugins/google_mlkit_language_id/ios"
   google_mlkit_text_recognition:
     :path: ".symlinks/plugins/google_mlkit_text_recognition/ios"
   google_sign_in_ios:
@@ -1526,6 +1548,7 @@ SPEC CHECKSUMS:
   google_mlkit_commons: 96aaca445520311b84a2da013dedf3427fe4cc69
   google_mlkit_face_detection: b760d6035222630f347352b3b13f4a23ea9fb994
   google_mlkit_image_labeling: 6e0b7cbdec78650a00cccefc95f1ee8e6168a58c
+  google_mlkit_language_id: a63b1951078835b2682e52d9243012dfed621fec
   google_mlkit_text_recognition: 393c2526da49aa6c9c883e6d69100f54af011e24
   google_sign_in_ios: 07375bfbf2620bc93a602c0e27160d6afc6ead38
   GoogleAppMeasurement: ccefe3eac9b0aa27f96066809fb1a7fe4b462626
@@ -1550,6 +1573,8 @@ SPEC CHECKSUMS:
   MLKitImageLabeling: c13caec3baa684553ec823d5dfbca3e3be8ce9a2
   MLKitImageLabelingCommon: fa802f14c3a321121409f6cbe1df89ba9cf1a00c
   MLKitImageLabelingCustom: 57b8782ddda60b3027a796efcc0c6970f9e2b78f
+  MLKitLanguageID: a897902aa4e58f7bf0943b07a1f9b58d762273aa
+  MLKitNaturalLanguage: 7cd66a1ec3fbee2ff22890e1d42dda5c928e811b
   MLKitObjectDetectionCommon: f3ca8581a0741be6ce609920367316571a280efa
   MLKitTextRecognition: c83c18ad25496f2077f6ec93c5940487ff2eb343
   MLKitTextRecognitionCommon: c0b3a63d529296a19bce1f8bc8a513644ed4d1f6
