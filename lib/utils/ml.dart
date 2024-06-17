@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:google_mlkit_barcode_scanning/google_mlkit_barcode_scanning.dart';
 import 'package:google_mlkit_face_detection/google_mlkit_face_detection.dart';
 import 'package:google_mlkit_image_labeling/google_mlkit_image_labeling.dart';
+import 'package:google_mlkit_language_id/google_mlkit_language_id.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 
 class MlHelper {
@@ -68,5 +69,17 @@ Right eye open: ${face.rightEyeOpenProbability ?? 0 * 100}%
     final result = faces.isNotEmpty ? str.trim() : "No faces detected";
 
     return result;
+  }
+
+  Future<String> identifyLanguage(String text) async {
+    final languageIdentifier = LanguageIdentifier(confidenceThreshold: 0.5);
+    final languages = await languageIdentifier.identifyPossibleLanguages(text);
+
+    final str = languages.fold("", (acc, language) {
+      final text = "${language.languageTag} - ${language.confidence * 100}";
+      return "$acc$text\n";
+    });
+
+    return str.isEmpty ? "Unknown language" : str.trim();
   }
 }

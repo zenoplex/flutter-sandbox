@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_sandbox/pages/camera/ml.dart';
 import 'package:flutter_sandbox/pages/camera/result.dart';
+import 'package:flutter_sandbox/utils/ml.dart';
 
 class Picture extends StatelessWidget {
   final XFile picture;

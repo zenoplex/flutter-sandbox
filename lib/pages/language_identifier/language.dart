@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_sandbox/pages/camera/result.dart';
+import 'package:flutter_sandbox/utils/ml.dart';
 
 class LanguageScreen extends StatefulWidget {
   const LanguageScreen({super.key});
@@ -34,7 +36,18 @@ class _LanguageScreenState extends State<LanguageScreen> {
             // TODO: Consider using Gap instead of SizedBox
             const SizedBox(height: 10),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () async {
+                final helper = MlHelper();
+                final result = await helper.identifyLanguage(_controller.text);
+
+                if (!context.mounted) return;
+                Navigator.push(
+                  context,
+                  MaterialPageRoute<Widget>(
+                    builder: (context) => ResultScreen(result),
+                  ),
+                );
+              },
               child: const Text("Identify Language"),
             ),
           ],
