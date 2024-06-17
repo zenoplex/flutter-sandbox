@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter_sandbox/utils/classifier.dart';
 import 'package:google_mlkit_barcode_scanning/google_mlkit_barcode_scanning.dart';
 import 'package:google_mlkit_face_detection/google_mlkit_face_detection.dart';
 import 'package:google_mlkit_image_labeling/google_mlkit_image_labeling.dart';
@@ -81,5 +82,13 @@ Right eye open: ${face.rightEyeOpenProbability ?? 0 * 100}%
     });
 
     return str.isEmpty ? "Unknown language" : str.trim();
+  }
+
+  Future<String> classifyText(String message) async {
+    final classifier = Classifier();
+    final value = await classifier.classify(message);
+
+    final result = (value > 0) ? 'Positive sentiment' : 'Negative sentiment';
+    return result;
   }
 }

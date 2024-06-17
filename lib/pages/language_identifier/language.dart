@@ -50,6 +50,21 @@ class _LanguageScreenState extends State<LanguageScreen> {
               },
               child: const Text("Identify Language"),
             ),
+            ElevatedButton(
+              onPressed: () async {
+                final helper = MlHelper();
+                final result = await helper.classifyText(_controller.text);
+
+                if (!context.mounted) return;
+                Navigator.push(
+                  context,
+                  MaterialPageRoute<Widget>(
+                    builder: (context) => ResultScreen(result),
+                  ),
+                );
+              },
+              child: const Text("Classify Text"),
+            ),
           ],
         ),
       ),
