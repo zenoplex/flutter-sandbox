@@ -1,18 +1,16 @@
 <a name="top"></a>
 
-<div style="text-align: center;">
-  <h3>flutter sandbox</h3>
+<div align="center">
+  <h3 align="center">flutter sandbox</h3>
 
-  <p>
+  <p align="center">
     Playground to learn flutter and dart.
   </p>
 </div>
 
 ## About The Project
 
-<div style="text-align: center;">
-  <img src="./screenshot.png" height="400" />
-</div>
+<img src="./screenshot.png" height="400" align="center" />
 
 Based from [Flutter Cookbook - Second Edition][Book] by Simone Alessandria
 
@@ -60,9 +58,7 @@ To get a local copy up and running follow these simple steps.
 
 Distributed under the MIT License.
 
-<div style="text-align: right;">
-  <p><a href="#top">↑ Back to top</a></p>
-</div>
+<p align="right"><a href="#top">↑ Back to top</a></p>
 
 [project-screenshot]: ./screenshot.png
 [Lang]: https://flutter.dev/
